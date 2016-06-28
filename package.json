@@ -1,0 +1,40 @@
+{
+  "name": "My realty",
+  "version": "1.0.0",
+  "description": "Extension for to collect descriptions of your own real estate, or to collect selling/rent ads.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/gulp/bin/gulp.js test",
+    "postinstall": "./node_modules/gulp/bin/gulp.js build"
+  },
+  "author": "Nikolay Kuznetcov",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.10.4",
+    "babel-eslint": "^6.1.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-runtime": "^6.9.2",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-eslint": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-zip": "^3.2.0",
+    "html-webpack-plugin": "^2.21.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-fa": "^4.1.2",
+    "style-loader": "^0.13.1",
+    "underscore": "^1.8.3",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1"
+  }
+}
