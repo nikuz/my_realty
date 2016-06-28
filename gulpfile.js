@@ -83,6 +83,13 @@ gulp.task('copy:images-dev', function() {
   return gulp.src(['./src/images/**/*']).pipe(gulp.dest('release/images'));
 });
 
+gulp.task('copy:locales', ['build:clean'], function() {
+  return gulp.src(['./_locales/**/*']).pipe(gulp.dest('release/_locales'));
+});
+gulp.task('copy:locales-dev', function() {
+  return gulp.src(['./_locales/**/*']).pipe(gulp.dest('release/_locales'));
+});
+
 var myDevConfig = Object.create(webpackConfig);
 myDevConfig.devtool = 'sourcemap';
 myDevConfig.debug = true;
@@ -100,7 +107,7 @@ gulp.task('webpack:build-dev', function(callback) {
 });
 
 gulp.task('build-dev', function() {
-  return gulp.watch(['src/**/*'], ['webpack:build-dev']);
+  return gulp.watch(['src/**/*', '_locales/**/*'], ['webpack:build-dev']);
 });
 
 gulp.task('remove:extrafonts', ['webpack:build'], function() {
@@ -138,6 +145,7 @@ gulp.task('build', [
   'webpack:build',
   'copy:manifest',
   'copy:images',
+  'copy:locales',
   'remove:extrafonts',
   'build:compress'
 ]);
@@ -145,6 +153,7 @@ gulp.task('build', [
 gulp.task('default', [
   'copy:manifest-dev',
   'copy:images-dev',
+  'copy:locales-dev',
   'webpack:build-dev',
   'build-dev'
 ]);

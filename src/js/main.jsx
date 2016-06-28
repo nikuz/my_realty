@@ -11,9 +11,10 @@ class App extends React.Component {
 
   };
   render() {
+    var hello = chrome.i18n.getMessage('hello');
     return (
       <div id="content">
-        My realty
+        My realty {hello}
       </div>
     );
   }
