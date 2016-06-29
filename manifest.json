@@ -17,13 +17,7 @@
   "content_security_policy": "script-src 'self'; object-src 'self'",
   "permissions": [
     "tabs",
-    "background",
-    "notifications",
-    "alarms",
-    "https://www.upwork.com/*"
-  ],
-  "web_accessible_resources": [
-    "verifier.html"
+    "background"
   ],
   "background": {
     "scripts": ["background.js"],

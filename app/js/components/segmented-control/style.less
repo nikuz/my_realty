@@ -1,0 +1,27 @@
+.segmented-control {
+  overflow: hidden;
+}
+.segmented-control li {
+  float: left;
+  padding: 5px 13px 4px;
+  border: 1px solid #b7b8ba;
+  border-left: none;
+  background: linear-gradient(to bottom, #fff 0%, #dfe3e6 100%);
+  cursor: pointer;
+}
+.segmented-control li:hover {
+  background: linear-gradient(to bottom, #fff 0%, #eceef0 100%);
+}
+.segmented-control li.selected {
+  background: linear-gradient(to bottom, #25bed5 0%, #81deea 100%);
+}
+.segmented-control li.selected:hover {
+  background: #38d8f0;
+}
+.segmented-control li:first-child {
+  border-radius: 12px 0 0 12px;
+  border-left: 1px solid #b7b8ba;
+}
+.segmented-control li:last-child {
+  border-radius: 0 12px 12px 0;
+}

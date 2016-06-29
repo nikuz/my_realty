@@ -16,5 +16,11 @@
   },
   "add_overlay_title": {
     "message": "Add realty overlay"
+  },
+  "add_transaction_type_rent": {
+    "message": "Rent"
+  },
+  "add_transaction_type_buy": {
+    "message": "Buy"
   }
 }
