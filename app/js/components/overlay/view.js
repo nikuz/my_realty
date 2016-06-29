@@ -11,6 +11,7 @@ class Overlay extends React.Component {
     this.state = {
       open: true
     };
+    this.escapeDetector = this.escapeDetector.bind(this);
     this.close = this.close.bind(this);
   }
   close() {
@@ -18,6 +19,17 @@ class Overlay extends React.Component {
       open: false
     });
     setTimeout(this.props.close, 300);
+  }
+  escapeDetector(event) {
+    if (event.keyCode == 27) {
+      this.close();
+    }
+  }
+  componentDidMount() {
+    document.addEventListener('keydown', this.escapeDetector);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.escapeDetector);
   }
   render() {
     var state = this.state,
