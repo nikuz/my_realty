@@ -2,19 +2,18 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import AppStore from './store';
+import Manager from './views/manager/controller';
 
 import 'css/basic';
-import 'css/form';
+// import 'css/form';
 
 class App extends React.Component {
-  componentDidMount() {
-
-  };
   render() {
-    var hello = chrome.i18n.getMessage('hello');
     return (
       <div id="content">
-        My realty {hello}
+        <Manager />
       </div>
     );
   }
@@ -22,7 +21,9 @@ class App extends React.Component {
 
 document.addEventListener('DOMContentLoaded', function() {
   ReactDOM.render(
-    <App />,
+    <Provider store={AppStore}>
+      <App />
+    </Provider>,
     document.getElementById('wrap')
   );
 });

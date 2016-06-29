@@ -7,8 +7,8 @@ var path = require('path'),
 
 module.exports = {
   entry: {
-    main: './src/js/main.jsx',
-    background: './src/js/background.js'
+    main: './app/js/main.jsx',
+    background: './app/js/background.js'
   },
   output: {
     path: path.join(__dirname, 'release'),
@@ -48,18 +48,21 @@ module.exports = {
     extensions: ['', '.js', '.jsx', '.less'],
     modulesDirectories: ['node_modules'],
     alias: {
-      config: path.join(__dirname, 'src/js/config'),
-      components: path.join(__dirname, 'src/js/components'),
-      modules: path.join(__dirname, 'src/js/modules'),
-      utils: path.join(__dirname, 'src/js/utils'),
-      css: path.join(__dirname, 'src/css')
+      config: path.join(__dirname, 'app/js/config'),
+      components: path.join(__dirname, 'app/js/components'),
+      views: path.join(__dirname, 'app/js/views'),
+      actions: path.join(__dirname, 'app/js/actions'),
+      reducers: path.join(__dirname, 'app/js/reducers'),
+      modules: path.join(__dirname, 'app/js/modules'),
+      utils: path.join(__dirname, 'app/js/utils'),
+      css: path.join(__dirname, 'app/css')
     }
   },
   plugins: [
     new ExtractTextPlugin('bundle.css'),
     new htmlPlugin({
       filename: 'index.html',
-      template: './src/index.html'
+      template: './app/index.html'
     })
   ]
 };

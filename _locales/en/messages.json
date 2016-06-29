@@ -1,5 +1,17 @@
 {
-  "hello": {
-    "message": "Hello"
+  "price": {
+    "message": "Price"
+  },
+  "area": {
+    "message": "Area"
+  },
+  "favorites": {
+    "message": "Favorites"
+  },
+  "list": {
+    "message": "List"
+  },
+  "map": {
+    "message": "Map"
   }
 }

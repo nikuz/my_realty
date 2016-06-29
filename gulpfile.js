@@ -77,10 +77,10 @@ gulp.task('copy:manifest-dev', function() {
 });
 
 gulp.task('copy:images', ['build:clean'], function() {
-  return gulp.src(['./src/images/**/*']).pipe(gulp.dest('release/images'));
+  return gulp.src(['./app/images/**/*']).pipe(gulp.dest('release/images'));
 });
 gulp.task('copy:images-dev', function() {
-  return gulp.src(['./src/images/**/*']).pipe(gulp.dest('release/images'));
+  return gulp.src(['./app/images/**/*']).pipe(gulp.dest('release/images'));
 });
 
 gulp.task('copy:locales', ['build:clean'], function() {
@@ -107,7 +107,7 @@ gulp.task('webpack:build-dev', function(callback) {
 });
 
 gulp.task('build-dev', function() {
-  return gulp.watch(['src/**/*', '_locales/**/*'], ['webpack:build-dev']);
+  return gulp.watch(['app/**/*', '_locales/**/*'], ['webpack:build-dev']);
 });
 
 gulp.task('remove:extrafonts', ['webpack:build'], function() {
@@ -132,8 +132,7 @@ gulp.task('build:compress', ['copy:manifest', 'copy:images', 'remove:extrafonts'
 gulp.task('eslint', function () {
   return gulp.src([
       'app/**/*.js',
-      'src/**/*.js',
-      'src/**/*.jsx'
+      'app/**/*.jsx'
     ])
     .pipe(eslint())
     .pipe(eslint.format())

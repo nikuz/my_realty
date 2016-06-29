@@ -1,5 +1,17 @@
 {
-  "hello": {
-    "message": "Hello"
+  "price": {
+    "message": "Цена"
+  },
+  "area": {
+    "message": "Площадь"
+  },
+  "favorites": {
+    "message": "Избранное"
+  },
+  "list": {
+    "message": "Список"
+  },
+  "map": {
+    "message": "Карта"
   }
 }
