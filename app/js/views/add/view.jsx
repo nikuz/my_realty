@@ -11,8 +11,11 @@ class AddView extends React.Component {
     if (props.state.name === 'add_realty_ovl') {
       return (
         <Overlay title="Add new realty" close={props.close}>
-          <div id="add_realty_ovl">
-            Add realty overlay
+          <div>
+            <div id="add_realty_ovl">
+              {chrome.i18n.getMessage('add_overlay_title')}
+            </div>
+            <h3>Тип сделки:</h3>
           </div>
         </Overlay>
       );

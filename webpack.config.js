@@ -55,7 +55,7 @@ module.exports = {
       reducers: path.join(__dirname, 'app/js/reducers'),
       modules: path.join(__dirname, 'app/js/modules'),
       utils: path.join(__dirname, 'app/js/utils'),
-      css: path.join(__dirname, 'app/css')
+      styles: path.join(__dirname, 'app/styles')
     }
   },
   plugins: [

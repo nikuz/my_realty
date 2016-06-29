@@ -13,5 +13,8 @@
   },
   "map": {
     "message": "Map"
+  },
+  "add_overlay_title": {
+    "message": "Add realty overlay"
   }
 }

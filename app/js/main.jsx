@@ -8,8 +8,8 @@ import Manager from './views/manager/controller';
 import List from './views/list/controller';
 import AddRealtyOvl from './views/add/controller';
 
-import 'css/basic';
-// import 'css/form';
+import 'styles/basic';
+// import 'styles/form';
 
 class App extends React.Component {
   render() {
