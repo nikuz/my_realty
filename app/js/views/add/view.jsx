@@ -1,6 +1,7 @@
 'use strict';
 
 import * as React from 'react';
+import constants from 'modules/constants';
 import Overlay from 'components/overlay/view';
 
 import './style.less';
@@ -13,7 +14,7 @@ class AddView extends React.Component {
         <Overlay title="Add new realty" close={props.close}>
           <div>
             <div id="add_realty_ovl">
-              {chrome.i18n.getMessage('add_overlay_title')}
+              {constants('add_overlay_title')}
             </div>
             <h3>Тип сделки:</h3>
           </div>

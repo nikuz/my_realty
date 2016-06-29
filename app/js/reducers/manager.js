@@ -1,32 +1,33 @@
 'use strict';
 
 import * as _ from 'underscore';
+import constants from 'modules/constants';
 
 const DEFAULT = {
   sort: {
     price: {
-      name: chrome.i18n.getMessage('price'),
+      name: constants('price'),
       icon: 'usd'
     },
     area: {
-      name: chrome.i18n.getMessage('area'),
+      name: constants('area'),
       icon: 'expand'
     }
   },
   filter: {
     favorites: {
-      name: chrome.i18n.getMessage('favorites'),
+      name: constants('favorites'),
       icon: 'star'
     }
   },
   view: {
     list: {
-      name: chrome.i18n.getMessage('list'),
+      name: constants('list'),
       icon: 'th-list',
       active: true
     },
     map: {
-      name: chrome.i18n.getMessage('map'),
+      name: constants('map'),
       icon: 'map'
     }
   }
