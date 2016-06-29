@@ -5,6 +5,8 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppStore from './store';
 import Manager from './views/manager/controller';
+import List from './views/list/controller';
+import AddRealtyOvl from './views/add/controller';
 
 import 'css/basic';
 // import 'css/form';
@@ -12,8 +14,12 @@ import 'css/basic';
 class App extends React.Component {
   render() {
     return (
-      <div id="content">
-        <Manager />
+      <div>
+        <div id="content">
+          <Manager />
+          <List />
+        </div>
+        <AddRealtyOvl />
       </div>
     );
   }

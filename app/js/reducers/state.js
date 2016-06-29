@@ -1,7 +1,7 @@
 'use strict';
 
 const DEFAULT_STATE = {
-  name: 'inbox'
+  name: 'initial'
 };
 
 export default function appState(state, action) {

@@ -46,7 +46,7 @@ function update(state, action, key) {
   return state;
 }
 
-export default function appState(state, action) {
+export default function managerState(state, action) {
   switch (action.type) {
     case 'MANAGER_SORT_CHANGE':
       return update(state, action, 'sort');
