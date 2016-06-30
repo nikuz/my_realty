@@ -5,6 +5,12 @@
   "no": {
     "message": "Нет"
   },
+  "sqm": {
+    "message": "м2"
+  },
+  "count": {
+    "message": "количество"
+  },
   "price": {
     "message": "Цена"
   },
@@ -24,10 +30,10 @@
     "message": "Добавить новый объект недвижимости"
   },
   "add_name": {
-    "message": "Название:"
+    "message": "Название"
   },
   "add_transaction_type": {
-    "message": "Тип сделки:"
+    "message": "Тип сделки"
   },
   "add_transaction_type_rent": {
     "message": "Аренда"
@@ -36,7 +42,7 @@
     "message": "Покупка"
   },
   "add_realty_type": {
-    "message": "Тип недвижимости:"
+    "message": "Тип недвижимости"
   },
   "add_realty_type_apartment": {
     "message": "Квартира"
@@ -45,7 +51,7 @@
     "message": "Дом"
   },
   "add_apartment_info": {
-    "message": "Информация по квартире:"
+    "message": "Информация по квартире"
   },
   "add_rooms": {
     "message": "Количество комнат:"
@@ -57,22 +63,22 @@
     "message": "Этажей всего:"
   },
   "add_area": {
-    "message": "Общая площадь м<sup>2</sup>:"
+    "message": "Общая площадь:"
   },
   "add_living_area": {
-    "message": "Жилая площадь м<sup>2</sup>:"
+    "message": "Жилая площадь:"
   },
   "add_kitchen_area": {
-    "message": "Площадь кухни м<sup>2</sup>:"
+    "message": "Площадь кухни:"
   },
   "add_rooms_area": {
-    "message": "Площадь комнат м<sup>2</sup>:"
+    "message": "Площадь комнат:"
   },
   "add_rooms_more": {
     "message": "10 и более"
   },
   "add_house_info": {
-    "message": "Информация о доме:"
+    "message": "Информация о доме"
   },
   "add_construction_year": {
     "message": "Год постройки:"
@@ -109,5 +115,35 @@
   },
   "add_service_lifts": {
     "message": "Грузовых лифтов:"
+  },
+  "add_furniture": {
+    "message": "Мебель, техника"
+  },
+  "add_furniture_kitchen": {
+    "message": "Кухонная мебель"
+  },
+  "add_furniture_residential": {
+    "message": "Жилая мебель"
+  },
+  "add_fridge": {
+    "message": "Холодильник"
+  },
+  "add_tv": {
+    "message": "Телевозор"
+  },
+  "add_washer": {
+    "message": "Стриальная машина"
+  },
+  "add_phone": {
+    "message": "Телефон"
+  },
+  "add_internet": {
+    "message": "Интернет"
+  },
+  "add_dishwasher": {
+    "message": "Посудомоечная машина"
+  },
+  "add_conditioner": {
+    "message": "Кондиционер"
   }
 }

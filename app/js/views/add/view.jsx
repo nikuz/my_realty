@@ -9,6 +9,7 @@ import Overlay from 'components/overlay/view';
 import SegmentedControl from 'components/segmented-control/view';
 import TextInput from 'components/text-input/view';
 import Selector from 'components/selector/view';
+import CheckBox from 'components/checkbox/view';
 import {ButtonBlue} from 'components/buttons/view';
 
 import './style.less';
@@ -41,11 +42,89 @@ class AddView extends React.Component {
       },
       model: null
     };
-    this.realtyTypeSelected = this.realtyTypeSelected.bind(this);
+    this.setRealtyTypeSelected = this.setRealtyTypeSelected.bind(this);
+    this.parseModel = this.parseModel.bind(this);
     this.close = this.close.bind(this);
     this.submit = this.submit.bind(this);
   }
-  realtyTypeSelected(type) {
+  parseModel(dataItem, dataKey) {
+    var values;
+    switch (dataItem.type) {
+      case 'section':
+        return (
+          <section key={dataKey} className={dataItem.layout}>
+            {_.map(dataItem.data, (dataItem, dataKey) => {
+              return this.parseModel(dataItem, dataKey);
+            })}
+          </section>
+        );
+        break;
+      case 'segments':
+        values = (
+          <SegmentedControl
+            items={dataItem.values}
+          />
+        );
+        break;
+      case 'number':
+        values = (
+          <TextInput
+            data={dataItem.values}
+            placeholder={dataItem.placeholder}
+            type="number"
+            size={dataItem.size}
+          />
+        );
+        break;
+      case 'text':
+        values = (
+          <TextInput
+            data={dataItem.values}
+            placeholder={dataItem.placeholder}
+            size={dataItem.size}
+          />
+        );
+        break;
+      case 'selector':
+        values = (
+          <Selector
+            items={dataItem.values}
+          />
+        );
+        break;
+      case 'checkbox':
+        return (
+          <span key={dataKey} className="checkbox_item">
+            <CheckBox
+              name={dataItem.id}
+              label={dataItem.name}
+              data={dataItem.values}
+              icon={dataItem.icon}
+            />
+          </span>
+        );
+        break;
+      case 'year': {
+        let years = {};
+        for (let i = 1800, l = new Date().getFullYear(); i <= l; i++) {
+          years[i] = {
+            name: i
+          };
+        }
+        dataItem.values = years;
+        values = <Selector items={dataItem.values} size="small" />;
+        break;
+      }
+    }
+
+    return (
+      <div className="aro_item" key={dataKey}>
+        <h5>{dataItem.name}</h5>
+        {values}
+      </div>
+    );
+  }
+  setRealtyTypeSelected(type) {
     var model;
     switch (type) {
       case 'apartment':
@@ -83,8 +162,7 @@ class AddView extends React.Component {
         <Overlay title={constants('add_overlay_title')} opened={state.opened} close={this.close}>
           <div id="add_realty_ovl">
             <section>
-              <h3>{constants('add_name')}</h3>
-              <TextInput data={state.name.data} />
+              <TextInput data={state.name.data} placeholder={constants('add_name')} />
             </section>
             <section>
               <h3>{constants('add_transaction_type')}</h3>
@@ -92,56 +170,14 @@ class AddView extends React.Component {
             </section>
             <section>
               <h3>{constants('add_realty_type')}</h3>
-              <SegmentedControl items={state.realty_type} onSelect={this.realtyTypeSelected} />
+              <SegmentedControl items={state.realty_type} onSelect={this.setRealtyTypeSelected} />
             </section>
-            {_.map(state.model, function(item, key) {
+            {_.map(state.model, (item, key) => {
               return (
                 <section key={key}>
                   <h3>{item.name}</h3>
-                  {_.map(item.data, function(dataItem, dataKey) {
-                    var values;
-                    switch (dataItem.type) {
-                      case 'segments':
-                        values = (
-                          <SegmentedControl
-                            items={dataItem.values}
-                          />
-                        );
-                        break;
-                      case 'number':
-                        values = (
-                          <TextInput
-                            data={dataItem.values}
-                            type="number"
-                            size="small"
-                          />
-                        );
-                        break;
-                      case 'selector':
-                        values = (
-                          <Selector
-                            items={dataItem.values}
-                          />
-                        );
-                        break;
-                      case 'year': {
-                        let years = {};
-                        for (let i = 1800, l = new Date().getFullYear(); i <= l; i++) {
-                          years[i] = {
-                            name: i
-                          };
-                        }
-                        dataItem.values = years;
-                        values = <Selector items={dataItem.values} />;
-                        break;
-                      }
-                    }
-                    return (
-                      <div key={dataKey}>
-                        <h5 dangerouslySetInnerHTML={{__html: dataItem.name}} />
-                        {values}
-                      </div>
-                    );
+                  {_.map(item.data, (dataItem, dataKey) => {
+                    return this.parseModel(dataItem, dataKey);
                   })}
                 </section>
               );

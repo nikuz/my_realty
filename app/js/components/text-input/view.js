@@ -39,6 +39,7 @@ class TextInput extends React.Component {
       <input
         type="text"
         value={this.state.data.value}
+        placeholder={this.props.placeholder}
         onChange={this.change}
         className={style}
       />
@@ -48,6 +49,7 @@ class TextInput extends React.Component {
 
 TextInput.propTypes = {
   data: React.PropTypes.object.isRequired,
+  placeholder: React.PropTypes.string,
   type: React.PropTypes.string,
   size: React.PropTypes.string
 };

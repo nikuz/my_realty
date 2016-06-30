@@ -5,6 +5,12 @@
   "no": {
     "message": "No"
   },
+  "sqm": {
+    "message": "sq m"
+  },
+  "count": {
+    "message": "count"
+  },
   "price": {
     "message": "Price"
   },
@@ -24,10 +30,10 @@
     "message": "Add new realty"
   },
   "add_name": {
-    "message": "Name:"
+    "message": "Name"
   },
   "add_transaction_type": {
-    "message": "Transaction type:"
+    "message": "Transaction type"
   },
   "add_transaction_type_rent": {
     "message": "Rent"
@@ -36,7 +42,7 @@
     "message": "Buy"
   },
   "add_realty_type": {
-    "message": "Realty type:"
+    "message": "Realty type"
   },
   "add_realty_type_apartment": {
     "message": "Apartment"
@@ -45,7 +51,7 @@
     "message": "House"
   },
   "add_apartment_info": {
-    "message": "Apartment info:"
+    "message": "Apartment info"
   },
   "add_rooms": {
     "message": "Rooms:"
@@ -57,22 +63,22 @@
     "message": "Floor total:"
   },
   "add_area": {
-    "message": "Area m<sup>2</sup>:"
+    "message": "Area:"
   },
   "add_living_area": {
-    "message": "Living area m<sup>2</sup>:"
+    "message": "Living area:"
   },
   "add_kitchen_area": {
-    "message": "Kitchen area m<sup>2</sup>:"
+    "message": "Kitchen area:"
   },
   "add_rooms_area": {
-    "message": "Rooms area m<sup>2</sup>:"
+    "message": "Rooms area:"
   },
   "add_rooms_more": {
     "message": "10 and more"
   },
   "add_house_info": {
-    "message": "House info:"
+    "message": "House info"
   },
   "add_construction_year": {
     "message": "Year of construction:"
@@ -109,5 +115,35 @@
   },
   "add_service_lifts": {
     "message": "Service lifts:"
+  },
+  "add_furniture": {
+    "message": "Furniture, Appliances"
+  },
+  "add_furniture_kitchen": {
+    "message": "Kitchen furniture"
+  },
+  "add_furniture_residential": {
+    "message": "Residential furniture"
+  },
+  "add_fridge": {
+    "message": "Fridge"
+  },
+  "add_tv": {
+    "message": "TV"
+  },
+  "add_washer": {
+    "message": "Washing machine"
+  },
+  "add_phone": {
+    "message": "Phone"
+  },
+  "add_internet": {
+    "message": "Internet"
+  },
+  "add_dishwasher": {
+    "message": "Dishwasher"
+  },
+  "add_conditioner": {
+    "message": "Air conditioning"
   }
 }
