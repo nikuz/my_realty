@@ -8,17 +8,7 @@ import './style.less';
 class Overlay extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      open: true
-    };
     this.escapeDetector = this.escapeDetector.bind(this);
-    this.close = this.close.bind(this);
-  }
-  close() {
-    this.setState({
-      open: false
-    });
-    setTimeout(this.props.close, 300);
   }
   escapeDetector(event) {
     if (event.keyCode == 27) {
@@ -32,8 +22,7 @@ class Overlay extends React.Component {
     document.removeEventListener('keydown', this.escapeDetector);
   }
   render() {
-    var state = this.state,
-      props = this.props;
+    var props = this.props;
 
     return (
       <ReactCSSTransitionGroup
@@ -44,13 +33,13 @@ class Overlay extends React.Component {
         transitionLeaveTimeout={300}
         component="div"
       >
-        {state.open ?
+        {props.opened ?
           <div id="overlay">
             <div id="ovl_edge" />
             <div id="ovl_cont">
               <div id="ovl_title">{props.title}</div>
               {props.children}
-              <a href="#" id="ovl_close" onClick={this.close} />
+              <a href="#" id="ovl_close" onClick={props.close} />
             </div>
           </div>
           : null

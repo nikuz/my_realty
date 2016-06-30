@@ -17,6 +17,7 @@ class AddView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      opened: true,
       name: {
         data: {
           value: ''
@@ -41,6 +42,7 @@ class AddView extends React.Component {
       model: null
     };
     this.realtyTypeSelected = this.realtyTypeSelected.bind(this);
+    this.close = this.close.bind(this);
     this.submit = this.submit.bind(this);
   }
   realtyTypeSelected(type) {
@@ -59,6 +61,18 @@ class AddView extends React.Component {
   }
   submit() {
     console.log(this.state);
+    this.close();
+  }
+  close() {
+    this.setState({
+      opened: false
+    });
+    setTimeout(() => {
+      this.props.close();
+      this.setState({
+        opened: true
+      });
+    }, 300);
   }
   render() {
     var state = this.state,
@@ -66,7 +80,7 @@ class AddView extends React.Component {
 
     if (props.state.name === 'add_realty_ovl') {
       return (
-        <Overlay title={constants('add_overlay_title')} close={props.close}>
+        <Overlay title={constants('add_overlay_title')} opened={state.opened} close={this.close}>
           <div id="add_realty_ovl">
             <section>
               <h3>{constants('add_name')}</h3>
