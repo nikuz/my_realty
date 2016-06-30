@@ -5,6 +5,7 @@ import * as _ from 'underscore';
 import constants from 'modules/constants';
 import apartmentModel from 'models/apartment';
 import houseModel from 'models/house';
+import commonModel from 'models/common';
 import Overlay from 'components/overlay/view';
 import SegmentedControl from 'components/segmented-control/view';
 import TextInput from 'components/text-input/view';
@@ -134,6 +135,11 @@ class AddView extends React.Component {
         model = Object.assign({}, houseModel);
         break;
     }
+    _.each(model, function(item, key) {
+      if (item.type === 'common') {
+        model[key] = Object.assign({}, commonModel[item.name]);
+      }
+    });
     this.setState({
       model
     });
