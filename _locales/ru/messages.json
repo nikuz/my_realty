@@ -1,4 +1,10 @@
 {
+  "yes": {
+    "message": "Да"
+  },
+  "no": {
+    "message": "Нет"
+  },
   "price": {
     "message": "Цена"
   },
@@ -17,10 +23,91 @@
   "add_overlay_title": {
     "message": "Добавить новый объект недвижимости"
   },
+  "add_name": {
+    "message": "Название:"
+  },
+  "add_transaction_type": {
+    "message": "Тип сделки:"
+  },
   "add_transaction_type_rent": {
     "message": "Аренда"
   },
   "add_transaction_type_buy": {
     "message": "Покупка"
+  },
+  "add_realty_type": {
+    "message": "Тип недвижимости:"
+  },
+  "add_realty_type_apartment": {
+    "message": "Квартира"
+  },
+  "add_realty_type_house": {
+    "message": "Дом"
+  },
+  "add_apartment_info": {
+    "message": "Информация по квартире:"
+  },
+  "add_rooms": {
+    "message": "Количество комнат:"
+  },
+  "add_floor": {
+    "message": "Этаж:"
+  },
+  "add_floor_total": {
+    "message": "Этажей всего:"
+  },
+  "add_area": {
+    "message": "Общая площадь м<sup>2</sup>:"
+  },
+  "add_living_area": {
+    "message": "Жилая площадь м<sup>2</sup>:"
+  },
+  "add_kitchen_area": {
+    "message": "Площадь кухни м<sup>2</sup>:"
+  },
+  "add_rooms_area": {
+    "message": "Площадь комнат м<sup>2</sup>:"
+  },
+  "add_rooms_more": {
+    "message": "10 и более"
+  },
+  "add_house_info": {
+    "message": "Информация о доме:"
+  },
+  "add_construction_year": {
+    "message": "Год постройки:"
+  },
+  "add_ceiling_height": {
+    "message": "Высота потолков, м:"
+  },
+  "add_building_type": {
+    "message": "Тип дома:"
+  },
+  "add_building_type_brick": {
+    "message": "Кирпичный"
+  },
+  "add_building_type_monolithic": {
+    "message": "Монолитный"
+  },
+  "add_building_type_panel": {
+    "message": "Панельный"
+  },
+  "add_building_type_modular": {
+    "message": "Блочный"
+  },
+  "add_building_type_wood": {
+    "message": "Деревянный"
+  },
+  "add_building_type_monolith_brick": {
+    "message": "Монолитно-кирпичный"
+  },
+  "add_garbage_chute": {
+    "message": "Мусоропровод:"
+  },
+  "add_passenger_elevators": {
+    "message": "Пассажирских лифтов:"
+  },
+  "add_service_lifts": {
+    "message": "Грузовых лифтов:"
   }
 }

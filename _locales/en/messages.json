@@ -1,4 +1,10 @@
 {
+  "yes": {
+    "message": "Yes"
+  },
+  "no": {
+    "message": "No"
+  },
   "price": {
     "message": "Price"
   },
@@ -17,10 +23,91 @@
   "add_overlay_title": {
     "message": "Add new realty"
   },
+  "add_name": {
+    "message": "Name:"
+  },
+  "add_transaction_type": {
+    "message": "Transaction type:"
+  },
   "add_transaction_type_rent": {
     "message": "Rent"
   },
   "add_transaction_type_buy": {
     "message": "Buy"
+  },
+  "add_realty_type": {
+    "message": "Realty type:"
+  },
+  "add_realty_type_apartment": {
+    "message": "Apartment"
+  },
+  "add_realty_type_house": {
+    "message": "House"
+  },
+  "add_apartment_info": {
+    "message": "Apartment info:"
+  },
+  "add_rooms": {
+    "message": "Rooms:"
+  },
+  "add_floor": {
+    "message": "Floor:"
+  },
+  "add_floor_total": {
+    "message": "Floor total:"
+  },
+  "add_area": {
+    "message": "Area m<sup>2</sup>:"
+  },
+  "add_living_area": {
+    "message": "Living area m<sup>2</sup>:"
+  },
+  "add_kitchen_area": {
+    "message": "Kitchen area m<sup>2</sup>:"
+  },
+  "add_rooms_area": {
+    "message": "Rooms area m<sup>2</sup>:"
+  },
+  "add_rooms_more": {
+    "message": "10 and more"
+  },
+  "add_house_info": {
+    "message": "House info:"
+  },
+  "add_construction_year": {
+    "message": "Year of construction:"
+  },
+  "add_ceiling_height": {
+    "message": "Ceiling height, m:"
+  },
+  "add_building_type": {
+    "message": "Type of building:"
+  },
+  "add_building_type_brick": {
+    "message": "Brick"
+  },
+  "add_building_type_monolithic": {
+    "message": "Monolithic"
+  },
+  "add_building_type_panel": {
+    "message": "Panel"
+  },
+  "add_building_type_modular": {
+    "message": "Modular"
+  },
+  "add_building_type_wood": {
+    "message": "Wood"
+  },
+  "add_building_type_monolith_brick": {
+    "message": "Monolith-brick"
+  },
+  "add_garbage_chute": {
+    "message": "Garbage chute:"
+  },
+  "add_passenger_elevators": {
+    "message": "Passenger elevators:"
+  },
+  "add_service_lifts": {
+    "message": "Service lifts:"
   }
 }

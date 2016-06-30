@@ -54,6 +54,7 @@ module.exports = {
       actions: path.join(__dirname, 'app/js/actions'),
       reducers: path.join(__dirname, 'app/js/reducers'),
       modules: path.join(__dirname, 'app/js/modules'),
+      models: path.join(__dirname, 'app/js/models'),
       utils: path.join(__dirname, 'app/js/utils'),
       styles: path.join(__dirname, 'app/styles')
     }

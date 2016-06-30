@@ -24,6 +24,7 @@ class SegmentedControl extends React.Component {
     this.setState({
       items
     });
+    _.isFunction(this.props.onSelect) && this.props.onSelect(itemKey);
   }
   render() {
     var items = this.state.items;
@@ -47,7 +48,8 @@ class SegmentedControl extends React.Component {
 }
 
 SegmentedControl.propTypes = {
-  items: React.PropTypes.object.isRequired
+  items: React.PropTypes.object.isRequired,
+  onSelect: React.PropTypes.func
 };
 
 export default SegmentedControl;
