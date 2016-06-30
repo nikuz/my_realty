@@ -145,5 +145,185 @@
   },
   "add_conditioner": {
     "message": "Кондиционер"
+  },
+  "add_name_cottage": {
+    "message": "Название коттеджного посёлка"
+  },
+  "add_loggia": {
+    "message": "Лоджия"
+  },
+  "add_balcony": {
+    "message": "Балкон"
+  },
+  "add_heating": {
+    "message": "Отопление"
+  },
+  "add_heating_central_gas": {
+    "message": "Центральное газовое"
+  },
+  "add_heating_central_coal": {
+    "message": "Центральное угольное"
+  },
+  "add_heating_bake": {
+    "message": "Печь"
+  },
+  "add_heating_fireplace": {
+    "message": "Камин"
+  },
+  "add_heating_without": {
+    "message": "Без отопления"
+  },
+  "add_lavatory": {
+    "message": "Санузел"
+  },
+  "add_lavatory_outside": {
+    "message": "На улице"
+  },
+  "add_lavatory_inside": {
+    "message": "В доме"
+  },
+  "add_warming": {
+    "message": "Утепление"
+  },
+  "add_separate_toilets": {
+    "message": "Раздельных санузлов"
+  },
+  "add_combined_bathroom": {
+    "message": "Совмещенных санузлов"
+  },
+  "add_repairs": {
+    "message": "Ремонт"
+  },
+  "add_repairs_cosmetic": {
+    "message": "Косметический"
+  },
+  "add_repairs_renovation": {
+    "message": "Евро"
+  },
+  "add_repairs_design": {
+    "message": "Дизайнерский"
+  },
+  "add_repairs_without": {
+    "message": "Отсутствует"
+  },
+  "add_windows": {
+    "message": "Окна"
+  },
+  "add_windows_courtyard_street": {
+    "message": "Двор + улица"
+  },
+  "add_windows_courtyard": {
+    "message": "Двор"
+  },
+  "add_windows_street": {
+    "message": "Улица"
+  },
+  "add_electricity": {
+    "message": "Электричество"
+  },
+  "add_sewerage": {
+    "message": "Канализация"
+  },
+  "add_water_supply": {
+    "message": "Водоснабжение"
+  },
+  "add_gas": {
+    "message": "Газ"
+  },
+  "add_security": {
+    "message": "Охрана"
+  },
+  "add_bathhouse": {
+    "message": "Баня"
+  },
+  "add_garage": {
+    "message": "Гараж"
+  },
+  "add_pool": {
+    "message": "Бассейн"
+  },
+  "add_outbuildings": {
+    "message": "Подсобные помещения на участке"
+  },
+  "add_homestead ": {
+    "message": "Информация по участку"
+  },
+  "add_units": {
+    "message": "Единицы измерения"
+  },
+  "add_status": {
+    "message": "Статус"
+  },
+  "add_transaction_terms": {
+    "message": "Условия сделки"
+  },
+  "add_price": {
+    "message": "Цена"
+  },
+  "add_currency": {
+    "message": "Валюта"
+  },
+  "add_sale_type": {
+    "message": "Тип продажи"
+  },
+  "add_sale_type_sale": {
+    "message": "Свободная продажа"
+  },
+  "add_sale_type_interchange": {
+    "message": "Обмен"
+  },
+  "add_mortgage": {
+    "message": "Ипотека"
+  },
+  "add_transport_accessibility": {
+    "message": "Транспортная доступность"
+  },
+  "add_metro": {
+    "message": "Ближайшее метро"
+  },
+  "add_metro_distance": {
+    "message": "Расстояние до метро"
+  },
+  "add_city_center_distance": {
+    "message": "Расстояние до центра города"
+  },
+  "add_buses": {
+    "message": "Автобусы"
+  },
+  "add_trains": {
+    "message": "Электрички"
+  },
+  "add_highway": {
+    "message": "Шоссе"
+  },
+  "add_social_objects": {
+    "message": "Социальные объекты"
+  },
+  "add_kindergartens": {
+    "message": "Детские сады"
+  },
+  "add_schools": {
+    "message": "Школы"
+  },
+  "add_shops": {
+    "message": "Магазины"
+  },
+  "add_clinics": {
+    "message": "Поликлиники"
+  },
+  "add_shopping_centers": {
+    "message": "Торговые центры"
+  },
+  "add_sport": {
+    "message": "Спортивные секции"
+  },
+  "add_additional": {
+    "message": "Дополнительные сведения"
+  },
+  "add_photo": {
+    "message": "Фотографии"
+  },
+  "add_contacts": {
+    "message": "Контакты для связи"
   }
 }

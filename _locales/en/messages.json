@@ -145,5 +145,185 @@
   },
   "add_conditioner": {
     "message": "Air conditioning"
+  },
+  "add_name_cottage": {
+    "message": "Name of cottage settlement"
+  },
+  "add_loggia": {
+    "message": "Loggia"
+  },
+  "add_balcony": {
+    "message": "Balcony"
+  },
+  "add_heating": {
+    "message": "Heating"
+  },
+  "add_heating_central_gas": {
+    "message": "Central gas"
+  },
+  "add_heating_central_coal": {
+    "message": "Central coal"
+  },
+  "add_heating_bake": {
+    "message": "Bake"
+  },
+  "add_heating_fireplace": {
+    "message": "Fireplace"
+  },
+  "add_heating_without": {
+    "message": "Without heating"
+  },
+  "add_lavatory": {
+    "message": "Lavatory"
+  },
+  "add_lavatory_outside": {
+    "message": "In the weather"
+  },
+  "add_lavatory_inside": {
+    "message": "In home"
+  },
+  "add_warming": {
+    "message": "Warming"
+  },
+  "add_separate_toilets": {
+    "message": "Separate toilets"
+  },
+  "add_combined_bathroom": {
+    "message": "Combined bathroom"
+  },
+  "add_repairs": {
+    "message": "Repairs"
+  },
+  "add_repairs_cosmetic": {
+    "message": "Cosmetic"
+  },
+  "add_repairs_renovation": {
+    "message": "Renovation"
+  },
+  "add_repairs_design": {
+    "message": "Design"
+  },
+  "add_repairs_without": {
+    "message": "Without"
+  },
+  "add_windows": {
+    "message": "Windows"
+  },
+  "add_windows_courtyard_street": {
+    "message": "Courtyard + street"
+  },
+  "add_windows_courtyard": {
+    "message": "Courtyard"
+  },
+  "add_windows_street": {
+    "message": "Street"
+  },
+  "add_electricity": {
+    "message": "Electricity"
+  },
+  "add_sewerage": {
+    "message": "Sewerage"
+  },
+  "add_water_supply": {
+    "message": "Water supply"
+  },
+  "add_gas": {
+    "message": "Gas"
+  },
+  "add_security": {
+    "message": "Security"
+  },
+  "add_bathhouse": {
+    "message": "Bathhouse"
+  },
+  "add_garage": {
+    "message": "Garage"
+  },
+  "add_pool": {
+    "message": "Pool"
+  },
+  "add_outbuildings": {
+    "message": "Outbuildings"
+  },
+  "add_homestead ": {
+    "message": "Info on the homestead"
+  },
+  "add_units": {
+    "message": "Units"
+  },
+  "add_status": {
+    "message": "Status"
+  },
+  "add_transaction_terms": {
+    "message": "Terms of a transaction"
+  },
+  "add_price": {
+    "message": "Price"
+  },
+  "add_currency": {
+    "message": "Currency"
+  },
+  "add_sale_type": {
+    "message": "Sale Type"
+  },
+  "add_sale_type_sale": {
+    "message": "Free sale"
+  },
+  "add_sale_type_interchange": {
+    "message": "Interchange"
+  },
+  "add_mortgage": {
+    "message": "Mortgage"
+  },
+  "add_transport_accessibility": {
+    "message": "Transport accessibility"
+  },
+  "add_metro": {
+    "message": "Nearest metro station"
+  },
+  "add_metro_distance": {
+    "message": "Distance to metro station"
+  },
+  "add_city_center_distance": {
+    "message": "Distance to the center of the city"
+  },
+  "add_buses": {
+    "message": "Buses"
+  },
+  "add_trains": {
+    "message": "Trains"
+  },
+  "add_highway": {
+    "message": "Highway"
+  },
+  "add_social_objects": {
+    "message": "Social objects"
+  },
+  "add_kindergartens": {
+    "message": "Kindergartens"
+  },
+  "add_schools": {
+    "message": "Schools"
+  },
+  "add_shops": {
+    "message": "The shops"
+  },
+  "add_clinics": {
+    "message": "Clinics"
+  },
+  "add_shopping_centers": {
+    "message": "Shopping centers"
+  },
+  "add_sport": {
+    "message": "Sport"
+  },
+  "add_additional": {
+    "message": "Additional information"
+  },
+  "add_photo": {
+    "message": "Photo"
+  },
+  "add_contacts": {
+    "message": "Contacts"
   }
 }
