@@ -20,7 +20,7 @@ function filterChange(filter) {
 }
 function filterClear() {
   return {
-    type: 'MANAGER_FILTER_CHANGE'
+    type: 'MANAGER_FILTER_CLEAR'
   };
 }
 

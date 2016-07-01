@@ -45,7 +45,12 @@ class ExtendableList extends React.Component {
     });
   }
   componentWillMount() {
-    var data = this.props.data;
+    var data = [];
+    _.each(this.props.data, function(item) {
+      data.push({
+        value: item.value
+      });
+    });
     if (data.length === 0) {
       data.push({
         value: ''

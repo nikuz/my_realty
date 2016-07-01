@@ -37,7 +37,7 @@ class ManagerView extends React.Component {
           {this.renderItem(props.manager.view, props.viewChange)}
         </ul>
       </div>
-    )
+    );
   }
 }
 

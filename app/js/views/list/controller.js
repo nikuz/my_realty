@@ -9,15 +9,15 @@ import ListView from './view';
 const mapStateToProps = function(state) {
   return {
     list: state.list
-  }
+  };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
     addRealty: function() {
-      dispatch(StateActions.change('add_realty_ovl'))
+      dispatch(StateActions.change('add_realty_ovl'));
     }
-  }
+  };
 };
 
 export default connect(

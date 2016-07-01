@@ -203,6 +203,11 @@ class OverlayView extends React.Component {
   }
 }
 
+OverlayView.propTypes = {
+  submit: React.PropTypes.func.isRequired,
+  close: React.PropTypes.func.isRequired
+};
+
 class AddView extends React.Component {
   constructor(props) {
     super(props);

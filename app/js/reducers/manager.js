@@ -60,6 +60,10 @@ export default function managerState(state, action) {
     case 'MANAGER_VIEW_CHANGE':
       return update(state, action, 'view');
     default:
-      return DEFAULT;
+      if (state === undefined) {
+        return DEFAULT;
+      } else {
+        return state;
+      }
   }
 };

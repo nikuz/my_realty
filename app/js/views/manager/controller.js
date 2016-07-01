@@ -8,21 +8,21 @@ import ManagerView from './view';
 const mapStateToProps = function(state) {
   return {
     manager: state.manager
-  }
+  };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
     sortChange: function(name) {
-      dispatch(ManagerActions.sortChange(name))
+      dispatch(ManagerActions.sortChange(name));
     },
     filterChange: function(name) {
-      dispatch(ManagerActions.filterChange(name))
+      dispatch(ManagerActions.filterChange(name));
     },
     viewChange: function(name) {
-      dispatch(ManagerActions.viewChange(name))
+      dispatch(ManagerActions.viewChange(name));
     }
-  }
+  };
 };
 
 export default connect(
