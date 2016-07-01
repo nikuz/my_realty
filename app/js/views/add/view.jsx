@@ -15,11 +15,10 @@ import {ButtonBlue} from 'components/buttons/view';
 
 import './style.less';
 
-class AddView extends React.Component {
+class OverlayView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opened: true,
       name: {
         data: {
           value: ''
@@ -45,8 +44,26 @@ class AddView extends React.Component {
     };
     this.setRealtyTypeSelected = this.setRealtyTypeSelected.bind(this);
     this.parseModel = this.parseModel.bind(this);
-    this.close = this.close.bind(this);
     this.submit = this.submit.bind(this);
+  }
+  setRealtyTypeSelected(type) {
+    var model;
+    switch (type) {
+      case 'apartment':
+        model = Object.assign({}, apartmentModel);
+        break;
+      case 'house':
+        model = Object.assign({}, houseModel);
+        break;
+    }
+    _.each(model, function(item, key) {
+      if (item.type === 'common') {
+        model[key] = Object.assign({}, commonModel[item.name]);
+      }
+    });
+    this.setState({
+      model
+    });
   }
   parseModel(dataItem, dataKey) {
     var values;
@@ -125,27 +142,58 @@ class AddView extends React.Component {
       </div>
     );
   }
-  setRealtyTypeSelected(type) {
-    var model;
-    switch (type) {
-      case 'apartment':
-        model = Object.assign({}, apartmentModel);
-        break;
-      case 'house':
-        model = Object.assign({}, houseModel);
-        break;
-    }
-    _.each(model, function(item, key) {
-      if (item.type === 'common') {
-        model[key] = Object.assign({}, commonModel[item.name]);
-      }
-    });
-    this.setState({
-      model
-    });
-  }
   submit() {
-    console.log(this.state);
+    this.props.submit(this.state);
+  }
+  render() {
+    var state = this.state,
+      props = this.props;
+
+    return (
+      <Overlay title={constants('add_overlay_title')} opened={props.opened} close={props.close}>
+        <div id="add_realty_ovl">
+          <section>
+            <TextInput data={state.name.data} placeholder={constants('add_name')} />
+          </section>
+          <section>
+            <h3>{constants('add_transaction_type')}</h3>
+            <SegmentedControl items={state.transaction_type} />
+          </section>
+          <section>
+            <h3>{constants('add_realty_type')}</h3>
+            <SegmentedControl items={state.realty_type} onSelect={this.setRealtyTypeSelected} />
+          </section>
+          {_.map(state.model, (item, key) => {
+            return (
+              <section key={key}>
+                <h3>{item.name}</h3>
+                {_.map(item.data, (dataItem, dataKey) => {
+                  return this.parseModel(dataItem, dataKey);
+                })}
+              </section>
+            );
+          })}
+
+          <div>
+            <ButtonBlue text="Save" onClick={this.submit} />
+          </div>
+        </div>
+      </Overlay>
+    );
+  }
+}
+
+class AddView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      opened: true
+    };
+    this.close = this.close.bind(this);
+    this.submit = this.submit.bind(this);
+  }
+  submit(data) {
+    console.log(data);
     this.close();
   }
   close() {
@@ -160,40 +208,15 @@ class AddView extends React.Component {
     }, 300);
   }
   render() {
-    var state = this.state,
-      props = this.props;
+    var props = this.props;
 
     if (props.state.name === 'add_realty_ovl') {
       return (
-        <Overlay title={constants('add_overlay_title')} opened={state.opened} close={this.close}>
-          <div id="add_realty_ovl">
-            <section>
-              <TextInput data={state.name.data} placeholder={constants('add_name')} />
-            </section>
-            <section>
-              <h3>{constants('add_transaction_type')}</h3>
-              <SegmentedControl items={state.transaction_type} />
-            </section>
-            <section>
-              <h3>{constants('add_realty_type')}</h3>
-              <SegmentedControl items={state.realty_type} onSelect={this.setRealtyTypeSelected} />
-            </section>
-            {_.map(state.model, (item, key) => {
-              return (
-                <section key={key}>
-                  <h3>{item.name}</h3>
-                  {_.map(item.data, (dataItem, dataKey) => {
-                    return this.parseModel(dataItem, dataKey);
-                  })}
-                </section>
-              );
-            })}
-
-            <div>
-              <ButtonBlue text="Save" onClick={this.submit} />
-            </div>
-          </div>
-        </Overlay>
+        <OverlayView
+          opened={this.state.opened}
+          submit={this.submit}
+          close={this.close}
+        />
       );
     } else {
       return null;

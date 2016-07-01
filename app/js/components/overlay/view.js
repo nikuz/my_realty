@@ -12,7 +12,7 @@ class Overlay extends React.Component {
   }
   escapeDetector(event) {
     if (event.keyCode == 27) {
-      this.close();
+      this.props.close();
     }
   }
   componentDidMount() {
