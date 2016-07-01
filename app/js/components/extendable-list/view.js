@@ -67,7 +67,7 @@ class ExtendableList extends React.Component {
           data-id={key}
           className="text-input el_field"
         />
-        {key === amount - 1 && amount < 10 ?
+        {key === amount - 1 && amount < this.props.limit ?
           <Icon
             name="plus-square"
             className="eli_add"
@@ -101,7 +101,8 @@ class ExtendableList extends React.Component {
 
 ExtendableList.propTypes = {
   data: React.PropTypes.array.isRequired,
-  placeholder: React.PropTypes.string
+  placeholder: React.PropTypes.string,
+  limit: React.PropTypes.number
 };
 
 export default ExtendableList;

@@ -257,6 +257,21 @@
   "add_units": {
     "message": "Units"
   },
+  "add_units_m": {
+    "message": "Square meter"
+  },
+  "add_units_km": {
+    "message": "Square kilometer"
+  },
+  "add_units_ha": {
+    "message": "Hectare"
+  },
+  "add_units_a": {
+    "message": "Are"
+  },
+  "add_units_acre": {
+    "message": "Acre"
+  },
   "add_status": {
     "message": "Status"
   },
@@ -328,6 +343,9 @@
   },
   "add_photo": {
     "message": "Photo"
+  },
+  "add_photo_placeholder": {
+    "message": "http://"
   },
   "add_contacts": {
     "message": "Contacts"

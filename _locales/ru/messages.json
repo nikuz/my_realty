@@ -257,6 +257,21 @@
   "add_units": {
     "message": "Единицы измерения"
   },
+  "add_units_m": {
+    "message": "Квадратный метр"
+  },
+  "add_units_km": {
+    "message": "Квадратный километр"
+  },
+  "add_units_ha": {
+    "message": "Гектар"
+  },
+  "add_units_a": {
+    "message": "Ар (сотка)"
+  },
+  "add_units_acre": {
+    "message": "Акр"
+  },
   "add_status": {
     "message": "Статус"
   },
@@ -328,6 +343,9 @@
   },
   "add_photo": {
     "message": "Фотографии"
+  },
+  "add_photo_placeholder": {
+    "message": "http://"
   },
   "add_contacts": {
     "message": "Контакты для связи"

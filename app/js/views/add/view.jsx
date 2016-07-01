@@ -145,7 +145,12 @@ class OverlayView extends React.Component {
         break;
       }
       case 'extendable_list': {
-        values = <ExtendableList data={dataItem.values} />;
+        values = (
+          <ExtendableList
+            data={dataItem.values}
+            limit={dataItem.limit}
+          />
+        );
         break;
       }
     }
