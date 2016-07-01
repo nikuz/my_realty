@@ -8,6 +8,12 @@
   "sqm": {
     "message": "sq m"
   },
+  "km": {
+    "message": "km"
+  },
+  "numbers": {
+    "message": "numbers"
+  },
   "count": {
     "message": "count"
   },
@@ -245,7 +251,7 @@
   "add_outbuildings": {
     "message": "Outbuildings"
   },
-  "add_homestead ": {
+  "add_homestead": {
     "message": "Info on the homestead"
   },
   "add_units": {
@@ -312,7 +318,7 @@
     "message": "Clinics"
   },
   "add_shopping_centers": {
-    "message": "Shopping centers"
+    "message": "Shopping malls"
   },
   "add_sport": {
     "message": "Sport"
@@ -325,5 +331,8 @@
   },
   "add_contacts": {
     "message": "Contacts"
+  },
+  "add_contacts_placeholder": {
+    "message": "phone, email, etc.."
   }
 }

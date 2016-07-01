@@ -8,6 +8,12 @@
   "sqm": {
     "message": "м2"
   },
+  "km": {
+    "message": "км"
+  },
+  "numbers": {
+    "message": "Номера"
+  },
   "count": {
     "message": "количество"
   },
@@ -245,7 +251,7 @@
   "add_outbuildings": {
     "message": "Подсобные помещения на участке"
   },
-  "add_homestead ": {
+  "add_homestead": {
     "message": "Информация по участку"
   },
   "add_units": {
@@ -325,5 +331,8 @@
   },
   "add_contacts": {
     "message": "Контакты для связи"
+  },
+  "add_contacts_placeholder": {
+    "message": "телефон, email, и т.д."
   }
 }

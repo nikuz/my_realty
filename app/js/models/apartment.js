@@ -12,7 +12,6 @@ export default [
           {
             name: constants('add_rooms'),
             type: 'segments',
-            size: 'small',
             values: {
               1: {
                 name: 1,
@@ -105,12 +104,61 @@ export default [
         ]
       },
       {
-        name: constants('add_rooms_area'),
-        placeholder: constants('sqm'),
-        type: 'text',
-        values: {
-          value: ''
-        }
+        type: 'section',
+        data: [
+          {
+            name: constants('add_rooms_area'),
+            placeholder: constants('sqm'),
+            type: 'text',
+            values: {
+              value: ''
+            }
+          }
+        ]
+      },
+      {
+        type: 'section',
+        layout: 'line',
+        data: [
+          {
+            name: constants('add_loggia'),
+            placeholder: constants('sqm'),
+            size: 'small',
+            type: 'text',
+            values: {
+              value: ''
+            }
+          },
+          {
+            name: constants('add_balcony'),
+            placeholder: constants('sqm'),
+            size: 'small',
+            type: 'text',
+            values: {
+              value: ''
+            }
+          }
+        ]
+      },
+      {
+        type: 'section',
+        data: [
+          {
+            name: constants('add_windows'),
+            type: 'segments',
+            values: {
+              1: {
+                name: constants('add_windows_courtyard_street')
+              },
+              2: {
+                name: constants('add_windows_courtyard')
+              },
+              3: {
+                name: constants('add_windows_street')
+              }
+            }
+          }
+        ]
       }
     ]
   },
@@ -121,5 +169,25 @@ export default [
   {
     type: 'common',
     name: 'furniture'
+  },
+  {
+    type: 'common',
+    name: 'transaction'
+  },
+  {
+    type: 'common',
+    name: 'transport'
+  },
+  {
+    type: 'common',
+    name: 'social'
+  },
+  {
+    type: 'common',
+    name: 'additional'
+  },
+  {
+    type: 'common',
+    name: 'contacts'
   }
 ];

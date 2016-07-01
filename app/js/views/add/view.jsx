@@ -11,6 +11,8 @@ import SegmentedControl from 'components/segmented-control/view';
 import TextInput from 'components/text-input/view';
 import Selector from 'components/selector/view';
 import CheckBox from 'components/checkbox/view';
+import Textarea from 'components/textarea/view';
+import ExtendableList from 'components/extendable-list/view';
 import {ButtonBlue} from 'components/buttons/view';
 
 import './style.less';
@@ -107,6 +109,7 @@ class OverlayView extends React.Component {
         values = (
           <Selector
             items={dataItem.values}
+            size={dataItem.size}
           />
         );
         break;
@@ -122,6 +125,14 @@ class OverlayView extends React.Component {
           </span>
         );
         break;
+      case 'textarea':
+        values = (
+          <Textarea
+            data={dataItem.values}
+            size={dataItem.size}
+          />
+        );
+        break;
       case 'year': {
         let years = {};
         for (let i = 1800, l = new Date().getFullYear(); i <= l; i++) {
@@ -131,6 +142,10 @@ class OverlayView extends React.Component {
         }
         dataItem.values = years;
         values = <Selector items={dataItem.values} size="small" />;
+        break;
+      }
+      case 'extendable_list': {
+        values = <ExtendableList data={dataItem.values} />;
         break;
       }
     }
