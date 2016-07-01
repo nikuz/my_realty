@@ -43,6 +43,7 @@ class ExtendableList extends React.Component {
     this.setState({
       data
     });
+    _.isFunction(this.props.onChange) && this.props.onChange(data);
   }
   componentWillMount() {
     var data = [];
@@ -107,7 +108,8 @@ class ExtendableList extends React.Component {
 ExtendableList.propTypes = {
   data: React.PropTypes.array.isRequired,
   placeholder: React.PropTypes.string,
-  limit: React.PropTypes.number
+  limit: React.PropTypes.number,
+  onChange: React.PropTypes.func
 };
 
 export default ExtendableList;

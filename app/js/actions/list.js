@@ -1,12 +1,12 @@
 'use strict';
 
-function addRealty(sort) {
+function save(data) {
   return {
-    type: 'MANAGER_SORT_CHANGE',
-    name: sort
+    type: 'LIST_SAVE',
+    data
   };
 }
 
 export {
-
+  save
 };

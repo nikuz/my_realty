@@ -1,6 +1,7 @@
 'use strict';
 
 import * as React from 'react';
+import * as _ from 'underscore';
 
 import './style.less';
 
@@ -28,6 +29,7 @@ class TextInput extends React.Component {
     this.setState({
       data
     });
+    _.isFunction(this.props.onChange) && this.props.onChange(value);
   }
   render() {
     var style = 'text-input';
@@ -51,7 +53,8 @@ TextInput.propTypes = {
   data: React.PropTypes.object.isRequired,
   placeholder: React.PropTypes.string,
   type: React.PropTypes.string,
-  size: React.PropTypes.string
+  size: React.PropTypes.string,
+  onChange: React.PropTypes.func
 };
 
 export default TextInput;

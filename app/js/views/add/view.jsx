@@ -46,6 +46,7 @@ class OverlayView extends React.Component {
     };
     this.setRealtyTypeSelected = this.setRealtyTypeSelected.bind(this);
     this.parseModel = this.parseModel.bind(this);
+    this.change = this.change.bind(this);
     this.submit = this.submit.bind(this);
   }
   setRealtyTypeSelected(type) {
@@ -66,6 +67,7 @@ class OverlayView extends React.Component {
     this.setState({
       model
     });
+    this.change();
   }
   parseModel(dataItem, dataKey) {
     var values;
@@ -83,6 +85,7 @@ class OverlayView extends React.Component {
         values = (
           <SegmentedControl
             items={dataItem.values}
+            onSelect={this.change}
           />
         );
         break;
@@ -93,6 +96,7 @@ class OverlayView extends React.Component {
             placeholder={dataItem.placeholder}
             type="number"
             size={dataItem.size}
+            onChange={this.change}
           />
         );
         break;
@@ -102,6 +106,7 @@ class OverlayView extends React.Component {
             data={dataItem.values}
             placeholder={dataItem.placeholder}
             size={dataItem.size}
+            onChange={this.change}
           />
         );
         break;
@@ -110,6 +115,7 @@ class OverlayView extends React.Component {
           <Selector
             items={dataItem.values}
             size={dataItem.size}
+            onSelect={this.change}
           />
         );
         break;
@@ -121,6 +127,7 @@ class OverlayView extends React.Component {
               label={dataItem.name}
               data={dataItem.values}
               icon={dataItem.icon}
+              onChange={this.change}
             />
           </span>
         );
@@ -130,6 +137,7 @@ class OverlayView extends React.Component {
           <Textarea
             data={dataItem.values}
             size={dataItem.size}
+            onChange={this.change}
           />
         );
         break;
@@ -141,7 +149,13 @@ class OverlayView extends React.Component {
           };
         }
         dataItem.values = years;
-        values = <Selector items={dataItem.values} size="small" />;
+        values = (
+          <Selector
+            items={dataItem.values}
+            size="small"
+            onSelect={this.change}
+          />
+        );
         break;
       }
       case 'extendable_list': {
@@ -149,6 +163,7 @@ class OverlayView extends React.Component {
           <ExtendableList
             data={dataItem.values}
             limit={dataItem.limit}
+            onChange={this.change}
           />
         );
         break;
@@ -162,6 +177,9 @@ class OverlayView extends React.Component {
       </div>
     );
   }
+  change() {
+    this.props.change(this.state);
+  }
   submit() {
     this.props.submit(this.state);
   }
@@ -173,15 +191,25 @@ class OverlayView extends React.Component {
       <Overlay title={constants('add_overlay_title')} opened={props.opened} close={props.close}>
         <div id="add_realty_ovl">
           <section>
-            <TextInput data={state.name.data} placeholder={constants('add_name')} />
+            <TextInput
+              data={state.name.data}
+              placeholder={constants('add_name')}
+              onChange={this.change}
+            />
           </section>
           <section>
             <h3>{constants('add_transaction_type')}</h3>
-            <SegmentedControl items={state.transaction_type} />
+            <SegmentedControl
+              items={state.transaction_type}
+              onSelect={this.change}
+            />
           </section>
           <section>
             <h3>{constants('add_realty_type')}</h3>
-            <SegmentedControl items={state.realty_type} onSelect={this.setRealtyTypeSelected} />
+            <SegmentedControl
+              items={state.realty_type}
+              onSelect={this.setRealtyTypeSelected}
+            />
           </section>
           {_.map(state.model, (item, key) => {
             return (
@@ -204,6 +232,7 @@ class OverlayView extends React.Component {
 }
 
 OverlayView.propTypes = {
+  change: React.PropTypes.func.isRequired,
   submit: React.PropTypes.func.isRequired,
   close: React.PropTypes.func.isRequired
 };
@@ -214,11 +243,21 @@ class AddView extends React.Component {
     this.state = {
       opened: true
     };
+    this.change = this.change.bind(this);
     this.close = this.close.bind(this);
     this.submit = this.submit.bind(this);
   }
+  change(data) {
+    var name = data.name.data.value.trim();
+    if (data.model && name.length) {
+      console.log(data);
+      // this.props.save({
+      //   name,
+      //
+      // });
+    }
+  }
   submit(data) {
-    console.log(data);
     this.close();
   }
   close() {
@@ -239,6 +278,7 @@ class AddView extends React.Component {
       return (
         <OverlayView
           opened={this.state.opened}
+          change={this.change}
           submit={this.submit}
           close={this.close}
         />

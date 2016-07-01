@@ -2,6 +2,7 @@
 
 import * as _ from 'underscore';
 import constants from 'modules/constants';
+import * as storage from 'modules/storage';
 
 const DEFAULT = {
   sort: {
@@ -44,6 +45,7 @@ function update(state, action, key) {
       item.desc = false;
     }
   });
+  storage.set('manager', state);
   return state;
 }
 
@@ -52,11 +54,15 @@ export default function managerState(state, action) {
     case 'MANAGER_SORT_CHANGE':
       return update(state, action, 'sort');
     case 'MANAGER_SORT_CLEAR':
-      return Object.assign({}, state, DEFAULT.sort);
+      state = Object.assign({}, state, DEFAULT.sort);
+      storage.set('manager', state);
+      return state;
     case 'MANAGER_FILTER_CHANGE':
       return update(state, action, 'filter');
     case 'MANAGER_FILTER_CLEAR':
-      return Object.assign({}, state, DEFAULT.filter);
+      state = Object.assign({}, state, DEFAULT.filter);
+      storage.set('manager', state);
+      return state;
     case 'MANAGER_VIEW_CHANGE':
       return update(state, action, 'view');
     default:

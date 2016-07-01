@@ -1,6 +1,7 @@
 'use strict';
 
 import * as React from 'react';
+import * as _ from 'underscore';
 
 import './style.less';
 
@@ -18,6 +19,7 @@ class Textarea extends React.Component {
     this.setState({
       data
     });
+    _.isFunction(this.props.onChange) && this.props.onChange(data);
   }
   render() {
     var state = this.state,

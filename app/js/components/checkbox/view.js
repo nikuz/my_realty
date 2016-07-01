@@ -1,6 +1,7 @@
 'use strict';
 
 import * as React from 'react';
+import * as _ from 'underscore';
 import Icon from 'react-fa';
 
 import './style.less';
@@ -19,6 +20,7 @@ class CheckBox extends React.Component {
     this.setState({
       data
     });
+    _.isFunction(this.props.onChange) && this.props.onChange(data);
   }
   getIcon(icon) {
     if (/png|svg|gif/.test(icon)) {
@@ -50,7 +52,8 @@ CheckBox.propTypes = {
   data: React.PropTypes.object.isRequired,
   name: React.PropTypes.string.isRequired,
   label: React.PropTypes.string.isRequired,
-  icon: React.PropTypes.string
+  icon: React.PropTypes.string,
+  onChange: React.PropTypes.func
 };
 
 export default CheckBox;

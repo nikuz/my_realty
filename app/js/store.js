@@ -4,13 +4,14 @@ import { createStore } from 'redux';
 import reducers from './reducers/main';
 import * as storage from './modules/storage';
 
-const store = createStore(reducers, storage.get('store'));
+const store = createStore(reducers, {
+  manager: storage.get('manager'),
+  list: storage.get('list')
+});
 
 store.subscribe(function() {
-  var state = store.getState();
-  storage.set('store', state);
   if (window.NODE_ENV !== 'production') {
-    console.log(state);
+    console.log(store.getState());
   }
 });
 
