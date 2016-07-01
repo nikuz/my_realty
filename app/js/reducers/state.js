@@ -1,6 +1,6 @@
 'use strict';
 
-const DEFAULT_STATE = {
+const DEFAULT = {
   name: 'initial'
 };
 
@@ -11,6 +11,10 @@ export default function appState(state, action) {
         name: action.state
       });
     default:
-      return DEFAULT_STATE;
+      if (state === undefined) {
+        return DEFAULT;
+      } else {
+        return state;
+      }
   }
 };

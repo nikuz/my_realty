@@ -8,6 +8,7 @@ class ListView extends React.Component {
   render() {
     var props = this.props;
 
+    console.log(props.list);
     return (
       <div id="list">
         List

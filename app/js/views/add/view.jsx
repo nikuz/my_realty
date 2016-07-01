@@ -12,6 +12,7 @@ import TextInput from 'components/text-input/view';
 import Selector from 'components/selector/view';
 import CheckBox from 'components/checkbox/view';
 import Textarea from 'components/textarea/view';
+import FieldError from 'components/field-error/view';
 import ExtendableList from 'components/extendable-list/view';
 import {ButtonBlue} from 'components/buttons/view';
 
@@ -196,6 +197,10 @@ class OverlayView extends React.Component {
               placeholder={constants('add_name')}
               onChange={this.change}
             />
+            {props.nameError ?
+              <FieldError text={constants('add_name_error')} />
+              : null
+            }
           </section>
           <section>
             <h3>{constants('add_transaction_type')}</h3>
@@ -234,31 +239,63 @@ class OverlayView extends React.Component {
 OverlayView.propTypes = {
   change: React.PropTypes.func.isRequired,
   submit: React.PropTypes.func.isRequired,
-  close: React.PropTypes.func.isRequired
+  close: React.PropTypes.func.isRequired,
+  nameError: React.PropTypes.bool.isRequired
 };
 
 class AddView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opened: true
+      opened: true,
+      name_error: false
     };
     this.change = this.change.bind(this);
     this.close = this.close.bind(this);
+    this.reset = this.reset.bind(this);
     this.submit = this.submit.bind(this);
   }
   change(data) {
     var name = data.name.data.value.trim();
     if (data.model && name.length) {
-      console.log(data);
-      // this.props.save({
-      //   name,
-      //
-      // });
+      if (this.props.list[name]) {
+        return this.setState({
+          name_error: true
+        });
+      } else if (this.state.name_error) {
+        this.setState({
+          name_error: false
+        });
+      }
+      let transactionType,
+        realtyType;
+
+      _.each(data.transaction_type, function(item, key) {
+        if (item.selected) {
+          transactionType = key;
+        }
+      });
+      _.each(data.realty_type, function(item, key) {
+        if (item.selected) {
+          realtyType = key;
+        }
+      });
+      this.props.save({
+        name,
+        transaction_type: transactionType,
+        realty_type: realtyType,
+        model: data.model
+      });
     }
   }
   submit(data) {
     this.close();
+  }
+  reset() {
+    this.setState({
+      opened: true,
+      name_error: false
+    });
   }
   close() {
     this.setState({
@@ -266,21 +303,21 @@ class AddView extends React.Component {
     });
     setTimeout(() => {
       this.props.close();
-      this.setState({
-        opened: true
-      });
+      this.reset();
     }, 300);
   }
   render() {
-    var props = this.props;
+    var props = this.props,
+      state = this.state;
 
     if (props.state.name === 'add_realty_ovl') {
       return (
         <OverlayView
-          opened={this.state.opened}
+          opened={state.opened}
           change={this.change}
           submit={this.submit}
           close={this.close}
+          nameError={state.name_error}
         />
       );
     } else {
@@ -288,5 +325,11 @@ class AddView extends React.Component {
     }
   }
 }
+
+AddView.propTypes = {
+  list: React.PropTypes.object.isRequired,
+  save: React.PropTypes.func.isRequired,
+  close: React.PropTypes.func.isRequired
+};
 
 export default AddView;

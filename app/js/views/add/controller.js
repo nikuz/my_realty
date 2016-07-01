@@ -2,13 +2,14 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as ListActions from 'actions/state';
+import * as ListActions from 'actions/list';
 import * as StateActions from 'actions/state';
 import AddView from './view';
 
 const mapStateToProps = function(state) {
   return {
-    state: state.state
+    state: state.state,
+    list: state.list
   };
 };
 

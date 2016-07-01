@@ -352,5 +352,8 @@
   },
   "add_contacts_placeholder": {
     "message": "телефон, email, и т.д."
+  },
+  "add_name_error": {
+    "message": "Объект недвижимости с таким именем уже существует"
   }
 }
