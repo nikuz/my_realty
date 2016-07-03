@@ -15,16 +15,22 @@ class SegmentedControl extends React.Component {
   }
   change(e) {
     var itemKey = e.target.getAttribute('data-item'),
-      items = this.state.items;
+      items = this.state.items,
+      selectedItem;
 
     _.each(items, function(item, key) {
-      item.selected = key === itemKey;
+      if (key === itemKey) {
+        selectedItem = item;
+        item.selected = true;
+      } else {
+        item.selected = false;
+      }
     });
 
     this.setState({
       items
     });
-    _.isFunction(this.props.onSelect) && this.props.onSelect(itemKey);
+    _.isFunction(this.props.onSelect) && this.props.onSelect(selectedItem);
   }
   render() {
     var items = this.state.items;

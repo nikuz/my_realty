@@ -21,65 +21,50 @@ import './style.less';
 class OverlayView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: {
-        data: {
-          value: ''
-        }
-      },
-      transaction_type: {
-        rent: {
-          name: constants('add_transaction_type_rent')
-        },
-        buy: {
-          name: constants('add_transaction_type_buy')
-        }
-      },
-      realty_type: {
-        apartment: {
-          name: constants('add_realty_type_apartment')
-        },
-        house: {
-          name: constants('add_realty_type_house')
-        }
-      },
-      model: null
-    };
-    this.setRealtyTypeSelected = this.setRealtyTypeSelected.bind(this);
-    this.parseModel = this.parseModel.bind(this);
+    this.renderItem = this.renderItem.bind(this);
     this.change = this.change.bind(this);
     this.submit = this.submit.bind(this);
   }
-  setRealtyTypeSelected(type) {
+  change(item) {
     var model;
-    switch (type) {
+    switch (item.id) {
       case 'apartment':
-        model = Object.assign({}, apartmentModel);
+        model = JSON.parse(JSON.stringify(apartmentModel));
         break;
       case 'house':
-        model = Object.assign({}, houseModel);
+        model = JSON.parse(JSON.stringify(houseModel));
         break;
     }
-    _.each(model, function(item, key) {
-      if (item.type === 'common') {
-        model[key] = Object.assign({}, commonModel[item.name]);
-      }
-    });
-    this.setState({
-      model
-    });
-    this.change();
+    if (model) {
+      _.each(model, function(item, key) {
+        if (item.type === 'common') {
+          model[key] = JSON.parse(JSON.stringify(commonModel[key]));
+        }
+      });
+      this.setState(model);
+    }
+    this.props.change(this.state);
   }
-  parseModel(dataItem, dataKey) {
-    var values;
+  submit() {
+    this.props.submit(this.state);
+  }
+  componentWillMount() {
+    this.setState({
+      initial: JSON.parse(JSON.stringify(commonModel.initial))
+    });
+  }
+  renderItem(dataItem, dataKey) {
+    var values,
+      required;
+
     switch (dataItem.type) {
       case 'section':
         return (
-          <section key={dataKey} className={dataItem.layout}>
+          <div key={dataKey} className={dataItem.layout}>
             {_.map(dataItem.data, (dataItem, dataKey) => {
-              return this.parseModel(dataItem, dataKey);
+              return this.renderItem(dataItem, dataKey);
             })}
-          </section>
+          </div>
         );
         break;
       case 'segments':
@@ -171,62 +156,43 @@ class OverlayView extends React.Component {
       }
     }
 
+    if (dataItem.required) {
+      required = <span className="is_required">*</span>;
+    }
+
     return (
-      <div className="aro_item" key={dataKey}>
-        <h5>{dataItem.name}</h5>
+      <div className="aro_item" key={dataKey} id={'aro_item_' + dataKey}>
+        <h5>{dataItem.name} {required}</h5>
         {values}
+        {dataItem.error ?
+          <FieldError text={dataItem.error_text} />
+          : null
+        }
       </div>
     );
-  }
-  change() {
-    this.props.change(this.state);
-  }
-  submit() {
-    this.props.submit(this.state);
   }
   render() {
     var state = this.state,
       props = this.props;
 
     return (
-      <Overlay title={constants('add_overlay_title')} opened={props.opened} close={props.close}>
+      <Overlay
+        title={constants('add_overlay_title')}
+        opened={props.opened}
+        close={props.close}
+        scrollTo={props.scrollTo}
+      >
         <div id="add_realty_ovl">
-          <section>
-            <TextInput
-              data={state.name.data}
-              placeholder={constants('add_name')}
-              onChange={this.change}
-            />
-            {props.nameError ?
-              <FieldError text={constants('add_name_error')} />
-              : null
-            }
-          </section>
-          <section>
-            <h3>{constants('add_transaction_type')}</h3>
-            <SegmentedControl
-              items={state.transaction_type}
-              onSelect={this.change}
-            />
-          </section>
-          <section>
-            <h3>{constants('add_realty_type')}</h3>
-            <SegmentedControl
-              items={state.realty_type}
-              onSelect={this.setRealtyTypeSelected}
-            />
-          </section>
-          {_.map(state.model, (item, key) => {
+          {_.map(state, (item, key) => {
             return (
-              <section key={key}>
+              <div key={key}>
                 <h3>{item.name}</h3>
                 {_.map(item.data, (dataItem, dataKey) => {
-                  return this.parseModel(dataItem, dataKey);
+                  return this.renderItem(dataItem, dataKey);
                 })}
-              </section>
+              </div>
             );
           })}
-
           <div>
             <ButtonBlue text="Save" onClick={this.submit} />
           </div>
@@ -240,61 +206,144 @@ OverlayView.propTypes = {
   change: React.PropTypes.func.isRequired,
   submit: React.PropTypes.func.isRequired,
   close: React.PropTypes.func.isRequired,
-  nameError: React.PropTypes.bool.isRequired
+  scrollTo: React.PropTypes.number
 };
 
 class AddView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opened: true,
-      name_error: false
+      scrollTo: null,
+      opened: true
     };
+    this.errorFields = [];
     this.change = this.change.bind(this);
     this.close = this.close.bind(this);
     this.reset = this.reset.bind(this);
     this.submit = this.submit.bind(this);
   }
-  change(data) {
-    var name = data.name.data.value.trim();
-    if (data.model && name.length) {
-      if (this.props.list[name]) {
-        return this.setState({
-          name_error: true
-        });
-      } else if (this.state.name_error) {
-        this.setState({
-          name_error: false
-        });
-      }
-      let transactionType,
-        realtyType;
-
-      _.each(data.transaction_type, function(item, key) {
-        if (item.selected) {
-          transactionType = key;
-        }
-      });
-      _.each(data.realty_type, function(item, key) {
-        if (item.selected) {
-          realtyType = key;
-        }
-      });
-      this.props.save({
-        name,
-        transaction_type: transactionType,
-        realty_type: realtyType,
-        model: data.model
-      });
-    }
+  change(state) {
+    // var name = state.initial.data.name.values.value.trim();
+    // if (data.model && name.length) {
+    //   if (this.props.list[name]) {
+    //     constants('add_name_error')
+    //     return this.setState({
+    //       name_error: true
+    //     });
+    //   } else if (this.state.name_error) {
+    //     this.setState({
+    //       name_error: false
+    //     });
+    //   }
+    //   let transactionType,
+    //     realtyType;
+    //
+    //   _.each(data.transaction_type, function(item, key) {
+    //     if (item.selected) {
+    //       transactionType = key;
+    //     }
+    //   });
+    //   _.each(data.realty_type, function(item, key) {
+    //     if (item.selected) {
+    //       realtyType = key;
+    //     }
+    //   });
+    //   this.props.save({
+    //     name,
+    //     transaction_type: transactionType,
+    //     realty_type: realtyType,
+    //     model: data.model
+    //   });
+    // }
   }
-  submit(data) {
-    this.close();
+  checkRequiredFields(state) {
+    var check = true;
+    _.each(state, (item) => {
+      var checker = (item) => {
+        _.each(item.data, (dataItem, dataKey) => {
+          let itemError;
+          if (dataItem.type === 'section') {
+            return checker(dataItem);
+          }
+
+          if (dataItem.required) {
+            switch (dataItem.type) {
+              case 'text':
+              case 'textarea':
+              case 'number': {
+                let value = dataItem.values.value;
+                if ((_.isString(value) && value.trim() === '') || _.isNaN(value)) {
+                  itemError = true;
+                }
+                break;
+              }
+              case 'segments':
+              case 'selector': {
+                let selected;
+                _.each(dataItem.values, function(item) {
+                  if (item.selected) {
+                    selected = true;
+                  }
+                });
+                if (!selected) {
+                  itemError = true;
+                }
+                break;
+              }
+              case 'checkbox':
+                if (!dataItem.values.selected) {
+                  itemError = true;
+                }
+                break;
+              case 'extendable_list': {
+                let dataAdded;
+                _.each(dataItem.values, function(item) {
+                  if (item.value.trim() !== '') {
+                    dataAdded = true;
+                  }
+                });
+                if (!dataAdded) {
+                  itemError = true;
+                }
+                break;
+              }
+            }
+          }
+          if (itemError) {
+            check = false;
+            dataItem.error = true;
+            this.errorFields.push('aro_item_' + dataKey);
+          } else {
+            dataItem.error = false;
+          }
+        });
+      };
+      checker(item);
+    });
+
+    return check;
+  }
+  submit(state) {
+    var newState = {
+      opened: true
+    };
+    if (this.checkRequiredFields(state)) {
+      let name = state.initial.data.name.values.value.trim();
+      state.initial.data.name.error = !!this.props.list[name];
+      // this.close();
+    } else {
+      console.log('required fields error');
+    }
+    if (this.errorFields.length) {
+      let field = document.querySelector('#' + this.errorFields[0]);
+      this.errorFields = [];
+      newState.scrollTo = field.offsetTop;
+    }
+    this.setState(newState);
   }
   reset() {
     this.setState({
-      opened: true,
-      name_error: false
+      opened: true
     });
   }
   close() {
@@ -317,7 +366,7 @@ class AddView extends React.Component {
           change={this.change}
           submit={this.submit}
           close={this.close}
-          nameError={state.name_error}
+          scrollTo={this.state.scrollTo}
         />
       );
     } else {

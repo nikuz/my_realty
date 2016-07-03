@@ -2,67 +2,57 @@
 
 import constants from 'modules/constants';
 
-export default [
-  {
+export default {
+  info: {
     name: constants('add_house_info'),
-    data: [
-      {
-        type: 'section',
-        data: [
-          {
-            name: constants('add_name_cottage'),
-            type: 'text',
-            values: {
-              value: ''
-            }
-          }
-        ]
+    data: {
+      cottage_name: {
+        name: constants('add_name_cottage'),
+        type: 'text',
+        values: {
+          value: ''
+        }
       },
-      {
-        type: 'section',
-        data: [
-          {
-            name: constants('add_building_type'),
-            type: 'selector',
-            values: {
-              0: {
-                name: '--',
-                selected: true
-              },
-              1: {
-                name: constants('add_building_type_brick')
-              },
-              2: {
-                name: constants('add_building_type_monolithic')
-              },
-              3: {
-                name: constants('add_building_type_panel')
-              },
-              4: {
-                name: constants('add_building_type_modular')
-              },
-              5: {
-                name: constants('add_building_type_wood')
-              },
-              6: {
-                name: constants('add_building_type_monolith_brick')
-              }
-            }
+      building_type: {
+        name: constants('add_building_type'),
+        type: 'selector',
+        values: {
+          0: {
+            name: '--',
+            selected: true
+          },
+          1: {
+            name: constants('add_building_type_brick')
+          },
+          2: {
+            name: constants('add_building_type_monolithic')
+          },
+          3: {
+            name: constants('add_building_type_panel')
+          },
+          4: {
+            name: constants('add_building_type_modular')
+          },
+          5: {
+            name: constants('add_building_type_wood')
+          },
+          6: {
+            name: constants('add_building_type_monolith_brick')
           }
-        ]
+        }
       },
-      {
+      ceiling_year: {
         type: 'section',
         layout: 'line',
-        data: [
-          {
+        data: {
+          year: {
             name: constants('add_construction_year'),
             type: 'year',
             values: {
               value: ''
             }
           },
-          {
+          ceiling_height: {
             name: constants('add_ceiling_height'),
             type: 'number',
             size: 'small',
@@ -70,55 +60,50 @@ export default [
               value: ''
             }
           }
-        ]
+        }
       },
-      {
-        type: 'section',
-        data: [
-          {
-            name: constants('add_rooms'),
-            type: 'segments',
-            values: {
-              1: {
-                name: 1,
-                selected: true
-              },
-              2: {
-                name: 2
-              },
-              3: {
-                name: 3
-              },
-              4: {
-                name: 4
-              },
-              5: {
-                name: 5
-              },
-              6: {
-                name: 6
-              },
-              7: {
-                name: 7
-              },
-              8: {
-                name: 8
-              },
-              9: {
-                name: 9
-              },
-              10: {
-                name: constants('add_rooms_more')
-              }
-            }
+      rooms: {
+        name: constants('add_rooms'),
+        type: 'segments',
+        values: {
+          1: {
+            name: 1,
+            selected: true
+          },
+          2: {
+            name: 2
+          },
+          3: {
+            name: 3
+          },
+          4: {
+            name: 4
+          },
+          5: {
+            name: 5
+          },
+          6: {
+            name: 6
+          },
+          7: {
+            name: 7
+          },
+          8: {
+            name: 8
+          },
+          9: {
+            name: 9
+          },
+          10: {
+            name: constants('add_rooms_more')
           }
-        ]
+        }
       },
-      {
+      area: {
         type: 'section',
         layout: 'line',
-        data: [
-          {
+        data: {
+          all: {
             name: constants('add_area'),
             placeholder: constants('sqm'),
             type: 'number',
@@ -127,7 +112,7 @@ export default [
               value: ''
             }
           },
-          {
+          living: {
             name: constants('add_living_area'),
             placeholder: constants('sqm'),
             type: 'number',
@@ -136,7 +121,7 @@ export default [
               value: ''
             }
           },
-          {
+          kitchen: {
             name: constants('add_kitchen_area'),
             placeholder: constants('sqm'),
             type: 'number',
@@ -145,26 +130,21 @@ export default [
               value: ''
             }
           }
-        ]
+        }
       },
-      {
-        type: 'section',
-        data: [
-          {
-            name: constants('add_rooms_area'),
-            placeholder: constants('sqm'),
-            type: 'text',
-            values: {
-              value: ''
-            }
-          }
-        ]
+      rooms_area: {
+        name: constants('add_rooms_area'),
+        placeholder: constants('sqm'),
+        type: 'text',
+        values: {
+          value: ''
+        }
       },
-      {
+      toilets: {
         type: 'section',
         layout: 'line',
-        data: [
-          {
+        data: {
+          separate: {
             name: constants('add_separate_toilets'),
             placeholder: constants('count'),
             size: 'small',
@@ -173,7 +153,7 @@ export default [
               value: ''
             }
           },
-          {
+          combined: {
             name: constants('add_combined_bathroom'),
             placeholder: constants('count'),
             size: 'small',
@@ -182,43 +162,38 @@ export default [
               value: ''
             }
           }
-        ]
+        }
       },
-      {
-        type: 'section',
-        data: [
-          {
-            name: constants('add_heating'),
-            type: 'selector',
-            values: {
-              0: {
-                name: '--',
-                selected: true
-              },
-              1: {
-                name: constants('add_heating_central_gas')
-              },
-              2: {
-                name: constants('add_heating_central_coal')
-              },
-              3: {
-                name: constants('add_heating_bake')
-              },
-              4: {
-                name: constants('add_heating_fireplace')
-              },
-              5: {
-                name: constants('add_heating_without')
-              }
-            }
+      heating: {
+        name: constants('add_heating'),
+        type: 'selector',
+        values: {
+          0: {
+            name: '--',
+            selected: true
+          },
+          1: {
+            name: constants('add_heating_central_gas')
+          },
+          2: {
+            name: constants('add_heating_central_coal')
+          },
+          3: {
+            name: constants('add_heating_bake')
+          },
+          4: {
+            name: constants('add_heating_fireplace')
+          },
+          5: {
+            name: constants('add_heating_without')
           }
-        ]
+        }
       },
-      {
+      lavatory_warming_electricity: {
         type: 'section',
         layout: 'line',
-        data: [
-          {
+        data: {
+          lavatory: {
             name: constants('add_lavatory'),
             type: 'segments',
             values: {
@@ -230,7 +205,7 @@ export default [
               }
             }
           },
-          {
+          warming: {
             name: constants('add_warming'),
             type: 'segments',
             values: {
@@ -242,7 +217,7 @@ export default [
               }
             }
           },
-          {
+          electricity: {
             name: constants('add_electricity'),
             type: 'segments',
             values: {
@@ -254,13 +229,13 @@ export default [
               }
             }
           }
-        ]
+        }
       },
-      {
+      sewerage_water_gas: {
         type: 'section',
         layout: 'line',
-        data: [
-          {
+        data: {
+          sewerage: {
             name: constants('add_sewerage'),
             type: 'segments',
             values: {
@@ -272,7 +247,7 @@ export default [
               }
             }
           },
-          {
+          water_supply: {
             name: constants('add_water_supply'),
             type: 'segments',
             values: {
@@ -284,7 +259,7 @@ export default [
               }
             }
           },
-          {
+          gas: {
             name: constants('add_gas'),
             type: 'segments',
             values: {
@@ -296,13 +271,13 @@ export default [
               }
             }
           }
-        ]
+        }
       },
-      {
+      security_bathhouse_garage: {
         type: 'section',
         layout: 'line',
-        data: [
-          {
+        data: {
+          security: {
             name: constants('add_security'),
             type: 'segments',
             values: {
@@ -314,7 +289,7 @@ export default [
               }
             }
           },
-          {
+          bathhouse: {
             name: constants('add_bathhouse'),
             type: 'segments',
             values: {
@@ -326,7 +301,7 @@ export default [
               }
             }
           },
-          {
+          garage: {
             name: constants('add_garage'),
             type: 'segments',
             values: {
@@ -338,13 +313,13 @@ export default [
               }
             }
           }
-        ]
+        }
       },
-      {
+      pool_outbuildings: {
         type: 'section',
         layout: 'line',
-        data: [
-          {
+        data: {
+          pool: {
             name: constants('add_pool'),
             type: 'segments',
             values: {
@@ -356,7 +331,7 @@ export default [
               }
             }
           },
-          {
+          outbuildings: {
             name: constants('add_outbuildings'),
             type: 'segments',
             values: {
@@ -368,18 +343,18 @@ export default [
               }
             }
           }
-        ]
+        }
       }
-    ]
+    }
   },
-  {
+  homestead_info: {
     name: constants('add_homestead'),
-    data: [
-      {
+    data: {
+      area: {
         type: 'section',
         layout: 'line',
-        data: [
-          {
+        data: {
+          amount: {
             name: constants('area'),
             type: 'number',
             size: 'small',
@@ -387,7 +362,7 @@ export default [
               value: ''
             }
           },
-          {
+          units: {
             name: constants('add_units'),
             type: 'selector',
             size: 'small',
@@ -410,48 +385,33 @@ export default [
               }
             }
           }
-        ]
+        }
       },
-      {
-        type: 'section',
-        data: [
-          {
-            name: constants('add_status'),
-            type: 'text',
-            values: {
-              value: ''
-            }
-          }
-        ]
+      status: {
+        name: constants('add_status'),
+        type: 'text',
+        values: {
+          value: ''
+        }
       }
-    ]
+    }
   },
-  {
-    type: 'common',
-    name: 'furniture'
+  furniture: {
+    type: 'common'
   },
-  {
-    type: 'common',
-    name: 'transaction'
+  transport: {
+    type: 'common'
   },
-  {
-    type: 'common',
-    name: 'transport'
+  social: {
+    type: 'common'
   },
-  {
-    type: 'common',
-    name: 'social'
+  photos: {
+    type: 'common'
   },
-  {
-    type: 'common',
-    name: 'photos'
+  additional: {
+    type: 'common'
   },
-  {
-    type: 'common',
-    name: 'additional'
-  },
-  {
-    type: 'common',
-    name: 'contacts'
+  contacts: {
+    type: 'common'
   }
-];
+};

@@ -281,6 +281,12 @@
   "add_price": {
     "message": "Price"
   },
+  "add_price_pledge": {
+    "message": "Pledge"
+  },
+  "add_price_realtor": {
+    "message": "Realtor commission"
+  },
   "add_currency": {
     "message": "Currency"
   },
@@ -355,5 +361,23 @@
   },
   "add_name_error": {
     "message": "Realty object with the same name already exists"
+  },
+  "add_realty_type_error": {
+    "message": "Please choose the realty type"
+  },
+  "add_transaction_type_error": {
+    "message": "Please choose the transaction type"
+  },
+  "add_price_error": {
+    "message": "Please fill the price field"
+  },
+  "add_currency_error": {
+    "message": "Please choose the currency"
+  },
+  "add_address_error": {
+    "message": "Please fill the address field"
+  },
+  "add_address": {
+    "message": "Address"
   }
 }

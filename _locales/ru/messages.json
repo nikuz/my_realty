@@ -281,6 +281,12 @@
   "add_price": {
     "message": "Цена"
   },
+  "add_price_pledge": {
+    "message": "Залог"
+  },
+  "add_price_realtor": {
+    "message": "Комиссия риэлтора"
+  },
   "add_currency": {
     "message": "Валюта"
   },
@@ -355,5 +361,23 @@
   },
   "add_name_error": {
     "message": "Объект недвижимости с таким именем уже существует"
+  },
+  "add_realty_type_error": {
+    "message": "Пожалуйста, выберите тип недвижимости"
+  },
+  "add_transaction_type_error": {
+    "message": "Пожалуйста, выберите тип сделки"
+  },
+  "add_price_error": {
+    "message": "Пожалуйста, введите стоимость"
+  },
+  "add_currency_error": {
+    "message": "Пожалуйста, выберите валюту"
+  },
+  "add_address_error": {
+    "message": "Пожалуйста, введите адрес"
+  },
+  "add_address": {
+    "message": "Адрес"
   }
 }

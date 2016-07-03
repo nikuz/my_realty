@@ -29,7 +29,7 @@ class TextInput extends React.Component {
     this.setState({
       data
     });
-    _.isFunction(this.props.onChange) && this.props.onChange(value);
+    _.isFunction(this.props.onChange) && this.props.onChange(data);
   }
   render() {
     var style = 'text-input';

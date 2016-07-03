@@ -26,17 +26,23 @@ class Selector extends React.Component {
   }
   change(e) {
     var value = e.target.value,
-      items = this.state.items;
+      items = this.state.items,
+      selectedItem;
 
     _.each(items, function(item, key) {
-      item.selected = key === value;
+      if (key === value) {
+        selectedItem = item;
+        item.selected = true;
+      } else {
+        item.selected = false;
+      }
     });
 
     this.setState({
       items,
       defaultValue: value
     });
-    _.isFunction(this.props.onSelect) && this.props.onSelect(value);
+    _.isFunction(this.props.onSelect) && this.props.onSelect(selectedItem);
   }
   render() {
     var state = this.state,

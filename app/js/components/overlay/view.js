@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import animate from 'modules/animate';
 
 import './style.less';
 
@@ -17,6 +18,19 @@ class Overlay extends React.Component {
   }
   componentDidMount() {
     document.addEventListener('keydown', this.escapeDetector);
+  }
+  componentDidUpdate() {
+    if (this.props.scrollTo) {
+      let overlay = this.refs.overlay;
+      animate({
+        initial: overlay.scrollTop,
+        duration: 200,
+        target: this.props.scrollTo,
+        draw: progress => {
+          overlay.scrollTop = progress;
+        }
+      });
+    }
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.escapeDetector);
@@ -34,7 +48,7 @@ class Overlay extends React.Component {
         component="div"
       >
         {props.opened ?
-          <div id="overlay">
+          <div id="overlay" ref="overlay">
             <div id="ovl_edge" />
             <div id="ovl_cont">
               <div id="ovl_title">{props.title}</div>
@@ -52,7 +66,8 @@ class Overlay extends React.Component {
 Overlay.propTypes = {
   title: React.PropTypes.string.isRequired,
   close: React.PropTypes.func.isRequired,
-  children: React.PropTypes.element.isRequired
+  children: React.PropTypes.element.isRequired,
+  scrollTo: React.PropTypes.number
 };
 
 export default Overlay;
