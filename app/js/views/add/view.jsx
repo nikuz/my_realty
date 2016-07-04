@@ -14,6 +14,7 @@ import CheckBox from 'components/checkbox/view';
 import Textarea from 'components/textarea/view';
 import FieldError from 'components/field-error/view';
 import ExtendableList from 'components/extendable-list/view';
+import Address from 'components/address/view';
 import {ButtonBlue} from 'components/buttons/view';
 
 import './style.less';
@@ -154,6 +155,14 @@ class OverlayView extends React.Component {
         );
         break;
       }
+      case 'address': {
+        values = (
+          <Address
+            onChange={this.change}
+          />
+        );
+        break;
+      }
     }
 
     if (dataItem.required) {
@@ -223,38 +232,7 @@ class AddView extends React.Component {
     this.submit = this.submit.bind(this);
   }
   change(state) {
-    // var name = state.initial.data.name.values.value.trim();
-    // if (data.model && name.length) {
-    //   if (this.props.list[name]) {
-    //     constants('add_name_error')
-    //     return this.setState({
-    //       name_error: true
-    //     });
-    //   } else if (this.state.name_error) {
-    //     this.setState({
-    //       name_error: false
-    //     });
-    //   }
-    //   let transactionType,
-    //     realtyType;
-    //
-    //   _.each(data.transaction_type, function(item, key) {
-    //     if (item.selected) {
-    //       transactionType = key;
-    //     }
-    //   });
-    //   _.each(data.realty_type, function(item, key) {
-    //     if (item.selected) {
-    //       realtyType = key;
-    //     }
-    //   });
-    //   this.props.save({
-    //     name,
-    //     transaction_type: transactionType,
-    //     realty_type: realtyType,
-    //     model: data.model
-    //   });
-    // }
+
   }
   checkRequiredFields(state) {
     var check = true;
@@ -338,6 +316,8 @@ class AddView extends React.Component {
       let field = document.querySelector('#' + this.errorFields[0]);
       this.errorFields = [];
       newState.scrollTo = field.offsetTop;
+    } else {
+      newState.scrollTo = undefined;
     }
     this.setState(newState);
   }

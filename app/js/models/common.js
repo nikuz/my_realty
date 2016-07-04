@@ -619,7 +619,7 @@ export default {
         name: constants('add_address'),
         required: true,
         error_text: constants('add_address_error'),
-        type: 'text',
+        type: 'address',
         values: {
           value: ''
         }

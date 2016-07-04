@@ -14,10 +14,11 @@
     "48": "/images/icon48.png",
     "128": "/images/icon128.png"
   },
-  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://maps.googleapis.com; object-src 'self'",
   "permissions": [
     "tabs",
-    "background"
+    "background",
+    "geolocation"
   ],
   "background": {
     "scripts": ["background.js"],
