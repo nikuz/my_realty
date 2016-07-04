@@ -20,7 +20,6 @@ class Overlay extends React.Component {
     document.addEventListener('keydown', this.escapeDetector);
   }
   componentDidUpdate() {
-    console.log(this.props.scrollTo);
     if (this.props.scrollTo) {
       let overlay = this.refs.overlay;
       animate({

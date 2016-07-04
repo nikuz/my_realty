@@ -19,7 +19,18 @@ class Address extends React.Component {
     };
     this.addressChanged = this.addressChanged.bind(this);
     this.pointPositionChangedByUser = this.pointPositionChangedByUser.bind(this);
+    this.addressOnChange = this.addressOnChange.bind(this);
     this.change = this.change.bind(this);
+  }
+  addressOnChange(e) {
+    var data = this.state.data;
+    _.extend(data, {
+      value: e.target.value,
+      map: {}
+    });
+    this.setState({
+      data
+    });
   }
   change() {
     var mapCenter = this.map.getCenter(),
@@ -82,6 +93,9 @@ class Address extends React.Component {
       this.marker.addListener('mouseout', this.pointPositionChangedByUser);
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
+          if (!this.map || !this.marker) {
+            return;
+          }
           var coordinates = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
@@ -89,9 +103,6 @@ class Address extends React.Component {
           this.map.setCenter(coordinates);
           this.marker.setPosition(coordinates);
           this.map.setZoom(9);
-          var data = this.state.data;
-          data.value = `${coordinates.lat.toFixed(3)}, ${coordinates.lng.toFixed(3)}`;
-          this.setState(data);
         });
       }
       this.autocomplete = new google.maps.places.Autocomplete(
@@ -113,7 +124,7 @@ class Address extends React.Component {
   }
   render() {
     var state = this.state,
-      value = state.data.value || `${state.defaultCoordinates.lat}, ${state.defaultCoordinates.lng}`;
+      value = state.data.value;
 
     return (
       <div>
@@ -121,7 +132,7 @@ class Address extends React.Component {
           type="text"
           value={value}
           ref="text_field"
-          onChange={this.change}
+          onChange={this.addressOnChange}
           className="text-input"
         />
         <div id="map_container" ref="map_container" />

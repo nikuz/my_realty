@@ -46,12 +46,7 @@ class ExtendableList extends React.Component {
     _.isFunction(this.props.onChange) && this.props.onChange(data);
   }
   componentWillMount() {
-    var data = [];
-    _.each(this.props.data, function(item) {
-      data.push({
-        value: item.value
-      });
-    });
+    var data = this.props.data;
     if (data.length === 0) {
       data.push({
         value: ''
