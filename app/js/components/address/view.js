@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
+import * as config from '../../config';
+import $script from 'scriptjs';
 
 import './style.less';
 
@@ -59,7 +61,7 @@ class Address extends React.Component {
   }
   componentDidMount() {
     var state = this.state;
-    setTimeout(() => {
+    $script(`${config.MAPS_API_URL}?key=${config.MAPS_API_KEY}&libraries=places`, () => {
       this.map = new google.maps.Map(this.refs.map_container, {
         center: state.defaultCoordinates,
         zoom: 4,
@@ -99,7 +101,7 @@ class Address extends React.Component {
         }
       );
       this.autocomplete.addListener('place_changed', this.addressChanged);
-    }, 300);
+    });
   }
   componentWillUnmount() {
     google.maps.event.clearInstanceListeners(this.map);
