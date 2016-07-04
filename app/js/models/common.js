@@ -621,7 +621,8 @@ export default {
         error_text: constants('add_address_error'),
         type: 'address',
         values: {
-          value: ''
+          value: '',
+          map: {}
         }
       }
     }

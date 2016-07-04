@@ -1,3 +1,7 @@
+.text-input-wrapper {
+  position: relative;
+  display: inline-block;
+}
 .text-input {
   width: 238px;
   height: 32px;
@@ -11,4 +15,32 @@
 }
 .text-input.small {
   width: 100px;
+}
+.text-input-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  padding: 3px 5px;
+  border-radius: 5px;
+  background-color: #ffeb99;
+  box-shadow: 0 1px 5px #333;
+  font-size: 1.167rem;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 20;
+}
+.tooltip-enter,
+.tooltip-appear,
+.tooltip-leave {
+  transition: opacity 0.3s ease-in-out;
+}
+.tooltip-enter,
+.tooltip-appear,
+.tooltip-leave.tooltip-leave-active {
+  opacity: 0;
+}
+.tooltip-enter.tooltip-enter-active,
+.tooltip-appear.tooltip-appear-active,
+.tooltip-leave {
+  opacity: 1;
 }

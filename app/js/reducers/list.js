@@ -6,7 +6,7 @@ export default function listState(state, action) {
   switch (action.type) {
     case 'LIST_SAVE': {
       state = Object.assign({}, state, {
-        [action.data.name]: action.data
+        [action.name]: action.data
       });
       storage.set('list', state);
       return state;

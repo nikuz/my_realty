@@ -379,5 +379,8 @@
   },
   "add_address": {
     "message": "Address"
+  },
+  "only_digits_allowed": {
+    "message": "Only digits allowed here"
   }
 }

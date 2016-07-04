@@ -44,7 +44,6 @@ class OverlayView extends React.Component {
       });
       this.setState(model);
     }
-    this.props.change(this.state);
   }
   submit() {
     this.props.submit(this.state);
@@ -158,6 +157,7 @@ class OverlayView extends React.Component {
       case 'address': {
         values = (
           <Address
+            data={dataItem.values}
             onChange={this.change}
           />
         );
@@ -212,7 +212,6 @@ class OverlayView extends React.Component {
 }
 
 OverlayView.propTypes = {
-  change: React.PropTypes.func.isRequired,
   submit: React.PropTypes.func.isRequired,
   close: React.PropTypes.func.isRequired,
   scrollTo: React.PropTypes.number
@@ -226,13 +225,9 @@ class AddView extends React.Component {
       opened: true
     };
     this.errorFields = [];
-    this.change = this.change.bind(this);
     this.close = this.close.bind(this);
     this.reset = this.reset.bind(this);
     this.submit = this.submit.bind(this);
-  }
-  change(state) {
-
   }
   checkRequiredFields(state) {
     var check = true;
@@ -285,6 +280,13 @@ class AddView extends React.Component {
                 }
                 break;
               }
+              case 'address': {
+                let value = dataItem.values.value;
+                if (value.trim() === '' || _.isEmpty(dataItem.values.map)) {
+                  itemError = true;
+                }
+                break;
+              }
             }
           }
           if (itemError) {
@@ -308,18 +310,21 @@ class AddView extends React.Component {
     if (this.checkRequiredFields(state)) {
       let name = state.initial.data.name.values.value.trim();
       state.initial.data.name.error = !!this.props.list[name];
-      // this.close();
+      if (this.props.list[name]) { // check that realty with the same name is already exists
+        state.initial.data.name.error = true;
+        let field = document.querySelector('#aro_item_name');
+        newState.scrollTo = field.offsetTop;
+        this.setState(newState);
+      } else {
+        this.close();
+        this.props.save(name, state);
+      }
     } else {
-      console.log('required fields error');
-    }
-    if (this.errorFields.length) {
       let field = document.querySelector('#' + this.errorFields[0]);
       this.errorFields = [];
       newState.scrollTo = field.offsetTop;
-    } else {
-      newState.scrollTo = undefined;
+      this.setState(newState);
     }
-    this.setState(newState);
   }
   reset() {
     this.setState({
@@ -328,7 +333,8 @@ class AddView extends React.Component {
   }
   close() {
     this.setState({
-      opened: false
+      opened: false,
+      scrollTo: null
     });
     setTimeout(() => {
       this.props.close();
@@ -343,7 +349,6 @@ class AddView extends React.Component {
       return (
         <OverlayView
           opened={state.opened}
-          change={this.change}
           submit={this.submit}
           close={this.close}
           scrollTo={this.state.scrollTo}

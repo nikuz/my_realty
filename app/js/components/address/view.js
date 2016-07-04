@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import Icon from 'react-fa';
 
 import './style.less';
 
@@ -10,52 +9,117 @@ class Address extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: this.props.data
+      data: this.props.data,
+      defaultCoordinates: {
+        lat: 49.719,
+        lng: 12.229
+      }
     };
-    this.fillInAddress = this.fillInAddress.bind(this);
-    this.geolocate = this.geolocate.bind(this);
+    this.addressChanged = this.addressChanged.bind(this);
+    this.pointPositionChangedByUser = this.pointPositionChangedByUser.bind(this);
+    this.change = this.change.bind(this);
   }
-  geolocate() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.map.setCenter({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        });
-      });
+  change() {
+    var mapCenter = this.map.getCenter(),
+      markerPosition = this.marker.getPosition();
+
+    this.state.data.map = {
+      zoom: this.map.getZoom(),
+      center: {
+        lat: mapCenter.lat(),
+        lng: mapCenter.lng()
+      },
+      position: {
+        lat: markerPosition.lat(),
+        lng: markerPosition.lng()
+      }
+    };
+    _.isFunction(this.props.onChange) && this.props.onChange(this.props.data);
+  }
+  addressChanged() {
+    var place = this.autocomplete.getPlace();
+    if (place) {
+      let coordinates = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      };
+      this.map.setCenter(coordinates);
+      this.marker.setPosition(coordinates);
+      this.state.data.value = place.formatted_address;
+      this.change();
     }
   }
-  fillInAddress() {
-    console.log(this.autocomplete.getPlace());
+  pointPositionChangedByUser() {
+    var data = this.state.data,
+      markerPosition = this.marker.getPosition();
+
+    data.value = `${markerPosition.lat().toFixed(3)}, ${markerPosition.lng().toFixed(3)}`;
+    this.setState(data);
+    this.change();
   }
   componentDidMount() {
-    this.map = new google.maps.Map(this.refs.map_container, {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8,
-      zoomControl: true,
-      mapTypeControl: false,
-      streetViewControl: false,
-      scaleControl: true,
-      rotateControl: true,
-      scrollwheel: false
-    });
-    this.autocomplete = new google.maps.places.Autocomplete(
-      this.refs.text_field,
-      {
-        types: ['address']
+    var state = this.state;
+    setTimeout(() => {
+      this.map = new google.maps.Map(this.refs.map_container, {
+        center: state.defaultCoordinates,
+        zoom: 4,
+        zoomControl: true,
+        mapTypeControl: false,
+        streetViewControl: false,
+        scaleControl: true,
+        rotateControl: true,
+        scrollwheel: false
+      });
+      this.map.addListener('dragend', this.change);
+      this.map.addListener('zoom_changed', this.change);
+      this.marker = new google.maps.Marker({
+        position: state.defaultCoordinates,
+        draggable: true,
+        map: this.map
+      });
+      this.marker.addListener('mouseout', this.pointPositionChangedByUser);
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          var coordinates = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          this.map.setCenter(coordinates);
+          this.marker.setPosition(coordinates);
+          this.map.setZoom(9);
+          var data = this.state.data;
+          data.value = `${coordinates.lat.toFixed(3)}, ${coordinates.lng.toFixed(3)}`;
+          this.setState(data);
+        });
       }
-    );
-    this.autocomplete.addListener('place_changed', this.fillInAddress);
+      this.autocomplete = new google.maps.places.Autocomplete(
+        this.refs.text_field,
+        {
+          types: ['address']
+        }
+      );
+      this.autocomplete.addListener('place_changed', this.addressChanged);
+    }, 300);
+  }
+  componentWillUnmount() {
+    google.maps.event.clearInstanceListeners(this.map);
+    google.maps.event.clearInstanceListeners(this.marker);
+    google.maps.event.clearInstanceListeners(this.autocomplete);
+    this.marker = null;
+    this.autocomplete = null;
+    this.map = null;
   }
   render() {
-    var props = this.props;
+    var state = this.state,
+      value = state.data.value || `${state.defaultCoordinates.lat}, ${state.defaultCoordinates.lng}`;
+
     return (
       <div>
         <input
           type="text"
+          value={value}
           ref="text_field"
           onChange={this.change}
-          onFocus={this.geolocate}
           className="text-input"
         />
         <div id="map_container" ref="map_container" />
@@ -65,6 +129,7 @@ class Address extends React.Component {
 }
 
 Address.propTypes = {
+  data: React.PropTypes.object.isRequired,
   onChange: React.PropTypes.func
 };
 

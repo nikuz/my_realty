@@ -1,8 +1,9 @@
 'use strict';
 
-function save(data) {
+function save(name, data) {
   return {
     type: 'LIST_SAVE',
+    name,
     data
   };
 }

@@ -379,5 +379,8 @@
   },
   "add_address": {
     "message": "Адрес"
+  },
+  "only_digits_allowed": {
+    "message": "В это поле допустимо вводить только цифры"
   }
 }
