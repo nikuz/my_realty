@@ -4,28 +4,89 @@ import * as React from 'react';
 import * as _ from 'underscore';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import constants from 'modules/constants';
+import Loading from 'components/loading/view';
+import Icon from 'react-fa';
 
 import './style.less';
 
 class PhotoGalleryFullScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.escapeDetector = this.escapeDetector.bind(this);
+    this.state = {
+      selectedPhoto: props.selectedPhoto,
+      loading: true,
+      loaded: false
+    };
+    this.prev = this.prev.bind(this);
+    this.next = this.next.bind(this);
+    this.keyDetector = this.keyDetector.bind(this);
   }
-  escapeDetector(event) {
-    if (event.keyCode == 27) {
-      this.props.close();
+  prev() {
+    var index = this.state.selectedPhoto - 1;
+    if (index < 0) {
+      index = this.props.photos.length - 1;
+    }
+    this.setState({
+      selectedPhoto: index,
+      loading: true,
+      loaded: false
+    });
+  }
+  next() {
+    var index = this.state.selectedPhoto + 1;
+    if (index > this.props.photos.length - 1) {
+      index = 0;
+    }
+    this.setState({
+      selectedPhoto: index,
+      loading: true,
+      loaded: false
+    });
+  }
+  keyDetector(event) {
+    switch (event.keyCode) {
+      case 27:
+        this.props.close();
+        break;
+      case 37:
+        this.prev();
+        break;
+      case 39:
+        this.next();
+        break;
     }
   }
   componentDidMount() {
-    document.addEventListener('keydown', this.escapeDetector);
+    document.addEventListener('keydown', this.keyDetector);
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      selectedPhoto: nextProps.selectedPhoto
+    });
+  }
+  componentDidUpdate() {
+    if (this.state.loaded) {
+      return;
+    }
+    this.image = new Image();
+    this.image.src = this.props.photos[this.state.selectedPhoto].value;
+    this.image.addEventListener('load', () => {
+      if (this.image) {
+        this.setState({
+          loading: false,
+          loaded: true
+        });
+      }
+    });
   }
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.escapeDetector);
+    document.removeEventListener('keydown', this.keyDetector);
+    this.image = null;
   }
   render() {
     var props = this.props,
-      photoItem = props.photos[props.selectedPhoto];
+      state = this.state,
+      photoItem = props.photos[state.selectedPhoto];
 
     return (
       <ReactCSSTransitionGroup
@@ -38,12 +99,29 @@ class PhotoGalleryFullScreen extends React.Component {
       >
         {this.props.selectedPhoto !== null ?
           <div id="photo-gallery-overlay">
-            <div id="photo-gallery-edge"></div>
             <div
               id="photo-gallery-item"
               style={{backgroundImage: `url(${photoItem.value})`}}
             >
             </div>
+            {state.loading ?
+              <div id="photo-gallery-loading">
+                <Loading
+                  size="big"
+                  color="#FFF"
+                />
+              </div>
+              : null
+            }
+            <div id="photo-gallery-prev" onClick={this.prev}>
+              <Icon name="chevron-left" className="pgpn-icon" />
+            </div>
+            <div id="photo-gallery-next" onClick={this.next}>
+              <Icon name="chevron-right" className="pgpn-icon" />
+            </div>
+            <a href="#" id="photo-gallery-close" onClick={props.close}>
+              <Icon name="times" id="pg-close-icon" />
+            </a>
           </div>
           : null
         }
