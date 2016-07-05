@@ -18,6 +18,7 @@ class Overlay extends React.Component {
   }
   componentDidMount() {
     document.addEventListener('keydown', this.escapeDetector);
+    document.documentElement.classList.add('ovl-opened');
   }
   componentDidUpdate() {
     if (this.props.scrollTo) {
@@ -34,6 +35,7 @@ class Overlay extends React.Component {
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.escapeDetector);
+    document.documentElement.classList.remove('ovl-opened');
   }
   render() {
     var props = this.props;

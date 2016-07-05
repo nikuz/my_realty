@@ -15,10 +15,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div id="content">
-          <Manager />
-          <List />
-        </div>
+        <Manager />
+        <List />
         <AddRealtyOvl />
       </div>
     );
