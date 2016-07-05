@@ -382,5 +382,11 @@
   },
   "only_digits_allowed": {
     "message": "В это поле допустимо вводить только цифры"
+  },
+  "select_item_for_preview": {
+    "message": "Выберите объект недвижимости для просмотра"
+  },
+  "photo_gallery_empty": {
+    "message": "Нет фотографий..."
   }
 }

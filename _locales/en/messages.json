@@ -382,5 +382,11 @@
   },
   "only_digits_allowed": {
     "message": "Only digits allowed here"
+  },
+  "select_item_for_preview": {
+    "message": "Select realty item for preview"
+  },
+  "photo_gallery_empty": {
+    "message": "No photos..."
   }
 }

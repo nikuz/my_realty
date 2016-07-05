@@ -6,18 +6,19 @@ import { Provider } from 'react-redux';
 import AppStore from './store';
 import Manager from './views/manager/controller';
 import List from './views/list/controller';
+import Preview from './views/preview/controller';
 import AddRealtyOvl from './views/add/controller';
 
 import 'styles/basic';
-// import 'styles/form';
 
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div id="content">
         <Manager />
         <List />
         <AddRealtyOvl />
+        <Preview />
       </div>
     );
   }

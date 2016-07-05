@@ -1,75 +1,28 @@
-#list {
-  float: left;
-  width: 40%;
-  border-right: 1px solid #e6e6e6;
-}
-#list_add_icon {
-  display: block;
-  height: 40px;
-  margin: 0 10px 10px;
-  padding: 0 0 10px 55px;
-  background: url(/images/add.svg) 34% 50% no-repeat;
-  background-size: 3.5rem;
-  font-size: 1.667rem;
-  line-height: 4.8rem;
-  box-shadow: 0 0 5px #CCC;
-  border-radius: 15px;
-  text-align: center;
-  color: #333;
-}
-#list_add_icon:hover {
-  background-color: #fff7dc;
-}
-.list_view_item {
-  position: relative;
-  display: block;
-  height: 140px;
-  padding: 10px;
-  cursor: pointer;
-}
-.list_view_item:hover {
-  background-color: #fff7dc;
-}
-.list_view_item:after {
-  content: '';
-  display: none;
-  position: absolute;
-  top: 0;
-  right: -15px;
-  border-width: 81px 0 81px 15px;
-  border-style: solid;
-  border-color: transparent transparent transparent #fff7dc;
-}
-.list_view_item:hover:after {
-  display: block;
-}
-.list_view_image {
-  height: 142px;
-  width: 190px;
-  float: left;
+#preview {
   overflow: hidden;
-  margin-right: 10px;
-  background-position: 50% 50%;
-  background-size: 100%;
-  background-repeat: no-repeat;
+  padding: 50px 20px 0;
 }
-.lvi_no_image {
-  background-size: 50%;
+#preview price {
+  float: right;
+  font-size: 1.883rem;
 }
-.list_view_cont {
-  position: relative;
-  height: 120px;
-  padding: 10px 0;
-}
-.list_view_name {
-  font-size: 1.25rem;
-}
-.list_view_item address {
+#preview address {
   font-style: normal;
 }
-.list_view_item price {
-  position: absolute;
-  bottom: 10px;
+
+#preview_empty {
+  height: 100%;
+  white-space: nowrap;
+  text-align: center;
+}
+#pe_edge {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -3px;
+}
+#pe_content {
+  display: inline-block;
+  vertical-align: middle;
   font-size: 1.667rem;
-  font-weight: bold;
 }

@@ -16,6 +16,9 @@ const mapDispatchToProps = function(dispatch) {
   return {
     addRealty: function() {
       dispatch(StateActions.change('add_realty_ovl'));
+    },
+    markAsSelected: function(selectedId) {
+      dispatch(ListActions.markAsSelected(selectedId));
     }
   };
 };

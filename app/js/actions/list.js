@@ -8,6 +8,14 @@ function save(name, data) {
   };
 }
 
+function markAsSelected(selectedId) {
+  return {
+    type: 'MARK_AS_SELECTED',
+    selectedId
+  };
+}
+
 export {
-  save
+  save,
+  markAsSelected
 };

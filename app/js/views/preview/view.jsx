@@ -3,23 +3,16 @@
 import * as React from 'react';
 import constants from 'modules/constants';
 import * as _ from 'underscore';
-import * as Price from 'modules/price';
+import PhotoGallery from 'components/photo-gallery/view';
+import * as priceModule from 'modules/price';
 
 import './style.less';
 
-class ListView extends React.Component {
-  renderItem(item, key) {
-    // console.log(item);
-    var images = item.photos.data.list.values,
-      noImage = false;
-
-    if (images.length === 0) {
-      images = [{value: '/images/no_photo.svg'}];
-      noImage = true;
-    }
-    var image = images[0].value,
-      price = Price.split(item.initial.data.transaction.data.price.data.amount.values.value),
-      currency = item.initial.data.transaction.data.price.data.currency.values;
+class Preview extends React.Component {
+  render() {
+    var props = this.props,
+      price = priceModule.split(props.initial.data.transaction.data.price.data.amount.values.value),
+      currency = props.initial.data.transaction.data.price.data.currency.values;
 
     _.each(currency, function(item) {
       if (item.selected) {
@@ -28,33 +21,46 @@ class ListView extends React.Component {
     });
 
     return (
-      <div key={key} className="list_view_item">
-        <div
-          className={'list_view_image ' + (noImage ? 'lvi_no_image' : null)}
-          style={{backgroundImage: `url(${image})`}}
-        ></div>
-        <div className="list_view_cont">
-          <div className="list_view_name">{item.initial.data.name.values.value}</div>
-          <address>{item.initial.data.address.values.value}</address>
-          <price dangerouslySetInnerHTML={{__html: `${price} ${currency}`}} />
-        </div>
-      </div>
-    );
-  }
-  render() {
-    var props = this.props;
-
-    return (
-      <div id="list">
-        <a href="#" id="list_add_icon" onClick={props.addRealty}>
-          {constants('add_overlay_title')}
-        </a>
-        {_.map(props.list, (item, key) => {
-          return this.renderItem(item, key);
-        })}
+      <div id="preview">
+        <price dangerouslySetInnerHTML={{__html: `${price} ${currency}`}} />
+        <h1>{props.initial.data.name.values.value}</h1>
+        <address>{props.initial.data.address.values.value}</address>
+        <PhotoGallery photos={props.photos.data.list.values} />
       </div>
     );
   }
 }
 
-export default ListView;
+class PreviewEmpty extends React.Component {
+  render() {
+    return (
+      <div id="preview_empty">
+        <div id="pe_edge" />
+        <div id="pe_content">
+          {constants('select_item_for_preview')}
+        </div>
+      </div>
+    );
+  }
+}
+
+class PreviewView extends React.Component {
+  render() {
+    var props = this.props,
+      data;
+
+    _.each(props.list, function(item) {
+      if (item.selected) {
+        data = item;
+      }
+    });
+
+    if (data) {
+      return <Preview {...data} />;
+    } else {
+      return <PreviewEmpty />;
+    }
+  }
+}
+
+export default PreviewView;
