@@ -3,6 +3,7 @@
 import * as React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import animate from 'modules/animate';
+import Icon from 'react-fa';
 
 import './style.less';
 
@@ -53,7 +54,9 @@ class Overlay extends React.Component {
             <div id="ovl_cont">
               <div id="ovl_title">{props.title}</div>
               {props.children}
-              <a href="#" id="ovl_close" onClick={props.close} />
+              <a href="#" id="ovl-close" onClick={props.close}>
+                <Icon name="times" id="ovl-close-icon" />
+              </a>
             </div>
           </div>
           : null

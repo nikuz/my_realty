@@ -303,6 +303,16 @@ class AddView extends React.Component {
 
     return check;
   }
+  clearData(state) {
+    var photos = state.photos.data.list.values,
+      i = 0, l = photos.length;
+
+    for (; i < l; i++) {
+      if (photos[i].value.trim() === '') {
+        photos.splice(i, 1);
+      }
+    }
+  }
   submit(state) {
     var newState = {
       opened: true
@@ -317,6 +327,7 @@ class AddView extends React.Component {
         this.setState(newState);
       } else {
         this.close();
+        this.clearData(state);
         this.props.save(name, state);
       }
     } else {

@@ -9,16 +9,22 @@ import './style.less';
 
 class ListView extends React.Component {
   renderItem(item, key) {
+    console.log(item);
     var images = item.photos.data.list.values,
-      noImage = false;
+      style = 'list_view_image_wrap',
+      contStyle = 'list_view_cont',
+      typeStyle = 'list_view_type',
+      image,
+      price = priceModule.split(item.initial.data.transaction.data.price.data.price_amount.values.value),
+      currency = item.initial.data.transaction.data.price.data.price_currency.values,
+      transactionType = item.initial.data.transaction.data.transaction_type.values,
+      realty_type = item.initial.data.transaction.data.realty_type.values;
 
     if (images.length === 0) {
-      images = [{value: '/images/no_photo.svg'}];
-      noImage = true;
+      style += ' lvi_no_image';
+    } else {
+      image = images[0].value;
     }
-    var image = images[0].value,
-      price = priceModule.split(item.initial.data.transaction.data.price.data.price_amount.values.value),
-      currency = item.initial.data.transaction.data.price.data.price_currency.values;
 
     _.each(currency, function(item) {
       if (item.selected) {
@@ -26,20 +32,48 @@ class ListView extends React.Component {
       }
     });
 
+    _.each(transactionType, function(item) {
+      if (item.selected) {
+        transactionType = item.id;
+      }
+    });
+    if (transactionType === 'rent') {
+      contStyle += ' list_view_cont_rent';
+    } else {
+      contStyle += ' list_view_cont_buy';
+    }
+
+    _.each(realty_type, function(item) {
+      if (item.selected) {
+        realty_type = item.id;
+      }
+    });
+    if (realty_type === 'house') {
+      typeStyle += ' list_view_type_house';
+    } else {
+      typeStyle += ' list_view_type_apartment';
+    }
+
     return (
       <div
         key={key}
         className="list_view_item"
         onClick={this.props.markAsSelected.bind(null, key)}
       >
-        <div
-          className={'list_view_image ' + (noImage ? 'lvi_no_image' : null)}
-          style={{backgroundImage: `url(${image})`}}
-        ></div>
-        <div className="list_view_cont">
+        <div className={style}>
+          {image ?
+            <i className="list_view_image" style={{backgroundImage: `url(${image})`}}/>
+            : null
+          }
+          <span className={typeStyle} />
+        </div>
+        <div className={contStyle}>
           <div className="list_view_name">{item.initial.data.name.values.value}</div>
           <address>{item.initial.data.address.values.value}</address>
-          <price dangerouslySetInnerHTML={{__html: `${price} ${currency}`}} />
+          <price>
+            <amount dangerouslySetInnerHTML={{__html: price}} />
+            <currency> {currency}</currency>
+          </price>
         </div>
       </div>
     );
