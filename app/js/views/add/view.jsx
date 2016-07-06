@@ -3,9 +3,7 @@
 import * as React from 'react';
 import * as _ from 'underscore';
 import constants from 'modules/constants';
-import apartmentModel from 'models/apartment';
-import houseModel from 'models/house';
-import commonModel from 'models/common';
+import realtyModel from 'models/realty';
 import Overlay from 'components/overlay/view';
 import SegmentedControl from 'components/segmented-control/view';
 import TextInput from 'components/text-input/view';
@@ -30,26 +28,13 @@ class OverlayView extends React.Component {
     var state = this.state,
       model;
 
-    switch (item.id) {
-      case 'apartment':
-        model = JSON.parse(JSON.stringify(apartmentModel));
-        break;
-      case 'house':
-        model = JSON.parse(JSON.stringify(houseModel));
-        break;
-    }
-    if (model) {
-      _.each(model, function(item, key) {
-        if (item.type === 'common') {
-          model[key] = JSON.parse(JSON.stringify(commonModel[key]));
+    if (item.id === 'apartment' || item.id === 'house') {
+      _.each(state, function(stateItem, key) {
+        if (key !== 'initial') {
+          stateItem.visible = item.id === stateItem.type || stateItem.type === 'common';
         }
       });
-      _.each(state, function(item, key) {
-        if (!model[key] && key !== 'initial') {
-          model[key] = null;
-        }
-      });
-      this.setState(model);
+      this.setState(state);
     }
   }
   submit() {
@@ -59,15 +44,18 @@ class OverlayView extends React.Component {
     var editedItem;
     _.each(this.props.list, function(item) {
       if (item.edited) {
-        editedItem = item;
+        editedItem = JSON.parse(JSON.stringify(item));
       }
     });
     if (editedItem) {
+      _.each(editedItem, function(item) {
+        item.visible = true;
+      });
       this.setState(editedItem);
     } else {
-      this.setState({
-        initial: JSON.parse(JSON.stringify(commonModel.initial))
-      });
+      let model = JSON.parse(JSON.stringify(realtyModel));
+      model.initial.visible = true;
+      this.setState(model);
     }
   }
   renderItem(dataItem, dataKey) {
@@ -210,7 +198,7 @@ class OverlayView extends React.Component {
       >
         <div id="add_realty_ovl">
           {_.map(state, (item, key) => {
-            if (item === null) {
+            if (item === null || !item.visible) {
               return null;
             } else {
               return (
