@@ -104,7 +104,10 @@ class Preview extends React.Component {
 
     return (
       <div id="preview">
-        <price dangerouslySetInnerHTML={{__html: `${price} ${currency}`}} />
+        <price>
+          <amount dangerouslySetInnerHTML={{__html: price}} />
+          <currency> {currency}</currency>
+        </price>
         <h1>{props.initial.data.name.values.value}</h1>
         <address>{props.initial.data.address.values.value}</address>
         <Map

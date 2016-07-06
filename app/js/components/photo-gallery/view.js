@@ -22,6 +22,9 @@ class PhotoGalleryFullScreen extends React.Component {
     this.keyDetector = this.keyDetector.bind(this);
   }
   prev() {
+    if (this.props.photos.length === 1) {
+      return;
+    }
     var index = this.state.selectedPhoto - 1;
     if (index < 0) {
       index = this.props.photos.length - 1;
@@ -33,6 +36,9 @@ class PhotoGalleryFullScreen extends React.Component {
     });
   }
   next() {
+    if (this.props.photos.length === 1) {
+      return;
+    }
     var index = this.state.selectedPhoto + 1;
     if (index > this.props.photos.length - 1) {
       index = 0;

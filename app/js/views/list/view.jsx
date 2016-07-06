@@ -1,7 +1,6 @@
 'use strict';
 
 import * as React from 'react';
-import constants from 'modules/constants';
 import * as _ from 'underscore';
 import * as priceModule from 'modules/price';
 
@@ -89,9 +88,6 @@ class ListView extends React.Component {
     return (
       <div id="list">
         <div id="list_cont">
-          <a href="#" id="list_add_icon" onClick={props.addRealty}>
-            {constants('add_overlay_title')}
-          </a>
           {_.map(props.list, (item, key) => {
             return this.renderItem(item, key);
           })}
