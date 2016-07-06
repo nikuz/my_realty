@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
+import Icon from 'react-fa';
 import * as config from '../../config';
 import $script from 'scriptjs';
 
@@ -47,7 +48,10 @@ class Map extends React.Component {
   }
   render() {
     return (
-      <div id={this.props.containerId} ref="map_container"></div>
+      <div className="map-container" id={this.props.containerId} ref="map_container">
+        <i className="map-container-edge" />
+        <Icon name="map-marker" className="map-container-marker" />
+      </div>
     );
   }
 }
