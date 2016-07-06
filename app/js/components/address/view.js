@@ -72,7 +72,10 @@ class Address extends React.Component {
   }
   componentDidMount() {
     var state = this.state;
-    $script(`${config.MAPS_API_URL}?key=${config.MAPS_API_KEY}&libraries=places`, () => {
+    if (!window.google) {
+      $script(`${config.MAPS_API_URL}?key=${config.MAPS_API_KEY}&libraries=places`, 'google');
+    }
+    $script.ready('google', () => {
       this.map = new google.maps.Map(this.refs.map_container, {
         center: state.defaultCoordinates,
         zoom: 4,

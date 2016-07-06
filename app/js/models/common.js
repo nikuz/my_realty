@@ -30,7 +30,7 @@ export default {
               },
               2: {
                 name: constants('add_realty_type_house'),
-                id: 'house'
+                  id: 'house'
               }
             }
           },

@@ -15,10 +15,17 @@ export default function listState(state, action) {
       storage.set('list', state);
       return state;
     }
-    case 'MARK_AS_SELECTED': {
+    case 'LIST_MARK_AS_SELECTED': {
       state = Object.assign({}, state);
       _.each(state, function(item, key) {
         item.selected = key === action.selectedId;
+      });
+      return state;
+    }
+    case 'LIST_EDIT': {
+      state = Object.assign({}, state);
+      _.each(state, function(item, key) {
+        item.edited = key === action.editId;
       });
       return state;
     }

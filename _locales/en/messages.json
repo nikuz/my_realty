@@ -35,6 +35,9 @@
   "add_overlay_title": {
     "message": "Add new realty"
   },
+  "edit_overlay_title": {
+    "message": "Edit realty"
+  },
   "add_name": {
     "message": "Name"
   },

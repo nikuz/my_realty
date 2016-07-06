@@ -10,12 +10,20 @@ function save(name, data) {
 
 function markAsSelected(selectedId) {
   return {
-    type: 'MARK_AS_SELECTED',
+    type: 'LIST_MARK_AS_SELECTED',
     selectedId
+  };
+}
+
+function edit(editId) {
+  return {
+    type: 'LIST_EDIT',
+    editId
   };
 }
 
 export {
   save,
-  markAsSelected
+  markAsSelected,
+  edit
 };

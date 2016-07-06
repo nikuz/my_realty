@@ -35,6 +35,9 @@
   "add_overlay_title": {
     "message": "Добавить новый объект недвижимости"
   },
+  "edit_overlay_title": {
+    "message": "Редактировать объект недвижимости"
+  },
   "add_name": {
     "message": "Название"
   },

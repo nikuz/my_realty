@@ -27,7 +27,9 @@ class OverlayView extends React.Component {
     this.submit = this.submit.bind(this);
   }
   change(item) {
-    var model;
+    var state = this.state,
+      model;
+
     switch (item.id) {
       case 'apartment':
         model = JSON.parse(JSON.stringify(apartmentModel));
@@ -42,6 +44,11 @@ class OverlayView extends React.Component {
           model[key] = JSON.parse(JSON.stringify(commonModel[key]));
         }
       });
+      _.each(state, function(item, key) {
+        if (!model[key] && key !== 'initial') {
+          model[key] = null;
+        }
+      });
       this.setState(model);
     }
   }
@@ -49,9 +56,19 @@ class OverlayView extends React.Component {
     this.props.submit(this.state);
   }
   componentWillMount() {
-    this.setState({
-      initial: JSON.parse(JSON.stringify(commonModel.initial))
+    var editedItem;
+    _.each(this.props.list, function(item) {
+      if (item.edited) {
+        editedItem = item;
+      }
     });
+    if (editedItem) {
+      this.setState(editedItem);
+    } else {
+      this.setState({
+        initial: JSON.parse(JSON.stringify(commonModel.initial))
+      });
+    }
   }
   renderItem(dataItem, dataKey) {
     var values,
@@ -193,14 +210,18 @@ class OverlayView extends React.Component {
       >
         <div id="add_realty_ovl">
           {_.map(state, (item, key) => {
-            return (
-              <div key={key}>
-                <h3>{item.name}</h3>
-                {_.map(item.data, (dataItem, dataKey) => {
-                  return this.renderItem(dataItem, dataKey);
-                })}
-              </div>
-            );
+            if (item === null) {
+              return null;
+            } else {
+              return (
+                <div key={key}>
+                  <h3>{item.name}</h3>
+                  {_.map(item.data, (dataItem, dataKey) => {
+                    return this.renderItem(dataItem, dataKey);
+                  })}
+                </div>
+              );
+            }
           })}
           <div>
             <ButtonBlue text="Save" onClick={this.submit} />
@@ -212,6 +233,7 @@ class OverlayView extends React.Component {
 }
 
 OverlayView.propTypes = {
+  list: React.PropTypes.object.isRequired,
   submit: React.PropTypes.func.isRequired,
   close: React.PropTypes.func.isRequired,
   scrollTo: React.PropTypes.number
@@ -359,6 +381,7 @@ class AddView extends React.Component {
     if (props.state.name === 'add_realty_ovl') {
       return (
         <OverlayView
+          list={props.list}
           opened={state.opened}
           submit={this.submit}
           close={this.close}

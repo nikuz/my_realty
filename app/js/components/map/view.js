@@ -11,7 +11,10 @@ import './style.less';
 class Map extends React.Component {
   componentDidMount() {
     var points = this.props.points;
-    $script(`${config.MAPS_API_URL}?key=${config.MAPS_API_KEY}`, () => {
+    if (!window.google) {
+      $script(`${config.MAPS_API_URL}?key=${config.MAPS_API_KEY}&libraries=places`, 'google');
+    }
+    $script.ready('google', () => {
       this.map = new google.maps.Map(this.refs.map_container, {
         center: points[0],
         zoom: 12,

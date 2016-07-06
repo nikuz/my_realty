@@ -5,6 +5,7 @@ import constants from 'modules/constants';
 import * as _ from 'underscore';
 import PhotoGallery from 'components/photo-gallery/view';
 import Map from 'components/map/view';
+import EditButton from '../edit-button/controller';
 import * as priceModule from 'modules/price';
 
 import './style.less';
@@ -150,16 +151,23 @@ class PreviewEmpty extends React.Component {
 class PreviewView extends React.Component {
   render() {
     var props = this.props,
-      data;
+      data,
+      realtyId;
 
-    _.each(props.list, function(item) {
+    _.each(props.list, function(item, key) {
       if (item.selected) {
         data = item;
+        realtyId = key;
       }
     });
 
     if (data) {
-      return <Preview {...data} />;
+      return (
+        <div>
+          <Preview {...data} />
+          <EditButton realtyId={realtyId} />
+        </div>
+      );
     } else {
       return <PreviewEmpty />;
     }

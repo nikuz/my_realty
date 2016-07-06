@@ -161,6 +161,9 @@ class PhotoGalleryTape extends React.Component {
       selectedPhoto: null
     });
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.selectedPhoto !== this.state.selectedPhoto;
+  }
   render() {
     if (this.props.photos.length) {
       return (
