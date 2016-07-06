@@ -31,7 +31,8 @@
   padding: 10px;
   cursor: pointer;
 }
-.list_view_item:hover {
+.list_view_item:hover,
+.list_view_item.selected {
   background-color: #fff7dc;
 }
 .list_view_item:after {
@@ -45,7 +46,8 @@
   border-color: transparent transparent transparent #fff7dc;
   z-index: 2;
 }
-.list_view_item:hover:after {
+.list_view_item:hover:after,
+.list_view_item.selected:after {
   display: block;
 }
 .list_view_image_wrap {

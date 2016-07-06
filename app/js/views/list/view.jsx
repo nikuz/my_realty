@@ -11,7 +11,8 @@ class ListView extends React.Component {
   renderItem(item, key) {
     console.log(item);
     var images = item.photos.data.list.values,
-      style = 'list_view_image_wrap',
+      style = 'list_view_item',
+      imageStyle = 'list_view_image_wrap',
       contStyle = 'list_view_cont',
       typeStyle = 'list_view_type',
       image,
@@ -20,8 +21,12 @@ class ListView extends React.Component {
       transactionType = item.initial.data.transaction.data.transaction_type.values,
       realty_type = item.initial.data.transaction.data.realty_type.values;
 
+    if (item.selected) {
+      style += ' selected';
+    }
+
     if (images.length === 0) {
-      style += ' lvi_no_image';
+      imageStyle += ' lvi_no_image';
     } else {
       image = images[0].value;
     }
@@ -57,10 +62,10 @@ class ListView extends React.Component {
     return (
       <div
         key={key}
-        className="list_view_item"
+        className={style}
         onClick={this.props.markAsSelected.bind(null, key)}
       >
-        <div className={style}>
+        <div className={imageStyle}>
           {image ?
             <i className="list_view_image" style={{backgroundImage: `url(${image})`}}/>
             : null
