@@ -17,8 +17,8 @@ class ListView extends React.Component {
       noImage = true;
     }
     var image = images[0].value,
-      price = priceModule.split(item.initial.data.transaction.data.price.data.amount.values.value),
-      currency = item.initial.data.transaction.data.price.data.currency.values;
+      price = priceModule.split(item.initial.data.transaction.data.price.data.price_amount.values.value),
+      currency = item.initial.data.transaction.data.price.data.price_currency.values;
 
     _.each(currency, function(item) {
       if (item.selected) {

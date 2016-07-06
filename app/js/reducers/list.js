@@ -9,6 +9,9 @@ export default function listState(state, action) {
       state = Object.assign({}, state, {
         [action.name]: action.data
       });
+      _.each(state, function(item) {
+        item.selected = false;
+      });
       storage.set('list', state);
       return state;
     }

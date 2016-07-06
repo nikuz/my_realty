@@ -54,7 +54,7 @@ export default {
             type: 'section',
             layout: 'line',
             data: {
-              amount: {
+              price_amount: {
                 name: constants('add_price'),
                 required: true,
                 error_text: constants('add_price_error'),
@@ -64,7 +64,7 @@ export default {
                   value: ''
                 }
               },
-              currency: {
+              price_currency: {
                 name: constants('add_currency'),
                 required: true,
                 error_text: constants('add_currency_error'),
