@@ -10,12 +10,23 @@ import './style.less';
 class Address extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: this.props.data,
-      defaultCoordinates: {
+    var defaultCoordinates,
+      presetCoordinates;
+
+    if (props.data.map && props.data.map.position) {
+      presetCoordinates = true;
+      defaultCoordinates = props.data.map.position;
+    } else {
+      defaultCoordinates = {
         lat: 49.719,
         lng: 12.229
-      }
+      };
+    }
+
+    this.state = {
+      data: this.props.data,
+      defaultCoordinates,
+      presetCoordinates
     };
     this.addressChanged = this.addressChanged.bind(this);
     this.pointPositionChangedByUser = this.pointPositionChangedByUser.bind(this);
@@ -78,7 +89,7 @@ class Address extends React.Component {
     $script.ready('google', () => {
       this.map = new google.maps.Map(this.refs.map_container, {
         center: state.defaultCoordinates,
-        zoom: 4,
+        zoom: state.presetCoordinates ? 9 : 4,
         zoomControl: true,
         mapTypeControl: false,
         streetViewControl: false,
@@ -94,7 +105,7 @@ class Address extends React.Component {
         map: this.map
       });
       this.marker.addListener('mouseout', this.pointPositionChangedByUser);
-      if (navigator.geolocation) {
+      if (navigator.geolocation && !state.presetCoordinates) {
         navigator.geolocation.getCurrentPosition((position) => {
           if (!this.map || !this.marker) {
             return;

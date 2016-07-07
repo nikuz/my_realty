@@ -359,6 +359,15 @@
   "add_contacts": {
     "message": "Контакты для связи"
   },
+  "add_contacts_name": {
+    "message": "Имя"
+  },
+  "add_contacts_url": {
+    "message": "Адрес объявления"
+  },
+  "add_contacts_more": {
+    "message": "Еще"
+  },
   "add_contacts_placeholder": {
     "message": "телефон, email, и т.д."
   },

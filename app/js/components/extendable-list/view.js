@@ -51,10 +51,10 @@ class ExtendableList extends React.Component {
       data.push({
         value: ''
       });
+      this.setState({
+        data
+      });
     }
-    this.setState({
-      data
-    });
   }
   renderItem(item, key, amount) {
     key = Number(key);
@@ -62,7 +62,7 @@ class ExtendableList extends React.Component {
       <div key={key} className="el_item">
         <input
           type="text"
-          value={this.state.data.value}
+          value={item.value}
           placeholder={this.props.placeholder}
           onChange={this.change}
           data-id={key}
@@ -76,7 +76,7 @@ class ExtendableList extends React.Component {
           />
           : null
         }
-        {key !== 0 ?
+        {key !== 0 || amount > 1 ?
           <Icon
             name="minus-square"
             className="eli_remove"

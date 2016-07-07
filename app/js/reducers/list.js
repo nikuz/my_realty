@@ -6,13 +6,17 @@ import * as storage from 'modules/storage';
 export default function listState(state, action) {
   switch (action.type) {
     case 'LIST_SAVE': {
+      // state = JSON.parse(JSON.stringify(state));
+      // state[action.name] = action.data;
       state = Object.assign({}, state, {
         [action.name]: action.data
       });
-      _.each(state, function(item) {
+      let stateForStore = JSON.parse(JSON.stringify(state));
+      _.each(stateForStore, function(item) {
         item.selected = false;
+        item.edited = false;
       });
-      storage.set('list', state);
+      storage.set('list', stateForStore);
       return state;
     }
     case 'LIST_MARK_AS_SELECTED': {

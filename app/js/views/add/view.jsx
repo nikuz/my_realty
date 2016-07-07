@@ -25,12 +25,11 @@ class OverlayView extends React.Component {
     this.submit = this.submit.bind(this);
   }
   change(item) {
-    var state = this.state,
-      model;
+    var state = this.state;
 
     if (item.id === 'apartment' || item.id === 'house') {
       _.each(state, function(stateItem, key) {
-        if (key !== 'initial') {
+        if (_.isObject(stateItem) && key !== 'initial') {
           stateItem.visible = item.id === stateItem.type || stateItem.type === 'common';
         }
       });
@@ -48,8 +47,16 @@ class OverlayView extends React.Component {
       }
     });
     if (editedItem) {
+      let realtyType = editedItem.initial.data.transaction.data.realty_type.values;
+      _.each(realtyType, function(item) {
+        if (item.selected) {
+          realtyType = item.id;
+        }
+      });
       _.each(editedItem, function(item) {
-        item.visible = true;
+        if(_.isObject(item) && item.type === realtyType) {
+          item.visible = true;
+        }
       });
       this.setState(editedItem);
     } else {
@@ -117,6 +124,7 @@ class OverlayView extends React.Component {
               name={dataItem.id}
               label={dataItem.name}
               data={dataItem.values}
+              checked={dataItem.values.selected}
               icon={dataItem.icon}
               onChange={this.change}
             />
@@ -132,28 +140,12 @@ class OverlayView extends React.Component {
           />
         );
         break;
-      case 'year': {
-        let years = {};
-        for (let i = 1800, l = new Date().getFullYear(); i <= l; i++) {
-          years[i] = {
-            name: i
-          };
-        }
-        dataItem.values = years;
-        values = (
-          <Selector
-            items={dataItem.values}
-            size="small"
-            onSelect={this.change}
-          />
-        );
-        break;
-      }
       case 'extendable_list': {
         values = (
           <ExtendableList
             data={dataItem.values}
             limit={dataItem.limit}
+            placeholder={dataItem.placeholder}
             onChange={this.change}
           />
         );
@@ -322,22 +314,28 @@ class AddView extends React.Component {
         photos.splice(i, 1);
       }
     }
+
+    return state;
   }
   submit(state) {
-    var newState = {
-      opened: true
-    };
+    var newState = {},
+      editedItemName;
+
+    _.each(this.props.list, function(item, key) {
+      if (item.edited) {
+        editedItemName = key;
+      }
+    });
     if (this.checkRequiredFields(state)) {
       let name = state.initial.data.name.values.value.trim();
-      state.initial.data.name.error = !!this.props.list[name];
-      if (this.props.list[name]) { // check that realty with the same name is already exists
+      if (this.props.list[name] && name !== editedItemName) { // check that realty with the same name is already exists
         state.initial.data.name.error = true;
         let field = document.querySelector('#aro_item_name');
         newState.scrollTo = field.offsetTop;
         this.setState(newState);
       } else {
         this.close();
-        this.clearData(state);
+        state = this.clearData(state);
         this.props.save(name, state);
       }
     } else {

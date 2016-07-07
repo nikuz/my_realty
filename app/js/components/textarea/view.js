@@ -32,8 +32,8 @@ class Textarea extends React.Component {
     return (
       <textarea
         onChange={this.change}
-        defaultValue={state.defaultValue}
         className={style}
+        defaultValue={state.data.value}
       />
     );
   }

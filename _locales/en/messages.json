@@ -359,6 +359,15 @@
   "add_contacts": {
     "message": "Contacts"
   },
+  "add_contacts_name": {
+    "message": "Name"
+  },
+  "add_contacts_url": {
+    "message": "Url of ad"
+  },
+  "add_contacts_more": {
+    "message": "More"
+  },
   "add_contacts_placeholder": {
     "message": "phone, email, etc.."
   },

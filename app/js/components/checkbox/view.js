@@ -36,6 +36,7 @@ class CheckBox extends React.Component {
         <input
           id={props.name}
           type="checkbox"
+          checked={props.checked}
           onChange={this.change}
           className="checkbox"
         />
