@@ -10,7 +10,7 @@
   display: block;
   width: 56px;
   height: 56px;
-  margin-top: 20px;
+  margin-top: 15px;
   border-radius: 50%;
   box-shadow: 0px 2px 10px rgba(0,0,0,.3),0px 0px 1px rgba(0,0,0,.1),inset 0px 1px 0px rgba(255,255,255,.25),inset 0px -1px 0px rgba(0,0,0,.15);
   transition-duration: .25s;
@@ -37,12 +37,26 @@
   background-color: #e06055;
 }
 
+#remove_realty {
+  background-color: #000;
+}
+#remove_realty:hover {
+  background-color: #666;
+}
+
 #edit_realty {
   background-color: #1e58c2;
   line-height: 5.7rem;
 }
 #edit_realty:hover {
   background-color: #5576e0;
+}
+
+#add_to_favorites {
+  background-color: #fac91f;
+}
+#add_to_favorites:hover {
+  background-color: #f9d34d;
 }
 
 .manager-button-icon {
@@ -74,11 +88,15 @@
     font-size: 1.8rem;
   }
   #edit_realty,
-  #add_new_realty {
+  #add_new_realty,
+  #remove_realty,
+  #add_to_favorites {
     display: none;
   }
   #manager:hover #edit_realty,
-  #manager:hover #add_new_realty {
+  #manager:hover #add_new_realty,
+  #manager:hover #remove_realty,
+  #manager:hover #add_to_favorites {
     display: block;
   }
   #manager-more-mutton {

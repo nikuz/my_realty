@@ -22,8 +22,16 @@ function edit(editId) {
   };
 }
 
+function remove(removeId) {
+  return {
+    type: 'LIST_REMOVE',
+    removeId
+  };
+}
+
 export {
   save,
   markAsSelected,
-  edit
+  edit,
+  remove
 };

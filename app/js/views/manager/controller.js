@@ -17,11 +17,18 @@ const mapDispatchToProps = function(dispatch) {
     addRealty: function() {
       dispatch(StateActions.change('add_realty_ovl'));
     },
+    removeRealty: function(id) {
+      dispatch(ListActions.remove(id));
+    },
     editRealty: function(id) {
       dispatch(ListActions.edit(id));
       setTimeout(function() {
         dispatch(StateActions.change('add_realty_ovl'));
       }, 10);
+    },
+    addToFavorites: function(id) {
+      console.log(id);
+      // dispatch(ListActions.edit(id));
     }
   };
 };

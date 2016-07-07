@@ -5,6 +5,15 @@
   "no": {
     "message": "No"
   },
+  "save": {
+    "message": "Save"
+  },
+  "ok": {
+    "message": "Ok"
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
   "sqm": {
     "message": "sq m"
   },
@@ -400,5 +409,14 @@
   },
   "photo_gallery_empty": {
     "message": "No photos..."
+  },
+  "remove_button_tooltip": {
+    "message": "Remove realty"
+  },
+  "favorites_button_tooltip": {
+    "message": "Add to favorites"
+  },
+  "remove_prompt": {
+    "message": "Do you really want to remove this realty object: "
   }
 }

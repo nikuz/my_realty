@@ -4,6 +4,7 @@ import * as React from 'react';
 import * as _ from 'underscore';
 import constants from 'modules/constants';
 import ReactTooltip from 'react-tooltip';
+import Confirmation from 'components/confirmation/view';
 import Icon from 'react-fa';
 
 import './style.less';
@@ -44,6 +45,63 @@ AddButton.propTypes = {
   addRealty: React.PropTypes.func.isRequired
 };
 
+class RemoveButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      confirmationOpened: false
+    };
+    this.onClick = this.onClick.bind(this);
+    this.confirm = this.confirm.bind(this);
+  }
+  onClick() {
+    this.setState({
+      confirmationOpened: true
+    });
+  }
+  confirm(confirmation) {
+    if (confirmation) {
+      var props = this.props;
+      props.removeRealty(props.previewId);
+    }
+    this.setState({
+      confirmationOpened: false
+    });
+  }
+  render() {
+    return (
+      <div>
+        <a
+          href="#"
+          className="manager-button"
+          id="remove_realty"
+          onClick={this.onClick}
+          data-tip
+          data-for="remove-button"
+        >
+          <Icon name="trash" className="manager-button-icon" />
+        </a>
+        <ReactTooltip id="remove-button" place="left" type="dark" effect="solid">
+          <span>{constants('remove_button_tooltip')}</span>
+        </ReactTooltip>
+        {this.state.confirmationOpened ?
+          <Confirmation
+            title={constants('remove_button_tooltip')}
+            message={constants('remove_prompt') + `"${this.props.previewId}"?`}
+            confirm={this.confirm}
+            warning={true}
+          />
+          : null
+        }
+      </div>
+    );
+  }
+}
+RemoveButton.propTypes = {
+  previewId: React.PropTypes.string.isRequired,
+  removeRealty: React.PropTypes.func.isRequired
+};
+
 class EditButton extends React.Component {
   constructor(props) {
     super(props);
@@ -78,6 +136,40 @@ EditButton.propTypes = {
   editRealty: React.PropTypes.func.isRequired
 };
 
+class FavoritesButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+  onClick() {
+    var props = this.props;
+    props.addToFavorites(props.previewId);
+  }
+  render() {
+    return (
+      <div>
+        <a
+          href="#"
+          className="manager-button"
+          id="add_to_favorites"
+          onClick={this.onClick}
+          data-tip
+          data-for="favorites-button"
+        >
+          <Icon name="star" className="manager-button-icon" />
+        </a>
+        <ReactTooltip id="favorites-button" place="left" type="dark" effect="solid">
+          <span>{constants('favorites_button_tooltip')}</span>
+        </ReactTooltip>
+      </div>
+    );
+  }
+}
+FavoritesButton.propTypes = {
+  previewId: React.PropTypes.string.isRequired,
+  addToFavorites: React.PropTypes.func.isRequired
+};
+
 class Manager extends React.Component {
   render() {
     var props = this.props,
@@ -93,6 +185,20 @@ class Manager extends React.Component {
         {previewId ?
           <EditButton
             editRealty={props.editRealty}
+            previewId={previewId}
+          />
+          : null
+        }
+        {previewId ?
+          <FavoritesButton
+            addToFavorites={props.addToFavorites}
+            previewId={previewId}
+          />
+          : null
+        }
+        {previewId ?
+          <RemoveButton
+            removeRealty={props.removeRealty}
             previewId={previewId}
           />
           : null

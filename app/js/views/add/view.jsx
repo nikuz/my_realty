@@ -204,7 +204,7 @@ class OverlayView extends React.Component {
             }
           })}
           <div>
-            <ButtonBlue text="Save" onClick={this.submit} />
+            <ButtonBlue text={constants('save')} onClick={this.submit} />
           </div>
         </div>
       </Overlay>

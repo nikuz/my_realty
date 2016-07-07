@@ -5,6 +5,15 @@
   "no": {
     "message": "Нет"
   },
+  "save": {
+    "message": "Сохранить"
+  },
+  "ok": {
+    "message": "Да"
+  },
+  "cancel": {
+    "message": "Отмена"
+  },
   "sqm": {
     "message": "м2"
   },
@@ -36,7 +45,7 @@
     "message": "Добавить новый объект недвижимости"
   },
   "edit_overlay_title": {
-    "message": "Редактировать объект недвижимости"
+    "message": "Редактировать"
   },
   "add_name": {
     "message": "Название"
@@ -400,5 +409,14 @@
   },
   "photo_gallery_empty": {
     "message": "Нет фотографий..."
+  },
+  "remove_button_tooltip": {
+    "message": "Удалить"
+  },
+  "favorites_button_tooltip": {
+    "message": "Добавить в избранное"
+  },
+  "remove_prompt": {
+    "message": "Вы действительно хотите этот объект недвижимости: "
   }
 }
