@@ -60,13 +60,13 @@ class RemoveButton extends React.Component {
     });
   }
   confirm(confirmation) {
+    this.setState({
+      confirmationOpened: false
+    });
     if (confirmation) {
       var props = this.props;
       props.removeRealty(props.previewId);
     }
-    this.setState({
-      confirmationOpened: false
-    });
   }
   render() {
     return (

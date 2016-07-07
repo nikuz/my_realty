@@ -1050,12 +1050,9 @@ export default {
         name: constants('add_building_type'),
         type: 'selector',
         values: {
-          0: {
-            name: '--',
-            selected: true
-          },
           1: {
-            name: constants('add_building_type_brick')
+            name: constants('add_building_type_brick'),
+            selected: true
           },
           2: {
             name: constants('add_building_type_monolithic')

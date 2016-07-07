@@ -9,6 +9,38 @@ import $script from 'scriptjs';
 import './style.less';
 
 class Map extends React.Component {
+  constructor(props) {
+    super(props);
+    this.map = null;
+    this.points = [];
+  }
+  addPoints(points) {
+    if (points.length > 1) {
+      let bounds = new google.maps.LatLngBounds();
+      _.each(points, (point) => {
+        var marker = new google.maps.Marker({
+          position: point,
+          draggable: true,
+          map: this.map
+        });
+        bounds.extend(marker.getPosition());
+        this.points.push(marker);
+      });
+      this.map.fitBounds(bounds);
+    } else {
+      this.map.setCenter(points[0]);
+      let marker = new google.maps.Marker({
+        position: points[0],
+        map: this.map
+      });
+      this.points.push(marker);
+    }
+  }
+  removePoints() {
+    _.each(this.points, function(point) {
+      point.setMap(null);
+    });
+  }
   componentDidMount() {
     var points = this.props.points;
     if (!window.google) {
@@ -25,25 +57,12 @@ class Map extends React.Component {
         rotateControl: true,
         scrollwheel: false
       });
-      if (points.length > 1) {
-        let bounds = new google.maps.LatLngBounds();
-        _.each(points, (point) => {
-          var marker = new google.maps.Marker({
-            position: point,
-            draggable: true,
-            map: this.map
-          });
-          bounds.extend(marker.getPosition());
-        });
-        this.map.fitBounds(bounds);
-      } else {
-        new google.maps.Marker({
-          position: points[0],
-          draggable: true,
-          map: this.map
-        });
-      }
+      this.addPoints(points);
     });
+  }
+  componentWillUpdate(nextProps) {
+    this.removePoints();
+    this.addPoints(nextProps.points);
   }
   componentWillUnmount() {
     google.maps.event.clearInstanceListeners(this.map);

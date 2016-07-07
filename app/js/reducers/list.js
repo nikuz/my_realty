@@ -32,6 +32,7 @@ export default function listState(state, action) {
     case 'LIST_REMOVE':
       state = Object.assign({}, state);
       delete state[action.removeId];
+      storage.set('list', state);
       return state;
     default:
       if (state === undefined) {
