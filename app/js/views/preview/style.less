@@ -30,6 +30,12 @@
 .preview_item_value {
   font-size: 1.333rem;
 }
+.piv_yes {
+  color: #008000;
+}
+.piv_no {
+  color: #FF4500;
+}
 
 #preview-map {
   height: 300px;
@@ -66,6 +72,36 @@
   width: 200px;
   height: 30px;
   margin-right: 10px;
+}
+
+#preview_rent_icon,
+#preview_buy_icon,
+#preview_house_icon,
+#preview_apartment_icon {
+  float: right;
+  width: 60px;
+  height: 60px;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+}
+#preview_rent_icon,
+#preview_buy_icon {
+  width: 27px;
+  height: 63px;
+  transform: rotate(-28deg);
+}
+#preview_rent_icon {
+  background-image: url(/images/rent.svg);
+}
+#preview_buy_icon {
+  background-image: url(/images/sale.svg);
+}
+
+#preview_house_icon {
+  background-image: url(/images/house.svg);
+}
+#preview_apartment_icon {
+  background-image: url(/images/apartment.svg);
 }
 
 @media all and (max-width: 800px) {

@@ -27,7 +27,8 @@ class Preview extends React.Component {
       return null;
     }
 
-    var value;
+    var value,
+      valueStyle = 'preview_item_value';
 
     switch (dataItem.type) {
       case 'section':
@@ -53,6 +54,14 @@ class Preview extends React.Component {
         _.each(dataItem.values, function(item) {
           if (item.selected) {
             value = item.name;
+            switch (item.id) {
+              case 'yes':
+                valueStyle += ' piv_yes';
+                break;
+              case 'no':
+                valueStyle += ' piv_no';
+                break;
+            }
           }
         });
         break;
@@ -116,7 +125,7 @@ class Preview extends React.Component {
             <span className="preview_item_title">{dataItem.name}: </span>
             : null
           }
-          <span className="preview_item_value">{value}</span>
+          <span className={valueStyle}>{value}</span>
         </div>
       );
     } else {
@@ -139,9 +148,9 @@ class Preview extends React.Component {
       }
     });
     if (transactionType === 'rent') {
-      transactionIcon += ' list_view_cont_rent';
+      transactionIcon = 'preview_rent_icon';
     } else {
-      transactionIcon += ' list_view_cont_buy';
+      transactionIcon = 'preview_buy_icon';
     }
 
     _.each(realty_type, function(item) {
@@ -150,9 +159,9 @@ class Preview extends React.Component {
       }
     });
     if (realty_type === 'house') {
-      realtyIcon += ' list_view_type_house';
+      realtyIcon = 'preview_house_icon';
     } else {
-      realtyIcon += ' list_view_type_apartment';
+      realtyIcon = 'preview_apartment_icon';
     }
 
     _.each(currency, function(item) {
@@ -174,6 +183,8 @@ class Preview extends React.Component {
           points={[mapPoint]}
         />
         <PhotoGallery photos={props.photos.data.list.values} />
+        <i id={realtyIcon} />
+        <i id={transactionIcon} />
         {_.map(props, (item, key) => {
           if (_.contains(this.excludedFields, key) || (item.type !== 'common' && realty_type !== item.type)) {
             return null;

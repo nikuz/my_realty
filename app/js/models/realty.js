@@ -605,10 +605,12 @@ export default {
                 type: 'segments',
                 values: {
                   1: {
-                    name: constants('yes')
+                    name: constants('yes'),
+                    id: 'yes'
                   },
                   2: {
-                    name: constants('no')
+                    name: constants('no'),
+                    id: 'no'
                   }
                 }
               }
@@ -1077,10 +1079,12 @@ export default {
         type: 'segments',
         values: {
           yes: {
-            name: constants('yes')
+            name: constants('yes'),
+            id: 'yes'
           },
           no: {
-            name: constants('no')
+            name: constants('no'),
+            id: 'no'
           }
         }
       },
@@ -1523,10 +1527,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1535,10 +1541,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1547,10 +1555,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           }
@@ -1565,10 +1575,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1577,10 +1589,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1589,10 +1603,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           }
@@ -1607,10 +1623,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1619,10 +1637,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1631,10 +1651,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           }
@@ -1649,10 +1671,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1661,10 +1685,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           }
@@ -1845,10 +1871,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1857,10 +1885,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1869,10 +1899,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           }
@@ -1893,10 +1925,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1905,10 +1939,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1917,10 +1953,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           }
@@ -1935,10 +1973,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1947,10 +1987,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           },
@@ -1959,10 +2001,12 @@ export default {
             type: 'segments',
             values: {
               1: {
-                name: constants('yes')
+                name: constants('yes'),
+                id: 'yes'
               },
               2: {
-                name: constants('no')
+                name: constants('no'),
+                id: 'no'
               }
             }
           }
