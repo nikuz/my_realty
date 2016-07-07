@@ -5,7 +5,7 @@ import reducers from './reducers/main';
 import * as storage from './modules/storage';
 
 const store = createStore(reducers, {
-  manager: storage.get('manager'),
+  filter: storage.get('filter'),
   list: storage.get('list')
 });
 

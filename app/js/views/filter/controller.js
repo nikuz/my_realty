@@ -2,25 +2,25 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as ManagerActions from 'actions/manager';
-import ManagerView from './view';
+import * as FilterActions from 'actions/filter';
+import FilterView from './view';
 
 const mapStateToProps = function(state) {
   return {
-    manager: state.manager
+    filter: state.filter
   };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
     sortChange: function(name) {
-      dispatch(ManagerActions.sortChange(name));
+      dispatch(FilterActions.sortChange(name));
     },
     filterChange: function(name) {
-      dispatch(ManagerActions.filterChange(name));
+      dispatch(FilterActions.filterChange(name));
     },
     viewChange: function(name) {
-      dispatch(ManagerActions.viewChange(name));
+      dispatch(FilterActions.viewChange(name));
     }
   };
 };
@@ -28,4 +28,4 @@ const mapDispatchToProps = function(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ManagerView);
+)(FilterView);

@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppStore from './store';
 import AddButton from './views/add-button/controller';
-import Manager from './views/manager/controller';
+import Filter from './views/filter/controller';
 import List from './views/list/controller';
 import Preview from './views/preview/controller';
 import AddRealtyOvl from './views/add/controller';
@@ -20,7 +20,7 @@ class App extends React.Component {
         <List />
         <AddRealtyOvl />
         <Preview />
-        <Manager />
+        <Filter />
       </div>
     );
   }

@@ -45,25 +45,25 @@ function update(state, action, key) {
       item.desc = false;
     }
   });
-  storage.set('manager', state);
+  storage.set('filter', state);
   return state;
 }
 
-export default function managerState(state, action) {
+export default function filterState(state, action) {
   switch (action.type) {
-    case 'MANAGER_SORT_CHANGE':
+    case 'FILTER_SORT_CHANGE':
       return update(state, action, 'sort');
-    case 'MANAGER_SORT_CLEAR':
+    case 'FILTER_SORT_CLEAR':
       state = Object.assign({}, state, DEFAULT.sort);
-      storage.set('manager', state);
+      storage.set('filter', state);
       return state;
-    case 'MANAGER_FILTER_CHANGE':
+    case 'FILTER_FILTER_CHANGE':
       return update(state, action, 'filter');
-    case 'MANAGER_FILTER_CLEAR':
+    case 'FILTER_FILTER_CLEAR':
       state = Object.assign({}, state, DEFAULT.filter);
-      storage.set('manager', state);
+      storage.set('filter', state);
       return state;
-    case 'MANAGER_VIEW_CHANGE':
+    case 'FILTER_VIEW_CHANGE':
       return update(state, action, 'view');
     default:
       if (state === undefined) {

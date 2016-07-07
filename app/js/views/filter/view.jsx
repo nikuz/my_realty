@@ -6,17 +6,17 @@ import Icon from 'react-fa';
 
 import './style.less';
 
-class ManagerView extends React.Component {
+class FilterView extends React.Component {
   renderItem(item, controller) {
     return _.map(item, (item, key) => {
-      var className = 'm_item';
+      var className = 'f_item';
       if (item.active) {
-        className += ' mi_active';
+        className += ' fi_active';
       }
       return (
         <li key={key}>
           <a className={className} onClick={controller.bind(null, key)}>
-            <Icon name={item.icon} className="mi_icon" />
+            <Icon name={item.icon} className="fi_icon" />
             {item.name}
           </a>
         </li>
@@ -26,19 +26,19 @@ class ManagerView extends React.Component {
   render() {
     var props = this.props;
     return (
-      <div id="manager">
-        <ul id="m_sort">
-          {this.renderItem(props.manager.sort, props.sortChange)}
+      <div id="filter">
+        <ul id="f_sort">
+          {this.renderItem(props.filter.sort, props.sortChange)}
         </ul>
-        <ul id="m_filter">
-          {this.renderItem(props.manager.filter, props.filterChange)}
+        <ul id="f_filter">
+          {this.renderItem(props.filter.filter, props.filterChange)}
         </ul>
-        <ul id="m_view">
-          {this.renderItem(props.manager.view, props.viewChange)}
+        <ul id="f_view">
+          {this.renderItem(props.filter.view, props.viewChange)}
         </ul>
       </div>
     );
   }
 }
 
-export default ManagerView;
+export default FilterView;

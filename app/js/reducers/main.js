@@ -1,13 +1,13 @@
 'use strict';
 
 import appStateReducer from './state';
-import manager from './manager';
+import filter from './filter';
 import list from './list';
 
 function appReducers(state = {}, action) {
   return {
     state: appStateReducer(state.state, action),
-    manager: manager(state.manager, action),
+    filter: filter(state.filter, action),
     list: list(state.list, action)
   };
 }

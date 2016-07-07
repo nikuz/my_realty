@@ -2,31 +2,31 @@
 
 function sortChange(sort) {
   return {
-    type: 'MANAGER_SORT_CHANGE',
+    type: 'FILTER_SORT_CHANGE',
     name: sort
   };
 }
 function sortClear() {
   return {
-    type: 'MANAGER_SORT_CLEAR'
+    type: 'FILTER_SORT_CLEAR'
   };
 }
 
 function filterChange(filter) {
   return {
-    type: 'MANAGER_FILTER_CHANGE',
+    type: 'FILTER_FILTER_CHANGE',
     name: filter
   };
 }
 function filterClear() {
   return {
-    type: 'MANAGER_FILTER_CLEAR'
+    type: 'FILTER_FILTER_CLEAR'
   };
 }
 
 function viewChange(view) {
   return {
-    type: 'MANAGER_VIEW_CHANGE',
+    type: 'FILTER_VIEW_CHANGE',
     name: view
   };
 }
