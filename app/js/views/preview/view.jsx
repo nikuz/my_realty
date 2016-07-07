@@ -5,7 +5,6 @@ import constants from 'modules/constants';
 import * as _ from 'underscore';
 import PhotoGallery from 'components/photo-gallery/view';
 import Map from 'components/map/view';
-import EditButton from '../edit-button/controller';
 import Icon from 'react-fa';
 import Linkify from 'linkify';
 import * as priceModule from 'modules/price';
@@ -221,12 +220,7 @@ class PreviewView extends React.Component {
     });
 
     if (data) {
-      return (
-        <div>
-          <Preview {...data} />
-          <EditButton realtyId={realtyId} />
-        </div>
-      );
+      return <Preview {...data} />;
     } else {
       return <PreviewEmpty />;
     }

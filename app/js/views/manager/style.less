@@ -1,0 +1,93 @@
+#manager {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  padding: 5px;
+  border-radius: 20px;
+  z-index: 2;
+}
+.manager-button {
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin-top: 20px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 10px rgba(0,0,0,.3),0px 0px 1px rgba(0,0,0,.1),inset 0px 1px 0px rgba(255,255,255,.25),inset 0px -1px 0px rgba(0,0,0,.15);
+  transition-duration: .25s;
+  transition-property: background-color, box-shadow;
+  text-align: center;
+  line-height: 6.4rem;
+}
+.manager-button:hover {
+  box-shadow: 0px 5px 5px rgba(0,0,0,.2),0px 10px 14px rgba(0,0,0,.1),inset 0px 1px 0px rgba(255,255,255,.25),inset 0px -1px 0px rgba(0,0,0,.10);
+}
+#manager *:first-child .manager-button {
+  margin-top: 0;
+}
+
+#manager-more-mutton {
+  display: none;
+  background-color: #333;
+}
+
+#add_new_realty {
+  background-color: #db4437;
+}
+#add_new_realty:hover {
+  background-color: #e06055;
+}
+
+#edit_realty {
+  background-color: #1e58c2;
+  line-height: 5.7rem;
+}
+#edit_realty:hover {
+  background-color: #5576e0;
+}
+
+.manager-button-icon {
+  font-size: 3rem;
+  color: #FFF;
+}
+#edit_realty .manager-button-icon {
+  font-size: 2.5rem;
+}
+
+@media all and (max-width: 1200px) {
+  #manager {
+    bottom: 7px;
+    background: #CCC;
+  }
+  .manager-button {
+    width: 36px;
+    height: 36px;
+    margin-top: 10px;
+    line-height: 4rem;
+  }
+  .manager-button-icon {
+    font-size: 2rem;
+  }
+  #edit_realty {
+    line-height: 3.5rem;
+  }
+  #edit_realty .manager-button-icon {
+    font-size: 1.8rem;
+  }
+  #edit_realty,
+  #add_new_realty {
+    display: none;
+  }
+  #manager:hover #edit_realty,
+  #manager:hover #add_new_realty {
+    display: block;
+  }
+  #manager-more-mutton {
+    display: block;
+    margin-top: 0;
+  }
+  #manager:hover #manager-more-mutton {
+    box-shadow: none;
+    margin-top: 10px;
+    background-color: #CCC;
+  }
+}

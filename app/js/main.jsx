@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppStore from './store';
-import AddButton from './views/add-button/controller';
+import Manager from './views/manager/controller';
 import Filter from './views/filter/controller';
 import List from './views/list/controller';
 import Preview from './views/preview/controller';
@@ -16,11 +16,11 @@ class App extends React.Component {
   render() {
     return (
       <div id="content">
-        <AddButton />
         <List />
         <AddRealtyOvl />
         <Preview />
         <Filter />
+        <Manager />
       </div>
     );
   }
