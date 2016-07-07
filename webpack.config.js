@@ -49,6 +49,7 @@ module.exports = {
     modulesDirectories: ['node_modules'],
     alias: {
       config: path.join(__dirname, 'app/js/config'),
+      linkify: path.join(__dirname, 'node_modules/linkifyjs/lib/linkify-string'),
       components: path.join(__dirname, 'app/js/components'),
       views: path.join(__dirname, 'app/js/views'),
       actions: path.join(__dirname, 'app/js/actions'),

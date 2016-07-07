@@ -195,7 +195,7 @@ class OverlayView extends React.Component {
             } else {
               return (
                 <div key={key}>
-                  <h3>{item.name}</h3>
+                  <h2>{item.name}</h2>
                   {_.map(item.data, (dataItem, dataKey) => {
                     return this.renderItem(dataItem, dataKey);
                   })}

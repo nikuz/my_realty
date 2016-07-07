@@ -1,7 +1,7 @@
 #preview {
   position: relative;
   overflow: hidden;
-  padding: 50px 20px 0;
+  padding: 50px 20px 20px;
   left: -1px;
   border-left: 1px solid #e6e6e6;
 }
@@ -51,3 +51,27 @@
   vertical-align: middle;
   font-size: 1.667rem;
 }
+
+.preview_item {
+  margin-bottom: 15px;
+}
+.line .preview_item {
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align: top;
+}
+
+.checkbox_item {
+  display: inline-block;
+  width: 200px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+@media all and (max-width: 800px) {
+  #m_sort,
+  #m_filter {
+    margin-right: 5%!important;
+  }
+}
+

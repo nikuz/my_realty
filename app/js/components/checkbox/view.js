@@ -26,7 +26,7 @@ class CheckBox extends React.Component {
     if (/png|svg|gif/.test(icon)) {
       return <img src={icon} className="checkbox_icon" />;
     } else {
-      return <Icon name={icon} />;
+      return <Icon name={icon} className="checkbox_icon" />;
     }
   }
   render() {

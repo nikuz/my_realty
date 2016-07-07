@@ -2000,7 +2000,7 @@ export default {
     name: constants('add_contacts'),
     type: 'common',
     data: {
-      name: {
+      contact_name: {
         name: constants('add_contacts_name'),
         type: 'text',
         values: {

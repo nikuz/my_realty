@@ -17,10 +17,10 @@ class App extends React.Component {
     return (
       <div id="content">
         <AddButton />
-        <Manager />
         <List />
         <AddRealtyOvl />
         <Preview />
+        <Manager />
       </div>
     );
   }

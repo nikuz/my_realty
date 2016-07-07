@@ -63,25 +63,25 @@
     "message": "Информация по квартире"
   },
   "add_rooms": {
-    "message": "Количество комнат:"
+    "message": "Количество комнат"
   },
   "add_floor": {
-    "message": "Этаж:"
+    "message": "Этаж"
   },
   "add_floor_total": {
-    "message": "Этажей всего:"
+    "message": "Этажей всего"
   },
   "add_area": {
-    "message": "Общая площадь:"
+    "message": "Общая площадь"
   },
   "add_living_area": {
-    "message": "Жилая площадь:"
+    "message": "Жилая площадь"
   },
   "add_kitchen_area": {
-    "message": "Площадь кухни:"
+    "message": "Площадь кухни"
   },
   "add_rooms_area": {
-    "message": "Площадь комнат:"
+    "message": "Площадь комнат"
   },
   "add_rooms_more": {
     "message": "10 и более"
@@ -90,13 +90,13 @@
     "message": "Информация о доме"
   },
   "add_construction_year": {
-    "message": "Год постройки:"
+    "message": "Год постройки"
   },
   "add_ceiling_height": {
-    "message": "Высота потолков, м:"
+    "message": "Высота потолков, м"
   },
   "add_building_type": {
-    "message": "Тип дома:"
+    "message": "Тип дома"
   },
   "add_building_type_brick": {
     "message": "Кирпичный"
@@ -117,13 +117,13 @@
     "message": "Монолитно-кирпичный"
   },
   "add_garbage_chute": {
-    "message": "Мусоропровод:"
+    "message": "Мусоропровод"
   },
   "add_passenger_elevators": {
-    "message": "Пассажирских лифтов:"
+    "message": "Пассажирских лифтов"
   },
   "add_service_lifts": {
-    "message": "Грузовых лифтов:"
+    "message": "Грузовых лифтов"
   },
   "add_furniture": {
     "message": "Мебель, техника"

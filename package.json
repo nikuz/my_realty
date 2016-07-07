@@ -30,6 +30,7 @@
     "html-webpack-plugin": "^2.22.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "linkifyjs": "^2.0.4",
     "react": "^15.2.0",
     "react-addons-css-transition-group": "^15.2.0",
     "react-dom": "^15.2.0",

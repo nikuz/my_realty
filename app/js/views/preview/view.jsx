@@ -6,6 +6,8 @@ import * as _ from 'underscore';
 import PhotoGallery from 'components/photo-gallery/view';
 import Map from 'components/map/view';
 import EditButton from '../edit-button/controller';
+import Icon from 'react-fa';
+import Linkify from 'linkify';
 import * as priceModule from 'modules/price';
 
 import './style.less';
@@ -51,17 +53,28 @@ class Preview extends React.Component {
       case 'selector':
         _.each(dataItem.values, function(item) {
           if (item.selected) {
-            value = item.value;
+            value = item.name;
           }
         });
         break;
-      case 'checkbox':
-        return (
-          <span key={dataKey} className="checkbox_item">
-            checkbox
-          </span>
-        );
-        break;
+      case 'checkbox': {
+        if (dataItem.values.selected) {
+          let icon = dataItem.icon;
+          if (/png|svg|gif/.test(icon)) {
+            icon = <img src={icon} className="checkbox_icon" />;
+          } else {
+            icon = <Icon name={icon} className="checkbox_icon" />;
+          }
+          return (
+            <span key={dataKey} className="checkbox_item">
+              {icon}
+              {dataItem.name}
+            </span>
+          );
+        } else {
+          return null;
+        }
+      }
       case 'year': {
         _.each(dataItem.values, function(item, key) {
           if (item.selected) {
@@ -71,16 +84,36 @@ class Preview extends React.Component {
         break;
       }
       case 'extendable_list': {
-        // value = dataItem.values;
-        value = 'extendable_list';
-        break;
+        return (
+          <div key={dataKey}>
+            {_.map(dataItem.values, function(item, key) {
+              return (
+                <div key={key} className="preview_item_title">
+                  {item.value}
+                </div>
+              );
+            })}
+          </div>
+        );
       }
     }
 
     if (value !== '' && value !== undefined) {
+      if (_.isString(value) && dataKey.indexOf('url') !== -1) {
+        value = Linkify(value, {
+          format: function (value) {
+            var maxLength = 50;
+            if (value.length > maxLength + 10) {
+              value = value.substring(0, 50) + '...' + value.substr(-7, 7);
+            }
+            return value;
+          }
+        });
+        value = <span dangerouslySetInnerHTML={{__html: value}} />;
+      }
       return (
         <div className="preview_item" key={dataKey}>
-          {dataItem.name !== ''?
+          {dataItem.name !== '' ?
             <span className="preview_item_title">{dataItem.name}: </span>
             : null
           }
@@ -95,7 +128,33 @@ class Preview extends React.Component {
     var props = this.props,
       price = priceModule.split(props.initial.data.transaction.data.price.data.price_amount.values.value),
       currency = props.initial.data.transaction.data.price.data.price_currency.values,
-      mapPoint = props.initial.data.address.values.map.position;
+      mapPoint = props.initial.data.address.values.map.position,
+      transactionType = props.initial.data.transaction.data.transaction_type.values,
+      realty_type = props.initial.data.transaction.data.realty_type.values,
+      transactionIcon,
+      realtyIcon;
+
+    _.each(transactionType, function(item) {
+      if (item.selected) {
+        transactionType = item.id;
+      }
+    });
+    if (transactionType === 'rent') {
+      transactionIcon += ' list_view_cont_rent';
+    } else {
+      transactionIcon += ' list_view_cont_buy';
+    }
+
+    _.each(realty_type, function(item) {
+      if (item.selected) {
+        realty_type = item.id;
+      }
+    });
+    if (realty_type === 'house') {
+      realtyIcon += ' list_view_type_house';
+    } else {
+      realtyIcon += ' list_view_type_apartment';
+    }
 
     _.each(currency, function(item) {
       if (item.selected) {
@@ -117,12 +176,12 @@ class Preview extends React.Component {
         />
         <PhotoGallery photos={props.photos.data.list.values} />
         {_.map(props, (item, key) => {
-          if (_.contains(this.excludedFields, key)) {
+          if (_.contains(this.excludedFields, key) || (item.type !== 'common' && realty_type !== item.type)) {
             return null;
           } else {
             return (
               <div key={key}>
-                <h3>{item.name}</h3>
+                <h2>{item.name}</h2>
                 {_.map(item.data, (dataItem, dataKey) => {
                   return this.renderItem(dataItem, dataKey);
                 })}

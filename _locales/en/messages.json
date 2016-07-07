@@ -63,25 +63,25 @@
     "message": "Apartment info"
   },
   "add_rooms": {
-    "message": "Rooms:"
+    "message": "Rooms"
   },
   "add_floor": {
-    "message": "Floor:"
+    "message": "Floor"
   },
   "add_floor_total": {
-    "message": "Floor total:"
+    "message": "Floor total"
   },
   "add_area": {
-    "message": "Area:"
+    "message": "Area"
   },
   "add_living_area": {
-    "message": "Living area:"
+    "message": "Living area"
   },
   "add_kitchen_area": {
-    "message": "Kitchen area:"
+    "message": "Kitchen area"
   },
   "add_rooms_area": {
-    "message": "Rooms area:"
+    "message": "Rooms area"
   },
   "add_rooms_more": {
     "message": "10 and more"
@@ -90,13 +90,13 @@
     "message": "House info"
   },
   "add_construction_year": {
-    "message": "Year of construction:"
+    "message": "Year of construction"
   },
   "add_ceiling_height": {
-    "message": "Ceiling height, m:"
+    "message": "Ceiling height, m"
   },
   "add_building_type": {
-    "message": "Type of building:"
+    "message": "Type of building"
   },
   "add_building_type_brick": {
     "message": "Brick"
@@ -117,13 +117,13 @@
     "message": "Monolith-brick"
   },
   "add_garbage_chute": {
-    "message": "Garbage chute:"
+    "message": "Garbage chute"
   },
   "add_passenger_elevators": {
-    "message": "Passenger elevators:"
+    "message": "Passenger elevators"
   },
   "add_service_lifts": {
-    "message": "Service lifts:"
+    "message": "Service lifts"
   },
   "add_furniture": {
     "message": "Furniture, Appliances"

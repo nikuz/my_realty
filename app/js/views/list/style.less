@@ -35,8 +35,8 @@
 }
 .list_view_image_wrap {
   position: relative;
-  height: 142px;
   width: 190px;
+  height: 142px;
   float: left;
   overflow: hidden;
   margin-right: 10px;
@@ -117,4 +117,32 @@
 }
 .list_view_type_apartment {
   background-image: url(/images/apartment.svg);
+}
+
+@media all and (max-width: 1000px) {
+  .list_view_image_wrap {
+    width: 120px;
+    height: 90px;
+  }
+  .list_view_item {
+    height: 90px;
+  }
+  .list_view_cont {
+    height: 80px;
+  }
+  .list_view_name,
+  .list_view_item address {
+    -webkit-line-clamp: 1;
+  }
+  .list_view_item price {
+    font-size: 1.333rem;
+  }
+  .list_view_item:after {
+    border-width: 55px 0 55px 15px;
+  }
+}
+@media all and (max-width: 700px) {
+  .list_view_cont_rent {
+    background: none;
+  }
 }
