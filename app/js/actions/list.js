@@ -15,6 +15,13 @@ function markAsSelected(selectedId) {
   };
 }
 
+function deselectAll(selectedId) {
+  return {
+    type: 'LIST_DESELECT_ALL',
+    selectedId
+  };
+}
+
 function edit(editId) {
   return {
     type: 'LIST_EDIT',
@@ -46,6 +53,7 @@ function removeFromFavorites(realtyId) {
 export {
   save,
   markAsSelected,
+  deselectAll,
   edit,
   remove,
   addToFavorites,

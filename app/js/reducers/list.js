@@ -23,6 +23,12 @@ export default function listState(state, action) {
         item.selected = key === action.selectedId;
       });
       return state;
+    case 'LIST_DESELECT_ALL':
+      state = Object.assign({}, state);
+      _.each(state, function(item) {
+        item.selected = false;
+      });
+      return state;
     case 'LIST_EDIT':
       state = Object.assign({}, state);
       _.each(state, function(item, key) {

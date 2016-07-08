@@ -221,14 +221,17 @@ class PreviewView extends React.Component {
   render() {
     var props = this.props,
       data,
-      realtyId;
+      location = window.location.hash.replace('#', '');
 
-    _.each(props.list, function(item, key) {
-      if (item.selected) {
-        data = item;
-        realtyId = key;
-      }
-    });
+    if (props.list[location]) {
+      data = props.list[location];
+    } else {
+      _.each(props.list, function(item) {
+        if (item.selected) {
+          data = item;
+        }
+      });
+    }
 
     if (data) {
       return <Preview {...data} />;

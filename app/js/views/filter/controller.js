@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as FilterActions from 'actions/filter';
+import * as ListActions from 'actions/list';
 import FilterView from './view';
 
 const mapStateToProps = function(state) {
@@ -21,6 +22,7 @@ const mapDispatchToProps = function(dispatch) {
     },
     viewChange: function(name) {
       dispatch(FilterActions.viewChange(name));
+      dispatch(ListActions.deselectAll());
     }
   };
 };

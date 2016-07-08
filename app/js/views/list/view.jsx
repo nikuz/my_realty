@@ -19,9 +19,10 @@ class ListView extends React.Component {
       price = priceModule.split(item.initial.data.transaction.data.price.data.price_amount.values.value),
       currency = item.initial.data.transaction.data.price.data.price_currency.values,
       transactionType = item.initial.data.transaction.data.transaction_type.values,
-      realty_type = item.initial.data.transaction.data.realty_type.values;
+      realty_type = item.initial.data.transaction.data.realty_type.values,
+      location = window.location.hash.replace('#', '');
 
-    if (item.selected) {
+    if (item.selected || location === key) {
       style += ' selected';
     }
 
@@ -92,11 +93,9 @@ class ListView extends React.Component {
 
     return (
       <div id="list">
-        <div id="list_cont">
-          {_.map(props.list, (item, key) => {
-            return this.renderItem(item, key);
-          })}
-        </div>
+        {_.map(props.list, (item, key) => {
+          return this.renderItem(item, key);
+        })}
       </div>
     );
   }
