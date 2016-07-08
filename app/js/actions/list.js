@@ -29,9 +29,25 @@ function remove(removeId) {
   };
 }
 
+function addToFavorites(realtyId) {
+  return {
+    type: 'LIST_ADD_TO_FAVORITES',
+    realtyId
+  };
+}
+
+function removeFromFavorites(realtyId) {
+  return {
+    type: 'LIST_REMOVE_FROM_FAVORITES',
+    realtyId
+  };
+}
+
 export {
   save,
   markAsSelected,
   edit,
-  remove
+  remove,
+  addToFavorites,
+  removeFromFavorites
 };

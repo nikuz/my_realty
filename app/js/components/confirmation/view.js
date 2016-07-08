@@ -24,8 +24,9 @@ class Confirmation extends React.Component {
     this.setState({
       opened: false
     });
+    confirm = confirm === true;
     setTimeout(() => {
-      this.props.confirm(confirm || false);
+      this.props.confirm(confirm);
     }, 300);
   }
   confirm() {

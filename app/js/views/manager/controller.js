@@ -27,8 +27,10 @@ const mapDispatchToProps = function(dispatch) {
       }, 10);
     },
     addToFavorites: function(id) {
-      console.log(id);
-      // dispatch(ListActions.edit(id));
+      dispatch(ListActions.addToFavorites(id));
+    },
+    removeFromFavorites: function(id) {
+      dispatch(ListActions.removeFromFavorites(id));
     }
   };
 };

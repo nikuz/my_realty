@@ -143,7 +143,12 @@ class FavoritesButton extends React.Component {
   }
   onClick() {
     var props = this.props;
-    props.addToFavorites(props.previewId);
+    if (props.alreadyFavorites) {
+      props.removeFromFavorites(props.previewId);
+    } else {
+      props.addToFavorites(props.previewId);
+    }
+    ReactTooltip.hide();
   }
   render() {
     return (
@@ -157,9 +162,17 @@ class FavoritesButton extends React.Component {
           data-for="favorites-button"
         >
           <Icon name="star" className="manager-button-icon" />
+          {this.props.alreadyFavorites ?
+            <Icon name="circle" className="manager-button-check-icon" />
+            : null
+          }
         </a>
         <ReactTooltip id="favorites-button" place="left" type="dark" effect="solid">
-          <span>{constants('favorites_button_tooltip')}</span>
+          {this.props.alreadyFavorites ?
+            <span>{constants('favorites_remove_button_tooltip')}</span>
+            :
+            <span>{constants('favorites_button_tooltip')}</span>
+          }
         </ReactTooltip>
       </div>
     );
@@ -167,17 +180,23 @@ class FavoritesButton extends React.Component {
 }
 FavoritesButton.propTypes = {
   previewId: React.PropTypes.string.isRequired,
-  addToFavorites: React.PropTypes.func.isRequired
+  addToFavorites: React.PropTypes.func.isRequired,
+  removeFromFavorites: React.PropTypes.func.isRequired,
+  alreadyFavorites: React.PropTypes.bool.isRequired
 };
 
 class Manager extends React.Component {
   render() {
     var props = this.props,
-      previewId;
+      previewId,
+      alreadyFavorites = false;
 
     _.each(props.list, function(item, key) {
       if (item.selected) {
         previewId = key;
+        if (item.in_favorites) {
+          alreadyFavorites = true;
+        }
       }
     });
     return (
@@ -192,7 +211,9 @@ class Manager extends React.Component {
         {previewId ?
           <FavoritesButton
             addToFavorites={props.addToFavorites}
+            removeFromFavorites={props.removeFromFavorites}
             previewId={previewId}
+            alreadyFavorites={alreadyFavorites}
           />
           : null
         }

@@ -34,6 +34,34 @@ export default function listState(state, action) {
       delete state[action.removeId];
       storage.set('list', state);
       return state;
+    case 'LIST_ADD_TO_FAVORITES': {
+      state = Object.assign({}, state);
+      _.each(state, function(item, key) {
+        item.in_favorites = key === action.realtyId;
+      });
+      let stateForStore = JSON.parse(JSON.stringify(state));
+      _.each(stateForStore, function(item) {
+        item.selected = false;
+        item.edited = false;
+      });
+      storage.set('list', stateForStore);
+      return state;
+    }
+    case 'LIST_REMOVE_FROM_FAVORITES': {
+      state = Object.assign({}, state);
+      _.each(state, function(item, key) {
+        if (key === action.realtyId) {
+          item.in_favorites = false;
+        }
+      });
+      let stateForStore = JSON.parse(JSON.stringify(state));
+      _.each(stateForStore, function(item) {
+        item.selected = false;
+        item.edited = false;
+      });
+      storage.set('list', stateForStore);
+      return state;
+    }
     default:
       if (state === undefined) {
         return {};

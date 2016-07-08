@@ -3,6 +3,7 @@
 import * as React from 'react';
 import * as _ from 'underscore';
 import * as priceModule from 'modules/price';
+import Icon from 'react-fa';
 
 import './style.less';
 
@@ -72,6 +73,10 @@ class ListView extends React.Component {
           <span className={typeStyle} />
         </div>
         <div className={contStyle}>
+          {item.in_favorites ?
+            <Icon name="star" className="list_view_favorite_icon" />
+            : null
+          }
           <div className="list_view_name">{item.initial.data.name.values.value}</div>
           <address>{item.initial.data.address.values.value}</address>
           <price>

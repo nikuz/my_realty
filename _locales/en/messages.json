@@ -416,6 +416,9 @@
   "favorites_button_tooltip": {
     "message": "Add to favorites"
   },
+  "favorites_remove_button_tooltip": {
+    "message": "Remove from favorites"
+  },
   "remove_prompt": {
     "message": "Do you really want to remove this realty object: "
   }

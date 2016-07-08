@@ -416,6 +416,9 @@
   "favorites_button_tooltip": {
     "message": "Добавить в избранное"
   },
+  "favorites_remove_button_tooltip": {
+    "message": "Убрать из избранного"
+  },
   "remove_prompt": {
     "message": "Вы действительно хотите этот объект недвижимости: "
   }
