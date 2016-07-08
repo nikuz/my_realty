@@ -170,6 +170,10 @@ class Preview extends React.Component {
       }
     });
 
+    mapPoint = {
+      position: mapPoint
+    };
+
     return (
       <div id="preview">
         <price>

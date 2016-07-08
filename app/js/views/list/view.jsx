@@ -16,10 +16,11 @@ class ListView extends React.Component {
       contStyle = 'list_view_cont',
       typeStyle = 'list_view_type',
       image,
-      price = priceModule.split(item.initial.data.transaction.data.price.data.price_amount.values.value),
-      currency = item.initial.data.transaction.data.price.data.price_currency.values,
-      transactionType = item.initial.data.transaction.data.transaction_type.values,
-      realty_type = item.initial.data.transaction.data.realty_type.values,
+      initial = item.initial.data,
+      price = priceModule.split(initial.transaction.data.price.data.price_amount.values.value),
+      currency = _.find(initial.transaction.data.price.data.price_currency.values, {selected: true}).name,
+      transactionType = _.find(initial.transaction.data.transaction_type.values, {selected: true}).id,
+      realty_type = _.find(initial.transaction.data.realty_type.values, {selected: true}).id,
       location = window.location.hash.replace('#', '');
 
     if (item.selected || location === key) {
@@ -32,28 +33,12 @@ class ListView extends React.Component {
       image = images[0].value;
     }
 
-    _.each(currency, function(item) {
-      if (item.selected) {
-        currency = item.name;
-      }
-    });
-
-    _.each(transactionType, function(item) {
-      if (item.selected) {
-        transactionType = item.id;
-      }
-    });
     if (transactionType === 'rent') {
       contStyle += ' list_view_cont_rent';
     } else {
       contStyle += ' list_view_cont_buy';
     }
-
-    _.each(realty_type, function(item) {
-      if (item.selected) {
-        realty_type = item.id;
-      }
-    });
+    
     if (realty_type === 'house') {
       typeStyle += ' list_view_type_house';
     } else {
