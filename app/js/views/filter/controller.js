@@ -15,15 +15,19 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = function(dispatch) {
   return {
     sortChange: function(name) {
+      dispatch(ListActions.deselectAll());
       dispatch(FilterActions.sortChange(name));
     },
     sortClear: function() {
+      dispatch(ListActions.deselectAll());
       dispatch(FilterActions.sortClear());
     },
     filterChange: function(name) {
+      dispatch(ListActions.deselectAll());
       dispatch(FilterActions.filterChange(name));
     },
     filterClear: function() {
+      dispatch(ListActions.deselectAll());
       dispatch(FilterActions.filterClear());
     },
     viewChange: function(name) {

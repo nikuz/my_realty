@@ -8,8 +8,92 @@ import Icon from 'react-fa';
 import './style.less';
 
 class ListView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.filter = this.filter.bind(this);
+  }
+  getItemPrice(item) {
+    return item.initial.data.transaction.data.price.data.price_amount.values.value;
+  }
+  getItemArea(item) {
+    var realtyType = _.find(item.initial.data.transaction.data.realty_type.values, {selected: true}).id,
+      area;
+
+    switch (realtyType) {
+      case 'apartment':
+        area = item.apartment.data.area.data.all.values.value;
+        break;
+      case 'house':
+        area = item.house.data.area.data.all.values.value;
+        break;
+    }
+    return area;
+  }
+  filter(list) {
+    var filteredList = [],
+      props = this.props,
+      sortType = _.find(props.filter.sort, {active: true}),
+      sortDesc = sortType && sortType.desc,
+      filterType = _.find(props.filter.filter, {active: true});
+
+    if (filterType) {
+      _.each(list, function(item, key) {
+        item.id = key;
+        var realtyType = _.find(item.initial.data.transaction.data.realty_type.values, {selected: true}).id;
+        switch (filterType.id) {
+          case 'favorites':
+            if (item.in_favorites) {
+              filteredList.push(item);
+            }
+            break;
+          case 'apartments':
+            if (realtyType === 'apartment') {
+              filteredList.push(item);
+            }
+            break;
+          case 'houses':
+            if (realtyType === 'house') {
+              filteredList.push(item);
+            }
+            break;
+        }
+      });
+    } else {
+      _.each(list, function(item, key) {
+        item.id = key;
+        filteredList.push(item);
+      });
+    }
+
+    if (sortType) {
+      filteredList.sort((a, b) => {
+        var aValue,
+          bValue;
+
+        switch (sortType.id) {
+          case 'price':
+            aValue = this.getItemPrice(a);
+            bValue = this.getItemPrice(b);
+            break;
+          case 'area':
+            aValue = this.getItemArea(a);
+            bValue = this.getItemArea(b);
+            break;
+        }
+
+        if(aValue > bValue){
+          return !sortDesc ? 1 : -1;
+        } else if(aValue < bValue){
+          return !sortDesc ? -1 : 1;
+        } else {
+          return 0;
+        }
+      });
+    }
+
+    return filteredList;
+  }
   renderItem(item, key) {
-    console.log(item);
     var images = item.photos.data.list.values,
       style = 'list_view_item',
       imageStyle = 'list_view_image_wrap',
@@ -17,13 +101,13 @@ class ListView extends React.Component {
       typeStyle = 'list_view_type',
       image,
       initial = item.initial.data,
-      price = priceModule.split(initial.transaction.data.price.data.price_amount.values.value),
+      price = priceModule.split(this.getItemPrice(item)),
       currency = _.find(initial.transaction.data.price.data.price_currency.values, {selected: true}).name,
       transactionType = _.find(initial.transaction.data.transaction_type.values, {selected: true}).id,
       realty_type = _.find(initial.transaction.data.realty_type.values, {selected: true}).id,
       location = window.location.hash.replace('#', '');
 
-    if (item.selected || location === key) {
+    if (item.selected || location === item.id) {
       style += ' selected';
     }
 
@@ -49,7 +133,7 @@ class ListView extends React.Component {
       <div
         key={key}
         className={style}
-        onClick={this.props.markAsSelected.bind(null, key)}
+        onClick={this.props.markAsSelected.bind(null, item.id)}
       >
         <div className={imageStyle}>
           {image ?
@@ -74,13 +158,20 @@ class ListView extends React.Component {
     );
   }
   render() {
-    var props = this.props;
+    var props = this.props,
+      list = this.filter(props.list);
 
     return (
       <div id="list">
-        {_.map(props.list, (item, key) => {
-          return this.renderItem(item, key);
-        })}
+        {list.length ?
+          _.map(list, (item, key) => {
+            return this.renderItem(item, key);
+          })
+          :
+          <div id="list_empty">
+            No one realty objects matched to the selected filter. Please modify filter options or reset filter at all.
+          </div>
+        }
       </div>
     );
   }
@@ -88,6 +179,7 @@ class ListView extends React.Component {
 
 ListView.propTypes = {
   list: React.PropTypes.object.isRequired,
+  filter: React.PropTypes.object.isRequired,
   markAsSelected: React.PropTypes.func.isRequired
 };
 

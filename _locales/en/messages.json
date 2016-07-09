@@ -427,5 +427,8 @@
   },
   "houses": {
     "message": "Houses"
+  },
+  "empty_list": {
+    "message": "No one realty objects matched to the selected filter. Please modify filter options or reset filter at all."
   }
 }

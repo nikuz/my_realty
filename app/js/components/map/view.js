@@ -130,7 +130,9 @@ class Map extends React.Component {
     }
   }
   componentWillUnmount() {
-    google.maps.event.clearInstanceListeners(this.map);
+    if (window.google) {
+      google.maps.event.clearInstanceListeners(this.map);
+    }
     this.map = null;
   }
   render() {
