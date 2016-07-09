@@ -9,6 +9,9 @@ export default function listState(state, action) {
       state = Object.assign({}, state, {
         [action.name]: action.data
       });
+      if (action.previousName && action.previousName !== action.name) {
+        delete state[action.previousName];
+      }
       let stateForStore = JSON.parse(JSON.stringify(state));
       _.each(stateForStore, function(item) {
         item.selected = false;

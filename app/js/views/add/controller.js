@@ -18,8 +18,8 @@ const mapDispatchToProps = function(dispatch) {
     close: function() {
       dispatch(StateActions.change('initial'));
     },
-    save: function(name, data) {
-      dispatch(ListActions.save(name, data));
+    save: function(name, data, previousName) {
+      dispatch(ListActions.save(name, data, previousName));
     }
   };
 };

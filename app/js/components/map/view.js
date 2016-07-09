@@ -13,42 +13,59 @@ class Map extends React.Component {
     super(props);
     this.map = null;
     this.infowindow = null;
-    this.points = [];
+    this.infowindowOpened = false;
+    this.markers = [];
   }
-  addPoints(points) {
+  addMarkers(points) {
     if (points.length > 1) {
       let bounds = new google.maps.LatLngBounds();
       _.each(points, (point) => {
         var marker = new google.maps.Marker({
           position: point.position,
           map: this.map,
-          title: point.title
+          title: point.title,
+          selected: point.selected
         });
         bounds.extend(marker.getPosition());
         if (point.window) {
-          this.infowindow = new google.maps.InfoWindow({
-            content: point.window
-          });
           marker.addListener('click', () => {
+            this.infowindow.setContent(point.window);
             this.infowindow.open(this.map, marker);
+            this.infowindowOpened = true;
+            if (point.afterWindowOpen) {
+              setTimeout(function() {
+                point.afterWindowOpen();
+              }, 10);
+            }
           });
         }
-        this.points.push(marker);
+        this.markers.push(marker);
       });
       this.map.fitBounds(bounds);
+      if (this.infowindowOpened) {
+        let selectedPoint = _.find(points, {selected: true}),
+          selectedMarker = _.find(this.markers, {selected: true});
+
+        if (selectedPoint && selectedMarker) {
+          this.infowindow.setContent(selectedPoint.window);
+          this.infowindow.open(this.map, selectedMarker);
+          this.infowindowOpened = true;
+        }
+      }
     } else {
       this.map.setCenter(points[0].position);
       let marker = new google.maps.Marker({
         position: points[0].position,
         map: this.map
       });
-      this.points.push(marker);
+      this.markers.push(marker);
     }
   }
-  removePoints() {
-    _.each(this.points, function(point) {
-      point.setMap(null);
+  removeMarkers() {
+    _.each(this.markers, function(markers) {
+      markers.setMap(null);
     });
+    this.markers = [];
   }
   componentDidMount() {
     var points = this.props.points;
@@ -66,12 +83,39 @@ class Map extends React.Component {
         rotateControl: true,
         scrollwheel: false
       });
-      this.addPoints(points);
+      this.infowindow = new google.maps.InfoWindow({
+        content: ''
+      });
+      this.infowindow.addListener('closeclick', () => {
+        this.infowindowOpened = false;
+      });
+      this.addMarkers(points);
     });
   }
   componentWillUpdate(nextProps) {
-    this.removePoints();
-    this.addPoints(nextProps.points);
+    var curPoints = [],
+      nextPoints = [];
+
+    _.each(this.props.points, function(item) {
+      curPoints.push({
+        position: item.position,
+        title: item.title,
+        window: item.window
+      });
+    });
+
+    _.each(nextProps.points, function(item) {
+      nextPoints.push({
+        position: item.position,
+        title: item.title,
+        window: item.window
+      });
+    });
+
+    if (JSON.stringify(curPoints) !== JSON.stringify(nextPoints)) {
+      this.removeMarkers();
+      this.addMarkers(nextProps.points);
+    }
   }
   componentWillUnmount() {
     google.maps.event.clearInstanceListeners(this.map);

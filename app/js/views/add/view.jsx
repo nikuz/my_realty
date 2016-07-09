@@ -336,7 +336,7 @@ class AddView extends React.Component {
       } else {
         this.close();
         state = this.clearData(state);
-        this.props.save(name, state);
+        this.props.save(name, state, editedItemName);
       }
     } else {
       let field = document.querySelector('#' + this.errorFields[0]);

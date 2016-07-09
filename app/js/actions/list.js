@@ -1,10 +1,11 @@
 'use strict';
 
-function save(name, data) {
+function save(name, data, previousName) {
   return {
     type: 'LIST_SAVE',
     name,
-    data
+    data,
+    previousName
   };
 }
 
