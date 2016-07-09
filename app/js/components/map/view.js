@@ -15,6 +15,17 @@ class Map extends React.Component {
     this.infowindow = null;
     this.infowindowOpened = false;
     this.markers = [];
+    this.openInfoWindow = this.openInfoWindow.bind(this);
+  }
+  openInfoWindow(point, marker) {
+    this.infowindow.setContent(point.window);
+    this.infowindow.open(this.map, marker);
+    this.infowindowOpened = true;
+    if (point.afterWindowOpen) {
+      setTimeout(function() {
+        point.afterWindowOpen();
+      }, 10);
+    }
   }
   addMarkers(points) {
     if (points.length > 1) {
@@ -29,15 +40,11 @@ class Map extends React.Component {
         bounds.extend(marker.getPosition());
         if (point.window) {
           marker.addListener('click', () => {
-            this.infowindow.setContent(point.window);
-            this.infowindow.open(this.map, marker);
-            this.infowindowOpened = true;
-            if (point.afterWindowOpen) {
-              setTimeout(function() {
-                point.afterWindowOpen();
-              }, 10);
-            }
+            this.openInfoWindow(point, marker);
           });
+          if (point.selected) {
+            this.openInfoWindow(point, marker);
+          }
         }
         this.markers.push(marker);
       });

@@ -22,7 +22,6 @@ const mapDispatchToProps = function(dispatch) {
     },
     viewChange: function(name) {
       dispatch(FilterActions.viewChange(name));
-      dispatch(ListActions.deselectAll());
     }
   };
 };
