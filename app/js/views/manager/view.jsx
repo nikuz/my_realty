@@ -89,7 +89,7 @@ class RemoveButton extends React.Component {
             title={constants('remove_button_tooltip')}
             message={constants('remove_prompt') + `"${this.props.previewId}"?`}
             confirm={this.confirm}
-            warning={true}
+            warning
           />
           : null
         }

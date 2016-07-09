@@ -38,7 +38,7 @@ class ListView extends React.Component {
     } else {
       contStyle += ' list_view_cont_buy';
     }
-    
+
     if (realty_type === 'house') {
       typeStyle += ' list_view_type_house';
     } else {
@@ -85,5 +85,10 @@ class ListView extends React.Component {
     );
   }
 }
+
+ListView.propTypes = {
+  list: React.PropTypes.object.isRequired,
+  markAsSelected: React.PropTypes.func.isRequired
+};
 
 export default ListView;

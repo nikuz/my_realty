@@ -88,4 +88,9 @@ class MapView extends React.Component {
   }
 }
 
+MapView.propTypes = {
+  list: React.PropTypes.object.isRequired,
+  markAsSelected: React.PropTypes.func.isRequired
+};
+
 export default MapView;
