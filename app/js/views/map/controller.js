@@ -15,6 +15,9 @@ const mapDispatchToProps = function(dispatch) {
   return {
     markAsSelected: function(selectedId) {
       dispatch(ListActions.markAsSelected(selectedId));
+    },
+    deselectAll: function() {
+      dispatch(ListActions.deselectAll());
     }
   };
 };

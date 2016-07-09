@@ -83,6 +83,7 @@ class MapView extends React.Component {
       <Map
         containerId="map-view"
         points={points}
+        afterWindowClose={this.props.deselectAll}
       />
     );
   }
@@ -90,7 +91,8 @@ class MapView extends React.Component {
 
 MapView.propTypes = {
   list: React.PropTypes.object.isRequired,
-  markAsSelected: React.PropTypes.func.isRequired
+  markAsSelected: React.PropTypes.func.isRequired,
+  deselectAll: React.PropTypes.func.isRequired
 };
 
 export default MapView;

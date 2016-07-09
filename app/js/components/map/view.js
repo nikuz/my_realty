@@ -88,6 +88,9 @@ class Map extends React.Component {
       });
       this.infowindow.addListener('closeclick', () => {
         this.infowindowOpened = false;
+        if (this.props.afterWindowClose) {
+          this.props.afterWindowClose();
+        }
       });
       this.addMarkers(points);
     });
@@ -133,7 +136,8 @@ class Map extends React.Component {
 
 Map.propTypes = {
   containerId: React.PropTypes.string.isRequired,
-  points: React.PropTypes.array.isRequired
+  points: React.PropTypes.array.isRequired,
+  afterWindowClose: React.PropTypes.func
 };
 
 export default Map;
