@@ -22,6 +22,16 @@ const DEFAULT = {
       name: constants('favorites'),
       id: 'favorites',
       icon: 'star'
+    },
+    apartments: {
+      name: constants('apartments'),
+      id: 'apartments',
+      icon: '/images/apartment_orange.svg'
+    },
+    house: {
+      name: constants('houses'),
+      id: 'houses',
+      icon: '/images/house_orange.svg'
     }
   },
   view: {
@@ -50,6 +60,7 @@ function update(state, action, key) {
       item.desc = false;
     }
   });
+  state[`${key}_custom`] = true;
   var stateForStore = JSON.parse(JSON.stringify(state));
   stateForStore.view = Object.assign({}, DEFAULT.view);
   storage.set('filter', stateForStore);
@@ -61,13 +72,17 @@ export default function filterState(state, action) {
     case 'FILTER_SORT_CHANGE':
       return update(state, action, 'sort');
     case 'FILTER_SORT_CLEAR':
-      state = Object.assign({}, state, DEFAULT.sort);
+      state = Object.assign({}, state);
+      state.sort = JSON.parse(JSON.stringify(DEFAULT.sort));
+      state.sort_custom = false;
       storage.set('filter', state);
       return state;
     case 'FILTER_FILTER_CHANGE':
       return update(state, action, 'filter');
     case 'FILTER_FILTER_CLEAR':
-      state = Object.assign({}, state, DEFAULT.filter);
+      state = Object.assign({}, state);
+      state.filter = JSON.parse(JSON.stringify(DEFAULT.filter));
+      state.filter_custom = false;
       storage.set('filter', state);
       return state;
     case 'FILTER_VIEW_CHANGE':

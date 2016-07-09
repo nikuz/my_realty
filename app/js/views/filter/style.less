@@ -3,6 +3,9 @@
   height: 28px;
   padding: 10px;
   border-bottom: 1px solid #e6e6e6;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-user-select: none;
 }
 #f_sort,
 #f_filter {
@@ -39,6 +42,30 @@
 .fi_icon {
   margin-right: 5px;
   color: #ed7524;
+}
+.fi_custom_icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  vertical-align: text-bottom;
+}
+
+.fi_clear {
+  display: inline-block;
+  padding: 6px 2px;
+  cursor: pointer;
+}
+.fi_clear.hidden {
+  color: #FFF;
+  cursor: default;
+}
+.fi_clear:hover {
+  text-decoration: underline;
+}
+.fi_icon_clear {
+  font-size: 1.25rem;
+  vertical-align: text-bottom;
+  margin-right: 5px;
 }
 @media all and (max-width: 800px) {
   #f_sort,

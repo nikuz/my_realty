@@ -84,6 +84,9 @@ class MapView extends React.Component {
         containerId="map-view"
         points={points}
         afterWindowClose={this.props.deselectAll}
+        scrollwheel
+        mapTypeControl
+        streetViewControl
       />
     );
   }

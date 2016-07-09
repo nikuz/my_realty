@@ -421,5 +421,11 @@
   },
   "remove_prompt": {
     "message": "Do you really want to remove this realty object: "
+  },
+  "apartments": {
+    "message": "Apartments"
+  },
+  "houses": {
+    "message": "Houses"
   }
 }

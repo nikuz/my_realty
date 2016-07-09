@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-173 213.4 220 140.5" style="enable-background:new -173 213.4 220 140.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#ED7524;}
+</style>
+<g id="house">
+	<rect x="-173" y="347.7" class="st0" width="220" height="6.3"/>
+	<g>
+		<polygon class="st0" points="-103.6,302.3 -128,258.9 -151,301 -156.3,301 -130.5,253.5 -87.8,253.5 -55.1,302.3 		"/>
+		<polygon class="st0" points="-85.2,229.4 -47.4,229.4 -39,229.4 -39,259.7 -27.7,270 -27.7,229.4 -27.7,213.4 -17.4,213.4 
+			-17.4,229.4 -17.4,229.4 -8.3,229.4 42.9,302.6 -37.4,302.6 -81.1,238.1 -90.6,255 -99,253.6 		"/>
+	</g>
+	<g>
+		<polygon class="st0" points="-140.7,302.7 -118.9,302.7 -118.8,349 -121,349 -121.3,349 -121.3,304.8 -137.5,304.8 -123.9,309.5 
+			-123.9,343.7 -140.7,349 		"/>
+	</g>
+	<rect x="-81.4" y="312.2" class="st0" width="7.9" height="21.8"/>
+	<rect x="-94.9" y="312.2" class="st0" width="7.9" height="21.8"/>
+	<rect x="-5.3" y="312.2" class="st0" width="7.9" height="21.8"/>
+	<rect x="-18.8" y="312.2" class="st0" width="7.9" height="21.8"/>
+	<polygon class="st0" points="-39.8,303.9 -39.8,349 -57.7,349 -57.7,303.9 -50.8,303.9 	"/>
+	<polygon class="st0" points="21.9,300.9 21.9,349 16.5,349 16.5,300.9 18.6,300.9 	"/>
+	<polygon class="st0" points="-150.2,299.8 -150.2,349 -155.6,349 -155.6,299.8 -153.5,299.8 	"/>
+</g>
+</svg>

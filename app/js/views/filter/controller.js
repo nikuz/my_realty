@@ -17,8 +17,14 @@ const mapDispatchToProps = function(dispatch) {
     sortChange: function(name) {
       dispatch(FilterActions.sortChange(name));
     },
+    sortClear: function() {
+      dispatch(FilterActions.sortClear());
+    },
     filterChange: function(name) {
       dispatch(FilterActions.filterChange(name));
+    },
+    filterClear: function() {
+      dispatch(FilterActions.filterClear());
     },
     viewChange: function(name) {
       dispatch(FilterActions.viewChange(name));

@@ -75,7 +75,9 @@ class Map extends React.Component {
     this.markers = [];
   }
   componentDidMount() {
-    var points = this.props.points;
+    var props = this.props,
+      points = props.points;
+
     if (!window.google) {
       $script(`${config.MAPS_API_URL}?key=${config.MAPS_API_KEY}&libraries=places`, 'google');
     }
@@ -84,11 +86,11 @@ class Map extends React.Component {
         center: points[0].position,
         zoom: 12,
         zoomControl: true,
-        mapTypeControl: false,
-        streetViewControl: false,
+        mapTypeControl: props.mapTypeControl || false,
+        streetViewControl: props.streetViewControl || false,
         scaleControl: true,
         rotateControl: true,
-        scrollwheel: false
+        scrollwheel: props.scrollwheel || false
       });
       this.infowindow = new google.maps.InfoWindow({
         content: ''
@@ -144,7 +146,10 @@ class Map extends React.Component {
 Map.propTypes = {
   containerId: React.PropTypes.string.isRequired,
   points: React.PropTypes.array.isRequired,
-  afterWindowClose: React.PropTypes.func
+  afterWindowClose: React.PropTypes.func,
+  scrollwheel: React.PropTypes.bool,
+  mapTypeControl: React.PropTypes.bool,
+  streetViewControl: React.PropTypes.bool
 };
 
 export default Map;
