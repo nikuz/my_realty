@@ -28,6 +28,9 @@ class Map extends React.Component {
     }
   }
   addMarkers(points) {
+    if (!this.map) {
+      return;
+    }
     if (points.length > 1) {
       let bounds = new google.maps.LatLngBounds();
       _.each(points, (point) => {

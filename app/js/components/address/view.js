@@ -129,9 +129,11 @@ class Address extends React.Component {
     });
   }
   componentWillUnmount() {
-    google.maps.event.clearInstanceListeners(this.map);
-    google.maps.event.clearInstanceListeners(this.marker);
-    google.maps.event.clearInstanceListeners(this.autocomplete);
+    if (window.google) {
+      google.maps.event.clearInstanceListeners(this.map);
+      google.maps.event.clearInstanceListeners(this.marker);
+      google.maps.event.clearInstanceListeners(this.autocomplete);
+    }
     this.marker = null;
     this.autocomplete = null;
     this.map = null;

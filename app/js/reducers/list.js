@@ -46,7 +46,9 @@ export default function listState(state, action) {
     case 'LIST_ADD_TO_FAVORITES': {
       state = Object.assign({}, state);
       _.each(state, function(item, key) {
-        item.in_favorites = key === action.realtyId;
+        if (key === action.realtyId) {
+          item.in_favorites = true;
+        }
       });
       let stateForStore = JSON.parse(JSON.stringify(state));
       _.each(stateForStore, function(item) {
