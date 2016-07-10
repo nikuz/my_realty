@@ -62,8 +62,18 @@ function update(state, action, key) {
   });
   state[`${key}_custom`] = true;
   var stateForStore = JSON.parse(JSON.stringify(state));
-  stateForStore.view = Object.assign({}, DEFAULT.view);
+  stateForStore.view = JSON.parse(JSON.stringify(DEFAULT.view));
   storage.set('filter', stateForStore);
+  return state;
+}
+
+function clear(state, key) {
+  state = Object.assign({}, state);
+  state[key] = JSON.parse(JSON.stringify(DEFAULT[key]));
+  state[`${key}_custom`] = false;
+  let stateForStore = JSON.parse(JSON.stringify(state));
+  stateForStore.view = JSON.parse(JSON.stringify(DEFAULT.view));
+  storage.set('filter', state);
   return state;
 }
 
@@ -72,19 +82,11 @@ export default function filterState(state, action) {
     case 'FILTER_SORT_CHANGE':
       return update(state, action, 'sort');
     case 'FILTER_SORT_CLEAR':
-      state = Object.assign({}, state);
-      state.sort = JSON.parse(JSON.stringify(DEFAULT.sort));
-      state.sort_custom = false;
-      storage.set('filter', state);
-      return state;
+      return clear(state, 'sort');
     case 'FILTER_FILTER_CHANGE':
       return update(state, action, 'filter');
     case 'FILTER_FILTER_CLEAR':
-      state = Object.assign({}, state);
-      state.filter = JSON.parse(JSON.stringify(DEFAULT.filter));
-      state.filter_custom = false;
-      storage.set('filter', state);
-      return state;
+      return clear(state, 'filter');
     case 'FILTER_VIEW_CHANGE':
       state = Object.assign({}, state);
       _.each(state['view'], function(item, key) {
