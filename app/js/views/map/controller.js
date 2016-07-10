@@ -7,7 +7,8 @@ import MapView from './view';
 
 const mapStateToProps = function(state) {
   return {
-    list: state.list
+    list: state.list,
+    filter: state.filter
   };
 };
 
