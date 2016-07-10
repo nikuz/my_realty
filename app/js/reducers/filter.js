@@ -3,6 +3,7 @@
 import * as _ from 'underscore';
 import constants from 'modules/constants';
 import * as storage from 'modules/storage';
+import {deepClone} from 'modules/object';
 
 const DEFAULT = {
   sort: {
@@ -61,18 +62,18 @@ function update(state, action, key) {
     }
   });
   state[`${key}_custom`] = true;
-  var stateForStore = JSON.parse(JSON.stringify(state));
-  stateForStore.view = JSON.parse(JSON.stringify(DEFAULT.view));
+  var stateForStore = deepClone(state);
+  stateForStore.view = deepClone(DEFAULT.view);
   storage.set('filter', stateForStore);
   return state;
 }
 
 function clear(state, key) {
   state = Object.assign({}, state);
-  state[key] = JSON.parse(JSON.stringify(DEFAULT[key]));
+  state[key] = deepClone(DEFAULT[key]);
   state[`${key}_custom`] = false;
-  let stateForStore = JSON.parse(JSON.stringify(state));
-  stateForStore.view = JSON.parse(JSON.stringify(DEFAULT.view));
+  let stateForStore = deepClone(state);
+  stateForStore.view = (DEFAULT.view);
   storage.set('filter', state);
   return state;
 }
@@ -101,7 +102,7 @@ export default function filterState(state, action) {
       return state;
     default:
       if (state === undefined) {
-        return JSON.parse(JSON.stringify(DEFAULT));
+        return deepClone(DEFAULT);
       } else {
         return state;
       }

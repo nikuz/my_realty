@@ -3,6 +3,7 @@
 import * as React from 'react';
 import * as _ from 'underscore';
 import constants from 'modules/constants';
+import {deepClone} from 'modules/object';
 import realtyModel from 'models/realty';
 import Overlay from 'components/overlay/view';
 import SegmentedControl from 'components/segmented-control/view';
@@ -43,7 +44,7 @@ class OverlayView extends React.Component {
     var editedItem;
     _.each(this.props.list, function(item) {
       if (item.edited) {
-        editedItem = JSON.parse(JSON.stringify(item));
+        editedItem = deepClone(item);
       }
     });
     if (editedItem) {
@@ -60,7 +61,7 @@ class OverlayView extends React.Component {
       });
       this.setState(editedItem);
     } else {
-      let model = JSON.parse(JSON.stringify(realtyModel));
+      let model = deepClone(realtyModel);
       model.initial.visible = true;
       this.setState(model);
     }

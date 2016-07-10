@@ -2,6 +2,7 @@
 
 import * as _ from 'underscore';
 import * as storage from 'modules/storage';
+import {deepClone} from 'modules/object';
 
 export default function listState(state, action) {
   switch (action.type) {
@@ -12,7 +13,7 @@ export default function listState(state, action) {
       if (action.previousName && action.previousName !== action.name) {
         delete state[action.previousName];
       }
-      let stateForStore = JSON.parse(JSON.stringify(state));
+      let stateForStore = deepClone(state);
       _.each(stateForStore, function(item) {
         item.selected = false;
         item.edited = false;
@@ -50,7 +51,7 @@ export default function listState(state, action) {
           item.in_favorites = true;
         }
       });
-      let stateForStore = JSON.parse(JSON.stringify(state));
+      let stateForStore = deepClone(state);
       _.each(stateForStore, function(item) {
         item.selected = false;
         item.edited = false;
@@ -65,7 +66,7 @@ export default function listState(state, action) {
           item.in_favorites = false;
         }
       });
-      let stateForStore = JSON.parse(JSON.stringify(state));
+      let stateForStore = deepClone(state);
       _.each(stateForStore, function(item) {
         item.selected = false;
         item.edited = false;
