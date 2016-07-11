@@ -51,6 +51,20 @@ function removeFromFavorites(realtyId) {
   };
 }
 
+function addToCompare(realtyId) {
+  return {
+    type: 'LIST_ADD_TO_COMPARE',
+    realtyId
+  };
+}
+
+function removeFromCompare(realtyId) {
+  return {
+    type: 'LIST_REMOVE_FROM_COMPARE',
+    realtyId
+  };
+}
+
 export {
   save,
   markAsSelected,
@@ -58,5 +72,7 @@ export {
   edit,
   remove,
   addToFavorites,
-  removeFromFavorites
+  removeFromFavorites,
+  addToCompare,
+  removeFromCompare
 };

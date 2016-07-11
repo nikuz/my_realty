@@ -430,5 +430,11 @@
   },
   "empty_list": {
     "message": "No one realty objects matched to the selected filter. Please modify filter options or reset filter at all."
+  },
+  "compare_button_tooltip": {
+    "message": "Add to compare"
+  },
+  "compare_remove_button_tooltip": {
+    "message": "Remove from compare"
   }
 }

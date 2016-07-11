@@ -12,15 +12,16 @@
   width: 56px;
   height: 56px;
   margin-top: 15px;
+  border: 2px solid transparent;
   border-radius: 50%;
-  box-shadow: 0px 2px 10px rgba(0,0,0,.3),0px 0px 1px rgba(0,0,0,.1),inset 0px 1px 0px rgba(255,255,255,.25),inset 0px -1px 0px rgba(0,0,0,.15);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
   transition-duration: .25s;
-  transition-property: background-color, box-shadow;
+  transition-property: background-color, box-shadow, border-color;
   text-align: center;
   line-height: 6.4rem;
 }
 .manager-button:hover {
-  box-shadow: 0px 5px 5px rgba(0,0,0,.2),0px 10px 14px rgba(0,0,0,.1),inset 0px 1px 0px rgba(255,255,255,.25),inset 0px -1px 0px rgba(0,0,0,.10);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .35);
 }
 #manager *:first-child .manager-button {
   margin-top: 0;
@@ -43,7 +44,7 @@
   line-height: 6.2rem;
 }
 #remove_realty:hover {
-  background-color: #666;
+  background-color: #333;
 }
 
 #edit_realty {
@@ -51,14 +52,36 @@
   line-height: 5.7rem;
 }
 #edit_realty:hover {
-  background-color: #5576e0;
+  background-color: #4c6acc;
 }
 
 #add_to_favorites {
   background-color: #fac91f;
 }
+#add_to_favorites.active {
+  box-shadow: none;
+  border-color: #666;
+}
 #add_to_favorites:hover {
   background-color: #f9d34d;
+}
+
+#add_to_compare {
+  background-color: #F6F6F6;
+  line-height: 7rem;
+}
+#add_to_compare.active {
+  box-shadow: none;
+  border-color: #666;
+}
+#add_to_compare:hover {
+  background-color: #FFF;
+}
+#mbi-compare {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background: url(/images/compare.svg) 50% 50% no-repeat;
 }
 
 .manager-button-icon {
@@ -103,14 +126,27 @@
   #edit_realty,
   #add_new_realty,
   #remove_realty,
-  #add_to_favorites {
+  #add_to_favorites,
+  #add_to_compare {
     display: none;
   }
   #manager:hover #edit_realty,
   #manager:hover #add_new_realty,
   #manager:hover #remove_realty,
-  #manager:hover #add_to_favorites {
+  #manager:hover #add_to_favorites,
+  #manager:hover #add_to_compare {
     display: block;
+  }
+  #add_to_favorites,
+  #remove_realty {
+    line-height: 3.8rem;
+  }
+  #add_to_compare {
+    line-height: 4.8rem;
+  }
+  #mbi-compare {
+    width: 25px;
+    height: 25px;
   }
   #manager-more-mutton {
     display: block;

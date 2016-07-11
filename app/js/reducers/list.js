@@ -74,6 +74,24 @@ export default function listState(state, action) {
       storage.set('list', stateForStore);
       return state;
     }
+    case 'LIST_ADD_TO_COMPARE': {
+      state = Object.assign({}, state);
+      _.each(state, function(item, key) {
+        if (key === action.realtyId) {
+          item.in_compare = true;
+        }
+      });
+      return state;
+    }
+    case 'LIST_REMOVE_FROM_COMPARE': {
+      state = Object.assign({}, state);
+      _.each(state, function(item, key) {
+        if (key === action.realtyId) {
+          item.in_compare = false;
+        }
+      });
+      return state;
+    }
     default:
       if (state === undefined) {
         return {};

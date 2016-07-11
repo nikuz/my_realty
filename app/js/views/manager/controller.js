@@ -31,6 +31,12 @@ const mapDispatchToProps = function(dispatch) {
     },
     removeFromFavorites: function(id) {
       dispatch(ListActions.removeFromFavorites(id));
+    },
+    addToCompare: function(id) {
+      dispatch(ListActions.addToCompare(id));
+    },
+    removeFromCompare: function(id) {
+      dispatch(ListActions.removeFromCompare(id));
     }
   };
 };

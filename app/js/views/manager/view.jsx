@@ -20,15 +20,22 @@ class MoreButton extends React.Component {
 }
 
 class AddButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+  onClick(e) {
+    e.preventDefault();
+    this.props.addRealty();
+  }
   render() {
-    var props = this.props;
     return (
       <div>
         <a
           href="#"
           className="manager-button"
           id="add_new_realty"
-          onClick={props.addRealty}
+          onClick={this.onClick}
           data-tip
           data-for="add-button"
         >
@@ -54,7 +61,8 @@ class RemoveButton extends React.Component {
     this.onClick = this.onClick.bind(this);
     this.confirm = this.confirm.bind(this);
   }
-  onClick() {
+  onClick(e) {
+    e.preventDefault();
     this.setState({
       confirmationOpened: true
     });
@@ -107,7 +115,8 @@ class EditButton extends React.Component {
     super(props);
     this.onClick = this.onClick.bind(this);
   }
-  onClick() {
+  onClick(e) {
+    e.preventDefault();
     var props = this.props;
     props.editRealty(props.previewId);
   }
@@ -141,7 +150,8 @@ class FavoritesButton extends React.Component {
     super(props);
     this.onClick = this.onClick.bind(this);
   }
-  onClick() {
+  onClick(e) {
+    e.preventDefault();
     var props = this.props;
     if (props.alreadyFavorites) {
       props.removeFromFavorites(props.previewId);
@@ -151,21 +161,21 @@ class FavoritesButton extends React.Component {
     ReactTooltip.hide();
   }
   render() {
+    var style = 'manager-button';
+    if (this.props.alreadyFavorites) {
+      style += ' active';
+    }
     return (
       <div>
         <a
           href="#"
-          className="manager-button"
+          className={style}
           id="add_to_favorites"
           onClick={this.onClick}
           data-tip
           data-for="favorites-button"
         >
           <Icon name="star" className="manager-button-icon" />
-          {this.props.alreadyFavorites ?
-            <Icon name="circle" className="manager-button-check-icon" />
-            : null
-          }
         </a>
         <ReactTooltip id="favorites-button" place="left" type="dark" effect="solid">
           {this.props.alreadyFavorites ?
@@ -185,17 +195,71 @@ FavoritesButton.propTypes = {
   alreadyFavorites: React.PropTypes.bool.isRequired
 };
 
+class CompareButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+  onClick(e) {
+    e.preventDefault();
+    var props = this.props;
+    if (props.alreadyInCompare) {
+      props.removeFromCompare(props.previewId);
+    } else {
+      props.addToCompare(props.previewId);
+    }
+    ReactTooltip.hide();
+  }
+  render() {
+    var style = 'manager-button';
+    if (this.props.alreadyInCompare) {
+      style += ' active';
+    }
+    return (
+      <div>
+        <a
+          href="#"
+          className={style}
+          id="add_to_compare"
+          onClick={this.onClick}
+          data-tip
+          data-for="compare-button"
+        >
+          <span id="mbi-compare" className="manager-button-icon" />
+        </a>
+        <ReactTooltip id="compare-button" place="left" type="dark" effect="solid">
+          {this.props.alreadyInCompare ?
+            <span>{constants('compare_remove_button_tooltip')}</span>
+            :
+            <span>{constants('compare_button_tooltip')}</span>
+          }
+        </ReactTooltip>
+      </div>
+    );
+  }
+}
+CompareButton.propTypes = {
+  previewId: React.PropTypes.string.isRequired,
+  addToCompare: React.PropTypes.func.isRequired,
+  removeFromCompare: React.PropTypes.func.isRequired,
+  alreadyInCompare: React.PropTypes.bool.isRequired
+};
+
 class Manager extends React.Component {
   render() {
     var props = this.props,
       previewId,
-      alreadyFavorites = false;
+      alreadyFavorites = false,
+      alreadyInCompare = false;
 
     _.each(props.list, function(item, key) {
       if (item.selected) {
         previewId = key;
         if (item.in_favorites) {
           alreadyFavorites = true;
+        }
+        if (item.in_compare) {
+          alreadyInCompare = true;
         }
       }
     });
@@ -205,6 +269,15 @@ class Manager extends React.Component {
           <EditButton
             editRealty={props.editRealty}
             previewId={previewId}
+          />
+          : null
+        }
+        {previewId ?
+          <CompareButton
+            addToCompare={props.addToCompare}
+            removeFromCompare={props.removeFromCompare}
+            previewId={previewId}
+            alreadyInCompare={alreadyInCompare}
           />
           : null
         }

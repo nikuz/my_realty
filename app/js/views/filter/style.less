@@ -11,8 +11,12 @@
 #f_filter {
   float: left;
   overflow: hidden;
-  margin-right: 10%!important;
+  margin-right: 10%;
 }
+#f_filter {
+  margin-right: 0;
+}
+
 #f_view {
   float: right;
   overflow: hidden;
@@ -67,9 +71,8 @@
   vertical-align: text-bottom;
   margin-right: 5px;
 }
-@media all and (max-width: 800px) {
-  #f_sort,
-  #f_filter {
-    margin-right: 5%!important;
+@media all and (max-width: 1000px) {
+  #f_sort {
+    margin-right: 5%;
   }
 }
