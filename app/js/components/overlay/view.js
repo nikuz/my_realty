@@ -55,7 +55,7 @@ class Overlay extends React.Component {
       >
         {props.opened ?
           <div id="overlay" ref="overlay">
-            <div id="ovl_edge" />
+            {props.type !== 'top' ? <div id="ovl_edge" /> : null}
             <div id="ovl_cont" style={style}>
               <div id="ovl_title">{props.title}</div>
               {props.children}
@@ -79,7 +79,8 @@ Overlay.propTypes = {
   width: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.number
-  ])
+  ]),
+  type: React.PropTypes.string
 };
 
 export default Overlay;

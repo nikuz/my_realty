@@ -147,8 +147,8 @@ class ListView extends React.Component {
             <Icon name="star" className="list_view_favorite_icon" />
             : null
           }
-          <div className="list_view_name">{item.initial.data.name.values.value}</div>
-          <address>{item.initial.data.address.values.value}</address>
+          <div className="list_view_name">{initial.name.values.value}</div>
+          <address>{initial.address.values.value}</address>
           <price>
             <amount dangerouslySetInnerHTML={{__html: price}} />
             <currency> {currency}</currency>

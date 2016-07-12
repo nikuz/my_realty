@@ -1,3 +1,7 @@
+#comparator-wrap {
+  width: 100%;
+  overflow-y: auto;
+}
 #comparator-table {
   margin-top: -15px;
   border-collapse: collapse;
@@ -8,6 +12,10 @@
 }
 #comparator-table td {
   padding: .3em .5rem;
+  vertical-align: top;
+}
+.comparator_item_image_wrap {
+  text-align: center;
 }
 .comparator_item_image {
   position: relative;
@@ -24,13 +32,16 @@
 .comparator_item_type_apartment {
   background-image: url(/images/apartment.svg);
 }
+.comparator_item_name {
+  font-size: 1.167rem;
+}
 #comparator-table price {
   font-size: 1.333rem;
   font-weight: bold;
 }
 
 #comparator_params_cell {
-  vertical-align: bottom;
+  vertical-align: bottom!important;
 }
 .comparator_params_switcher {
   display: inline-block;
@@ -45,4 +56,11 @@
 .comparator_params_switcher.active:hover {
   background-color: #f1ebcf;
   color: #000;
+}
+
+.c-table-name {
+  width: 210px;
+}
+.c-table-value {
+  width: 150px;
 }

@@ -29,7 +29,9 @@ class ComparatorView extends React.Component {
       'sale_type',
       'price'
     ];
+    this.firstRowRender = this.firstRowRender.bind(this);
     this.renderRow = this.renderRow.bind(this);
+    this.paramsTypeSwitch = this.paramsTypeSwitch.bind(this);
     this.close = this.close.bind(this);
     this.reset = this.reset.bind(this);
   }
@@ -46,6 +48,12 @@ class ComparatorView extends React.Component {
       this.props.close();
       this.reset();
     }, 300);
+  }
+  paramsTypeSwitch(e) {
+    e.preventDefault();
+    this.setState({
+      params: e.target.getAttribute('data-value')
+    });
   }
   getRows(list) {
     var rows = {};
@@ -74,6 +82,36 @@ class ComparatorView extends React.Component {
 
     return rows;
   }
+  getItemValue(item) {
+    var value;
+
+    switch (item.type) {
+      case 'text':
+      case 'textarea':
+      case 'number':
+        value = item.values.value;
+        break;
+      case 'segments':
+      case 'selector':
+        _.each(item.values, function(dataItem) {
+          if (dataItem.selected) {
+            value = dataItem.name;
+          }
+        });
+        break;
+      case 'checkbox':
+        if (item.values.selected) {
+          value = <Icon name="check" />;
+        }
+        break;
+    }
+
+    if (value === '' || value === '--' || !value) {
+      value = '—';
+    }
+
+    return value;
+  }
   firstRowRender() {
     return (
       <thead>
@@ -81,13 +119,17 @@ class ComparatorView extends React.Component {
           <td id="comparator_params_cell">
             <a
               href="#"
-              className="comparator_params_switcher active"
+              className={'comparator_params_switcher' + (this.state.params === 'all' ? ' active' : '')}
+              data-value="all"
+              onClick={this.paramsTypeSwitch}
             >
               {constants('params_all')}
             </a><br />
             <a
               href="#"
-              className="comparator_params_switcher"
+              className={'comparator_params_switcher' + (this.state.params === 'different' ? ' active' : '')}
+              data-value="different"
+              onClick={this.paramsTypeSwitch}
             >
               {constants('params_different')}
             </a>
@@ -115,12 +157,21 @@ class ComparatorView extends React.Component {
               return (
                 <td key={key}>
                   <div>
+                    <div className="comparator_item_image_wrap">
+                      <a
+                        href={'index.html#' + key}
+                        target="_blank"
+                        className={'comparator_item_image' + typeStyle}
+                        style={image ? {backgroundImage: `url(${image})`} : null}
+                      />
+                    </div>
                     <a
                       href={'index.html#' + key}
                       target="_blank"
-                      className={'comparator_item_image' + typeStyle}
-                      style={image ? {backgroundImage: `url(${image})`} : null}
-                    />
+                      className="comparator_item_name"
+                    >
+                      {initial.name.values.value}
+                    </a>
                   </div>
                   <price>
                     <amount dangerouslySetInnerHTML={{__html: price}}/>
@@ -137,41 +188,29 @@ class ComparatorView extends React.Component {
     );
   }
   renderRow(rowName, rowKey) {
+    if (this.state.params === 'different') {
+      let rowValues = [];
+      _.each(this.props.list, (item) => {
+        if (item.in_compare) {
+          let data = getValueByPath(item, rowKey);
+          rowValues.push(this.getItemValue(data));
+        }
+      });
+      if (_.uniq(rowValues).length === 1) {
+        return null;
+      }
+    }
     return (
       <tbody key={rowKey}>
         <tr>
-          <td>{rowName}</td>
+          <td className="c-table-name">{rowName}</td>
           {_.map(this.props.list, (item, key) => {
             if (item.in_compare) {
               let data = getValueByPath(item, rowKey),
-                value;
+                value = this.getItemValue(data);
 
-              switch (data.type) {
-                case 'text':
-                case 'textarea':
-                case 'number':
-                  value = data.values.value;
-                  break;
-                case 'segments':
-                case 'selector':
-                  _.each(data.values, function(item) {
-                    if (item.selected) {
-                      value = item.name;
-                    }
-                  });
-                  break;
-                case 'checkbox':
-                  if (data.values.selected) {
-                    value = <Icon name="check" />;
-                  }
-                  break;
-              }
-
-              if (value === '' || value === '--' || !value) {
-                value = '—';
-              }
               return (
-                <td key={key}>
+                <td className="c-table-value" key={key}>
                   {value}
                 </td>
               )
@@ -191,16 +230,19 @@ class ComparatorView extends React.Component {
       return (
         <Overlay
           title={constants('comparator')}
+          type="top"
           width="80%"
           opened={state.opened}
           close={this.close}
         >
-          <table id="comparator-table">
-            {this.firstRowRender()}
-            {_.map(rows, (rowName, key) => {
-              return this.renderRow(rowName, key);
-            })}
-          </table>
+          <div id="comparator-wrap">
+            <table id="comparator-table">
+              {this.firstRowRender()}
+              {_.map(rows, (rowName, key) => {
+                return this.renderRow(rowName, key);
+              })}
+            </table>
+          </div>
         </Overlay>
       );
     } else {
