@@ -73,8 +73,8 @@ function clear(state, key) {
   state[key] = deepClone(DEFAULT[key]);
   state[`${key}_custom`] = false;
   let stateForStore = deepClone(state);
-  stateForStore.view = (DEFAULT.view);
-  storage.set('filter', state);
+  stateForStore.view = deepClone(DEFAULT.view);
+  storage.set('filter', stateForStore);
   return state;
 }
 
