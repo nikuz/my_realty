@@ -32,6 +32,7 @@ class ComparatorView extends React.Component {
     this.firstRowRender = this.firstRowRender.bind(this);
     this.renderRow = this.renderRow.bind(this);
     this.paramsTypeSwitch = this.paramsTypeSwitch.bind(this);
+    this.removeItem = this.removeItem.bind(this);
     this.close = this.close.bind(this);
     this.reset = this.reset.bind(this);
   }
@@ -54,6 +55,9 @@ class ComparatorView extends React.Component {
     this.setState({
       params: e.target.getAttribute('data-value')
     });
+  }
+  removeItem(id) {
+    this.props.removeFromCompare(id);
   }
   getRows(list) {
     var rows = {};
@@ -158,6 +162,12 @@ class ComparatorView extends React.Component {
                 <td key={key}>
                   <div>
                     <div className="comparator_item_image_wrap">
+                      <span
+                        className="comparator_item_remove"
+                        onClick={this.removeItem.bind(null, key)}
+                      >
+                        <Icon name="times-circle-o" />
+                      </span>
                       <a
                         href={'index.html#' + key}
                         target="_blank"
@@ -253,7 +263,8 @@ class ComparatorView extends React.Component {
 
 ComparatorView.propTypes = {
   list: React.PropTypes.object.isRequired,
-  close: React.PropTypes.func.isRequired
+  close: React.PropTypes.func.isRequired,
+  removeFromCompare: React.PropTypes.func.isRequired,
 };
 
 export default ComparatorView;

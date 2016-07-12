@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as StateActions from 'actions/state';
+import * as ListActions from 'actions/list';
 import ComparatorView from './view';
 
 const mapStateToProps = function(state) {
@@ -17,6 +18,9 @@ const mapDispatchToProps = function(dispatch) {
     close: function() {
       dispatch(StateActions.change('initial'));
     },
+    removeFromCompare: function(id) {
+      dispatch(ListActions.removeFromCompare(id));
+    }
   };
 };
 
