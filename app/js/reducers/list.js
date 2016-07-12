@@ -82,6 +82,12 @@ export default function listState(state, action) {
           item.in_compare_date = Date.now();
         }
       });
+      let stateForStore = deepClone(state);
+      _.each(stateForStore, function(item) {
+        item.selected = false;
+        item.edited = false;
+      });
+      storage.set('list', stateForStore);
       return state;
     }
     case 'LIST_REMOVE_FROM_COMPARE': {
@@ -92,6 +98,12 @@ export default function listState(state, action) {
           delete item.in_compare_date;
         }
       });
+      let stateForStore = deepClone(state);
+      _.each(stateForStore, function(item) {
+        item.selected = false;
+        item.edited = false;
+      });
+      storage.set('list', stateForStore);
       return state;
     }
     default:

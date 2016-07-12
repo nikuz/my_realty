@@ -3,23 +3,24 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as StateActions from 'actions/state';
-import ComparatorNotifierView from './view';
+import ComparatorView from './view';
 
 const mapStateToProps = function(state) {
   return {
+    state: state.state,
     list: state.list
   };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    openComparator: function() {
-      dispatch(StateActions.change('comparator'));
-    }
+    close: function() {
+      dispatch(StateActions.change('initial'));
+    },
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ComparatorNotifierView);
+)(ComparatorView);

@@ -13,6 +13,7 @@ import Preview from './views/preview/controller';
 import MapView from './views/map/controller';
 import AddRealtyOvl from './views/add/controller';
 import ComparatorNotifier from './views/comparator-notifier/controller';
+import Comparator from './views/comparator/controller';
 
 import 'styles/basic';
 
@@ -75,6 +76,7 @@ class App extends React.Component {
         <AddRealtyOvl />
         <Manager />
         <ComparatorNotifier />
+        <Comparator />
       </div>
     );
   }

@@ -369,7 +369,7 @@
     "message": "Контакты для связи"
   },
   "add_contacts_name": {
-    "message": "Имя"
+    "message": "Имя контакта"
   },
   "add_contacts_url": {
     "message": "Адрес объявления"
@@ -442,5 +442,14 @@
   },
   "compare_total": {
     "message": "Всего объектов для сравнения:"
+  },
+  "comparator": {
+    "message": "Сравнение"
+  },
+  "params_all": {
+    "message": "Все параметры"
+  },
+  "params_different": {
+    "message": "Только различающиеся"
   }
 }

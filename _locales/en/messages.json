@@ -369,7 +369,7 @@
     "message": "Contacts"
   },
   "add_contacts_name": {
-    "message": "Name"
+    "message": "Contact name"
   },
   "add_contacts_url": {
     "message": "Url of ad"
@@ -442,5 +442,14 @@
   },
   "compare_total": {
     "message": "Total items for compare:"
+  },
+  "comparator": {
+    "message": "Comparator"
+  },
+  "params_all": {
+    "message": "All params"
+  },
+  "params_different": {
+    "message": "Only different"
   }
 }

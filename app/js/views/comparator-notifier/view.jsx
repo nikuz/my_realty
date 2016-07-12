@@ -21,7 +21,8 @@ class ComparatorNotifierView extends React.Component {
     this.close = this.close.bind(this);
   }
   compareOnClick() {
-
+    this.props.openComparator();
+    this.close();
   }
   checker(list) {
     var counter = 0;
@@ -45,6 +46,19 @@ class ComparatorNotifierView extends React.Component {
   }
   componentWillUpdate(nextProps) {
     this.checker(nextProps.list);
+  }
+  componentWillMount() {
+    var counter = 0;
+
+    _.each(this.props.list, function(item) {
+      if (item.in_compare) {
+        counter++;
+      }
+    });
+
+    this.setState({
+      counter
+    });
   }
   render() {
     var state = this.state,

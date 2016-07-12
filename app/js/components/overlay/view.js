@@ -37,7 +37,12 @@ class Overlay extends React.Component {
     document.removeEventListener('keydown', this.escapeDetector);
   }
   render() {
-    var props = this.props;
+    var props = this.props,
+      style = {};
+
+    if (props.width) {
+      style.width = props.width;
+    }
 
     return (
       <ReactCSSTransitionGroup
@@ -51,7 +56,7 @@ class Overlay extends React.Component {
         {props.opened ?
           <div id="overlay" ref="overlay">
             <div id="ovl_edge" />
-            <div id="ovl_cont">
+            <div id="ovl_cont" style={style}>
               <div id="ovl_title">{props.title}</div>
               {props.children}
               <a href="#" id="ovl-close" onClick={props.close}>
@@ -70,7 +75,11 @@ Overlay.propTypes = {
   title: React.PropTypes.string.isRequired,
   close: React.PropTypes.func.isRequired,
   children: React.PropTypes.element.isRequired,
-  scrollTo: React.PropTypes.number
+  scrollTo: React.PropTypes.number,
+  width: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ])
 };
 
 export default Overlay;
