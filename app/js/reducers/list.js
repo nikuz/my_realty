@@ -79,6 +79,7 @@ export default function listState(state, action) {
       _.each(state, function(item, key) {
         if (key === action.realtyId) {
           item.in_compare = true;
+          item.in_compare_date = Date.now();
         }
       });
       return state;
@@ -88,6 +89,7 @@ export default function listState(state, action) {
       _.each(state, function(item, key) {
         if (key === action.realtyId) {
           item.in_compare = false;
+          delete item.in_compare_date;
         }
       });
       return state;

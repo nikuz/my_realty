@@ -1,0 +1,64 @@
+#comparator-notifier {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #FD5;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+  z-index: 10;
+}
+.comparator-notifier-enter,
+.comparator-notifier-appear,
+.comparator-notifier-leave {
+  transition: opacity 0.3s ease-in-out;
+}
+.comparator-notifier-enter,
+.comparator-notifier-appear,
+.comparator-notifier-leave.comparator-notifier-leave-active {
+  opacity: 0;
+}
+.comparator-notifier-enter.comparator-notifier-enter-active,
+.comparator-notifier-appear.comparator-notifier-appear-active,
+.comparator-notifier-leave {
+  opacity: 1;
+}
+
+#comparator-notifier-cont {
+  position: relative;
+  max-width: 1160px;
+  padding: 5px 10px;
+  margin: 0 auto;
+  white-space: nowrap;
+}
+#comparator-notifier-title {
+  margin: 0;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.5rem;
+}
+#comparator-notifier-text {
+  margin: 0;
+  font-size: 1.083rem;
+  color: #665822;
+}
+#comparator-notifier-button {
+  float: right;
+  margin-right: 60px;
+}
+
+#comparator-notifier-close {
+  position: absolute;
+  right: 0;
+  top: -4px;
+  padding: 0 10px;
+  z-index: 1;
+}
+#comparator-notifier-close-icon {
+  font-size: 5rem;
+  color: #FFF;
+}
+#comparator-notifier-close:hover #comparator-notifier-close-icon {
+  font-size: 6rem;
+  margin: -.6rem -.5rem 0 0;
+}
