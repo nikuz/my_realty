@@ -6,7 +6,8 @@ import * as storage from './modules/storage';
 
 const store = createStore(reducers, {
   filter: storage.get('filter'),
-  list: storage.get('list')
+  list: storage.get('list'),
+  backup: storage.get('backup')
 });
 
 store.subscribe(function() {

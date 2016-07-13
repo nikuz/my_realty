@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
+import constants from 'modules/constants';
 import * as StateActions from 'actions/state';
-import * as BackupActions from 'actions/state';
+import * as BackupActions from 'actions/backup';
 import * as StorageController from 'controllers/storage';
 import BackupView from './view';
 
@@ -18,17 +19,18 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = function(dispatch) {
   var createBackupRequest;
   return {
-    create: function(list) {
-      createBackupRequest = StorageController.post(list);
+    create: function(backup, list) {
+      createBackupRequest = StorageController.post(backup, list);
       createBackupRequest.then(
         function(response) {
           if (createBackupRequest) {
-            console.log(response);
-            // dispatch(BackupActions.set(response));
+            dispatch(BackupActions.create(response));
           }
         },
-        function(err) {
-          console.log(err);
+        function() {
+          dispatch(
+            BackupActions.error(constants('backup_create_error'))
+          );
         }
       );
     },

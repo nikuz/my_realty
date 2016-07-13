@@ -1,0 +1,58 @@
+#backup-cont h3 {
+  margin: 0 0 5px;
+  font-size: 1.25rem;
+}
+#backup-field-wrap {
+  position: relative;
+  display: inline-block;
+}
+#backup-id-field {
+  width: 500px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid rgba(0, 0, 0, .15);
+  font-size: 1.167rem;
+  line-height: 1.28572;
+  border-radius: 6px;
+  vertical-align: middle;
+  color: #4d4d4d;
+}
+#backup-date {
+  margin: 5px 0;
+  font-size: 1.083rem;
+}
+#backup-copy-icon {
+  margin-left: 10px;
+  vertical-align: middle;
+  font-size: 2rem;
+  cursor: pointer;
+}
+#backup-field-tooltip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 7px;
+  border-radius: 6px;
+  background-color: rgba(33, 33, 33, .6);
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+  z-index: 1;
+}
+.copy-to-clipboard-enter,
+.copy-to-clipboard-appear,
+.copy-to-clipboard-leave {
+  transition: opacity 0.3s ease-in-out;
+}
+.copy-to-clipboard-enter,
+.copy-to-clipboard-appear,
+.copy-to-clipboard-leave.copy-to-clipboard-leave-active {
+  opacity: 0;
+}
+.copy-to-clipboard-enter.copy-to-clipboard-enter-active,
+.copy-to-clipboard-appear.copy-to-clipboard-appear-active,
+.copy-to-clipboard-leave {
+  opacity: 1;
+}

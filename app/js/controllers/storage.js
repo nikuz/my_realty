@@ -36,12 +36,17 @@ function get() {
   authorize();
 }
 
-function post(list) {
-  var uploadData;
+function post(backup, list) {
+  var fileId = backup.id,
+    uploadData;
+
   return new Promise(function(resolve, reject) {
     authorize()
       .then(
         function(response) {
+          if (!fileId) {
+            fileId = response.authorizationToken;
+          }
           return response;
         },
         reject
@@ -64,15 +69,18 @@ function post(list) {
           headers: {
             'Authorization': uploadData.authorizationToken,
             'Content-Type': 'application/json',
-            'X-Bz-File-Name': uploadData.authorizationToken,
+            'X-Bz-File-Name': fileId,
             'X-Bz-Content-Sha1': hashedList
           },
           body: dataString,
           responseDataType: 'json'
         }).then(function(response) {
-          console.log(response);
+          resolve({
+            id: fileId,
+            date: response.uploadTimestamp
+          });
         }, function(error) {
-          console.log(error);
+          reject(error);
         });
       });
   });

@@ -1,11 +1,20 @@
 'use strict';
 
-function set() {
+function create(data) {
   return {
-    type: 'BACKUP_SET'
+    type: 'BACKUP_CREATE',
+    data
+  };
+}
+
+function error(error) {
+  return {
+    type: 'BACKUP_ERROR',
+    error
   };
 }
 
 export {
-  set
+  create,
+  error
 };

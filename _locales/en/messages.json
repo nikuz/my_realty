@@ -460,5 +460,17 @@
   },
   "backup_create": {
     "message": "Create"
+  },
+  "backup_create_error": {
+    "message": "Can't create backup. Server response error"
+  },
+  "backup_last_update": {
+    "message": "Last update:"
+  },
+  "copy_to_clipboard": {
+    "message": "Copy to clipboard"
+  },
+  "copied_to_clipboard": {
+    "message": "Copied to clipboard"
   }
 }

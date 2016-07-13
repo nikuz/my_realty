@@ -460,5 +460,17 @@
   },
   "backup_create": {
     "message": "Создать"
+  },
+  "backup_create_error": {
+    "message": "Не удалось создать резервную копию. Ошибка сервера."
+  },
+  "backup_last_update": {
+    "message": "Последнее обновление:"
+  },
+  "copy_to_clipboard": {
+    "message": "Скопировать в буфер обмена"
+  },
+  "copied_to_clipboard": {
+    "message": "Скопированно в буфер обмена"
   }
 }
