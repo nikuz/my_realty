@@ -454,5 +454,11 @@
   },
   "backup": {
     "message": "Backup"
+  },
+  "no_backups": {
+    "message": "You have no one backup"
+  },
+  "backup_create": {
+    "message": "Create"
   }
 }

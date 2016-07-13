@@ -13,13 +13,23 @@ class BackupView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      backup: null,
+      loading: false,
       opened: true
     };
+    this.createOnClick = this.createOnClick.bind(this);
     this.close = this.close.bind(this);
+  }
+  createOnClick() {
+    this.setState({
+      loading: true
+    });
+    this.props.create(this.props.list);
   }
   reset() {
     this.setState({
-      opened: true
+      opened: true,
+      loading: false
     });
   }
   close() {
@@ -31,8 +41,14 @@ class BackupView extends React.Component {
       this.reset();
     }, 300);
   }
+  componentWillMount() {
+    this.setState({
+      backup: this.props.backup
+    });
+  }
   render() {
     if (this.props.state.name === 'backup') {
+      let backup = this.state.backup;
       return (
         <Overlay
           title={constants('backup')}
@@ -40,7 +56,21 @@ class BackupView extends React.Component {
           close={this.close}
         >
           <div id="backup-wrap">
-            Backup
+            {backup.id ?
+              <div>
+                {backup.id}
+                {backup.date}
+              </div>
+              :
+              <div>
+                <p>{constants('no_backups')}</p>
+                <ButtonGreen
+                  text={constants('backup_create')}
+                  onClick={this.createOnClick}
+                  loading={this.state.loading}
+                />
+              </div>
+            }
           </div>
         </Overlay>
       );
@@ -52,6 +82,8 @@ class BackupView extends React.Component {
 
 BackupView.propTypes = {
   list: React.PropTypes.object.isRequired,
+  backup: React.PropTypes.object.isRequired,
+  create: React.PropTypes.func.isRequired,
   close: React.PropTypes.func.isRequired
 };
 

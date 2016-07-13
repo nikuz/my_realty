@@ -38,7 +38,8 @@ Button.propTypes = {
   stretched: React.PropTypes.bool,
   onClick: React.PropTypes.func.isRequired,
   icon: React.PropTypes.string,
-  text: React.PropTypes.string.isRequired
+  text: React.PropTypes.string.isRequired,
+  loading: React.PropTypes.bool
 };
 
 class ButtonGreen extends React.Component {

@@ -454,5 +454,11 @@
   },
   "backup": {
     "message": "Сохранить"
+  },
+  "no_backups": {
+    "message": "У вас еще нет резервных копий"
+  },
+  "backup_create": {
+    "message": "Создать"
   }
 }

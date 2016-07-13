@@ -1,6 +1,6 @@
 # My realty
 
-Extension for to collect descriptions of your own real estate, or to collect selling/rent ads.
+Extension for to collect the descriptions of your own real estate, or to collect the selling/rent ads.
 
 [App in store!](https://chrome.google.com/webstore/detail/upwatcher-upwork-job-watc/cpmlhfgkdmkceojlpjdnddhjimnlockd)
 

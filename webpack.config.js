@@ -51,6 +51,7 @@ module.exports = {
       config: path.join(__dirname, 'app/js/config'),
       linkify: path.join(__dirname, 'node_modules/linkifyjs/lib/linkify-string'),
       components: path.join(__dirname, 'app/js/components'),
+      controllers: path.join(__dirname, 'app/js/controllers'),
       views: path.join(__dirname, 'app/js/views'),
       actions: path.join(__dirname, 'app/js/actions'),
       reducers: path.join(__dirname, 'app/js/reducers'),

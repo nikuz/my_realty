@@ -8,12 +8,12 @@ function paramsSerialise(data){
   var dataString = '';
   for (let i in data) {
     if (data.hasOwnProperty(i)) {
-      if(value instanceof Array){
-        value.forEach(function(item) {
-          dataString += `${key}[]=${encodeURIComponent(item)}&`;
+      if(data[i] instanceof Array){
+        data[i].forEach(function(item) {
+          dataString += `${i}[]=${encodeURIComponent(item)}&`;
         });
       } else {
-        dataString += `${key}=${encodeURIComponent(value)}&`;
+        dataString += `${i}=${encodeURIComponent(data[i])}&`;
       }
     }
   }
@@ -39,8 +39,12 @@ function ajax(options) {
   request.open(rType, rUrl, true);
 
   if(opts.data && rType === 'POST'){
-    request.setRequestHeader('content-type', 'application/x-www-form-urlencoded; charset=utf-8');
-    dataString = paramsSerialise(opts.data);
+    if (opts.data instanceof Object) {
+      request.setRequestHeader('content-type', 'application/x-www-form-urlencoded; charset=utf-8');
+      dataString = paramsSerialise(opts.data);
+    } else {
+      dataString = opts.data;
+    }
   }
 
   if (opts.headers) {
@@ -54,8 +58,12 @@ function ajax(options) {
   request.onload = function(){
     var response = request.responseText;
     if(request.status >= 200 && request.status < 400){
-      if(opts.dataType === 'json'){
-        response = JSON.parse(response);
+      if (opts.responseDataType === 'json') {
+        try {
+          response = JSON.parse(response);
+        } catch (err) {
+          return error(err);
+        }
       }
       success(response);
     } else {
