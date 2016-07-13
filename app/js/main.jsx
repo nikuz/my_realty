@@ -14,6 +14,8 @@ import MapView from './views/map/controller';
 import AddRealtyOvl from './views/add/controller';
 import ComparatorNotifier from './views/comparator-notifier/controller';
 import Comparator from './views/comparator/controller';
+import BackupButton from './views/backup-button/controller';
+import Backup from './views/backup/controller';
 
 import 'styles/basic';
 
@@ -64,7 +66,10 @@ class App extends React.Component {
   render() {
     return (
       <div id="content">
-        <Filter />
+        <div id="navigation">
+          <BackupButton />
+          <Filter />
+        </div>
         {this.state.view === 'list' ?
           <div id="list_view_wrapper">
             <List />
@@ -77,6 +82,7 @@ class App extends React.Component {
         <Manager />
         <ComparatorNotifier />
         <Comparator />
+        <Backup />
       </div>
     );
   }

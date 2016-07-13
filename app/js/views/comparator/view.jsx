@@ -264,7 +264,7 @@ class ComparatorView extends React.Component {
 ComparatorView.propTypes = {
   list: React.PropTypes.object.isRequired,
   close: React.PropTypes.func.isRequired,
-  removeFromCompare: React.PropTypes.func.isRequired,
+  removeFromCompare: React.PropTypes.func.isRequired
 };
 
 export default ComparatorView;

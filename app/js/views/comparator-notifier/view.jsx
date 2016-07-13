@@ -106,7 +106,8 @@ class ComparatorNotifierView extends React.Component {
 }
 
 ComparatorNotifierView.propTypes = {
-  list: React.PropTypes.object.isRequired
+  list: React.PropTypes.object.isRequired,
+  openComparator: React.PropTypes.func.isRequired
 };
 
 export default ComparatorNotifierView;

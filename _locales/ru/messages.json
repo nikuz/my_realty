@@ -451,5 +451,8 @@
   },
   "params_different": {
     "message": "Только различающиеся"
+  },
+  "backup": {
+    "message": "Сохранить"
   }
 }
