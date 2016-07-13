@@ -21,62 +21,55 @@ function paramsSerialise(data){
 }
 
 function ajax(options) {
-  var opts = options || {},
-    request = new XMLHttpRequest,
-    success = opts.success || function() {},
-    error = opts.error || function() {},
-    rType = opts.type,
-    rUrl = opts.url,
-    dataString = null;
+  options = options || {};
 
-  if(opts.cache === false){
-    rUrl += `${addParamsMarker(rUrl)}t=${Date.now()}`;
-  }
-  if(rType === 'GET' && opts.data){
-    rUrl += addParamsMarker(rUrl) + paramsSerialise(opts.data);
-  }
-
-  request.open(rType, rUrl, true);
-
-  if(opts.data && rType === 'POST'){
-    if (opts.data instanceof Object) {
-      request.setRequestHeader('content-type', 'application/x-www-form-urlencoded; charset=utf-8');
-      dataString = paramsSerialise(opts.data);
-    } else {
-      dataString = opts.data;
-    }
-  }
-
-  if (opts.headers) {
-    for (let i in opts.headers) {
-      if (opts.headers.hasOwnProperty(i)) {
-        request.setRequestHeader(i, opts.headers[i]);
-      }
-    }
-  }
-
-  request.onload = function(){
-    var response = request.responseText;
-    if(request.status >= 200 && request.status < 400){
-      if (opts.responseDataType === 'json') {
-        try {
-          response = JSON.parse(response);
-        } catch (err) {
-          return error(err);
+  return new Promise(function(resolve, reject) {
+    var body = options.body;
+    switch (options.type) {
+      case 'GET':
+        if (body) {
+          options.url += addParamsMarker(options.url) + paramsSerialise(body);
+          body = null;
         }
-      }
-      success(response);
-    } else {
-      error(request.status);
+        break;
+      case 'POST':
+      case 'PUT':
+        if (body instanceof Object && !(body instanceof File) && !(body instanceof FormData)) {
+          body = paramsSerialise(body);
+        }
+        // console.log(body);
+        break;
     }
-  };
 
-  request.onerror = function(response){
-    error(response);
-  };
-
-  request.send(dataString || null);
-  return request;
+    fetch(options.url, {
+      method: options.type,
+      headers: options.headers,
+      body: body,
+      cache: options.change === false ? 'no-cache' : 'default'
+    }).then(
+      function(response) {
+        if (response.status >= 200 && response.status < 400) {
+          var extractBodyMethod = 'text';
+          if (options.responseDataType === 'json') {
+            extractBodyMethod = 'json';
+          }
+          response[extractBodyMethod]().then(
+            function(data) {
+              resolve(data);
+            },
+            function(error) {
+              reject(error);
+            }
+          );
+        } else {
+          reject(response.status);
+        }
+      },
+      function(error) {
+        reject(error);
+      }
+    );
+  });
 }
 
 // ----------------

@@ -1,27 +1,25 @@
 'use strict';
 
-function convertStringToArrayBufferView(string) {
-  var bytes = new Uint8Array(string.length);
-  for (let i = 0; i < string.length; i++) {
-    bytes[i] = string.charCodeAt(i);
-  }
-  return bytes;
-}
+function hex(buffer) {
+  var hexCodes = [],
+    view = new DataView(buffer),
+    value,
+    stringValue,
+    padding = '00000000',
+    paddedValue;
 
-function convertArrayBufferToHexaDecimal(buffer) {
-  var data_view = new DataView(buffer),
-    hex = '', c;
-
-  for(let i = 0, l = data_view.byteLength; i < l; i++) {
-    c = data_view.getUint8(i).toString(16);
-    if(c.length < 2) {
-      c = '0' + c;
-    }
-
-    hex += c;
+  for (let i = 0; i < view.byteLength; i += 4) {
+    // Using getUint32 reduces the number of iterations needed (we process 4 bytes each time)
+    value = view.getUint32(i);
+    // toString(16) will give the hex representation of the number without padding
+    stringValue = value.toString(16);
+    // We use concatenation and slice for padding
+    paddedValue = (padding + stringValue).slice(-padding.length);
+    hexCodes.push(paddedValue);
   }
 
-  return hex;
+  // Join all the hex strings into one
+  return hexCodes.join('');
 }
 
 // ----------------
@@ -44,19 +42,15 @@ function getValueByPath(obj, path) {
   }
 }
 
-function hash(obj) {
+function sha1(obj) {
   if (obj instanceof Object) {
     obj = JSON.stringify(obj);
   }
 
+  var buffer = new TextEncoder('utf-8').encode(obj);
   return new Promise(function(resolve) {
-    crypto.subtle.digest(
-      {
-        name: "SHA-1"
-      },
-      convertStringToArrayBufferView(obj)
-    ).then(function(result) {
-      resolve(convertArrayBufferToHexaDecimal(result));
+    crypto.subtle.digest('SHA-1', buffer).then(function(hash) {
+      resolve(hex(hash));
     });
   });
 }
@@ -68,5 +62,5 @@ function hash(obj) {
 export {
   deepClone,
   getValueByPath,
-  hash
+  sha1
 };
