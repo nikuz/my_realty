@@ -63,12 +63,15 @@ class Map extends React.Component {
         }
       }
     } else {
-      this.map.setCenter(points[0].position);
-      let marker = new google.maps.Marker({
-        position: points[0].position,
-        map: this.map
-      });
-      this.markers.push(marker);
+      let point = points[0];
+      if (point) {
+        this.map.setCenter(point.position);
+        let marker = new google.maps.Marker({
+          position: point.position,
+          map: this.map
+        });
+        this.markers.push(marker);
+      }
     }
   }
   removeMarkers() {
@@ -85,9 +88,18 @@ class Map extends React.Component {
       $script(`${config.MAPS_API_URL}?key=${config.MAPS_API_KEY}&libraries=places`, 'google');
     }
     $script.ready('google', () => {
+      var position;
+      if (points[0]) {
+        position = points[0].position;
+      } else {
+        position = {
+          lat: 49.76,
+          lng: 15.01
+        };
+      }
       this.map = new google.maps.Map(this.refs.map_container, {
-        center: points[0].position,
-        zoom: 12,
+        center: position,
+        zoom: points[0] ? 12 : 5,
         zoomControl: true,
         mapTypeControl: props.mapTypeControl || false,
         streetViewControl: props.streetViewControl || false,

@@ -8,6 +8,7 @@ import * as StateActions from 'actions/state';
 import * as ListActions from 'actions/list';
 import * as BackupActions from 'actions/backup';
 import * as StorageController from 'controllers/storage';
+import {deepClone} from 'modules/object';
 import BackupView from './view';
 
 const mapStateToProps = function(state) {
@@ -22,6 +23,11 @@ const mapDispatchToProps = function(dispatch) {
   var backupRequest;
   return {
     create: function(backup, list) {
+      list = deepClone(list);
+      _.each(list, function(item) {
+        item.selected = false;
+        item.edited = false;
+      });
       backupRequest = StorageController.post(backup, list);
       backupRequest.then(
         function(response) {

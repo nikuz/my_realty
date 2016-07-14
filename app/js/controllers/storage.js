@@ -3,7 +3,8 @@
 import * as _ from 'underscore';
 import * as config from 'config';
 import * as ajax from 'modules/ajax';
-import {sha1} from 'modules/object';
+import {sha1} from 'modules/string';
+import JSZip from 'jszip';
 
 const tokenLivePeriod = 82800000; // 23 hours
 
@@ -77,17 +78,20 @@ function get(backup, masterFileName) {
             url: `${baseUrl}/file/${config.STORAGE_BUCKET_NAME}/${masterFileName}`,
             headers: {
               'Authorization': response.authorizationToken
-            },
-            responseDataType: 'json'
+            }
           });
         },
         reject
       ).then(
         function(response) {
-          result.masterFileName = masterFileName;
-          resolve({
-            backup: result,
-            list: response
+          JSZip.loadAsync(response).then(function(zip) {
+            zip.file('list.json').async('string').then(function(text) {
+              result.masterFileName = masterFileName;
+              resolve({
+                backup: result,
+                list: JSON.parse(text)
+              });
+            });
           });
         },
         reject
@@ -97,7 +101,11 @@ function get(backup, masterFileName) {
 
 function post(backup, list) {
   return new Promise(function(resolve, reject) {
-    var result = {};
+    var result = {},
+      zip = new JSZip(),
+      dataString = JSON.stringify(list),
+      dataArchive = zip.file('list.json', dataString);
+
     authorize(backup)
       .then(
         function(response) {
@@ -125,17 +133,23 @@ function post(backup, list) {
             uploadUrlDate: response.uploadUrlDate || Date.now(),
             uploadAuthorizationToken: response.uploadAuthorizationToken || response.authorizationToken
           });
-          return sha1(list);
+
+          return dataArchive.generateAsync({
+            type: 'binarystring',
+            compression: 'DEFLATE'
+          }).then(function(string) {
+            dataString = string;
+            return sha1(string);
+          });
         },
         reject
       )
       .then(function(hashedList) {
-        var dataString = JSON.stringify(list);
         ajax.post({
           url: result.uploadUrl,
           headers: {
             'Authorization': result.uploadAuthorizationToken,
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/zip',
             'X-Bz-File-Name': result.fileName,
             'X-Bz-Content-Sha1': hashedList
           },
@@ -157,7 +171,6 @@ function post(backup, list) {
               });
             }
             resolve(result);
-
           },
           reject
         );
