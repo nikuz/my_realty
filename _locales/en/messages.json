@@ -490,5 +490,17 @@
   },
   "backup_download_success": {
     "message": "Number of successfully downloaded and saved realty objects:"
+  },
+  "list_filter_empty": {
+    "message": "No one realty objects matched to the selected filter. Please modify filter options or reset filter at all."
+  },
+  "list_empty": {
+    "message": "Add realty objects"
+  },
+  "total": {
+    "message": "Total"
+  },
+  "filtered": {
+    "message": "Filtered"
   }
 }

@@ -2,7 +2,9 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
+import constants from 'modules/constants';
 import * as priceModule from 'modules/price';
+import {ButtonGreen} from 'components/buttons/view';
 import Icon from 'react-fa';
 
 import './style.less';
@@ -11,6 +13,10 @@ class ListView extends React.Component {
   constructor(props) {
     super(props);
     this.filter = this.filter.bind(this);
+    this.addRealtyOnClick = this.addRealtyOnClick.bind(this);
+  }
+  addRealtyOnClick() {
+    this.props.addRealty();
   }
   getItemPrice(item) {
     return item.initial.data.transaction.data.price.data.price_amount.values.value;
@@ -159,28 +165,52 @@ class ListView extends React.Component {
   }
   render() {
     var props = this.props,
-      list = this.filter(props.list);
+      listLength = _.size(props.list);
 
-    return (
-      <div id="list">
-        {list.length ?
-          _.map(list, (item, key) => {
-            return this.renderItem(item, key);
-          })
-          :
-          <div id="list_empty">
-            No one realty objects matched to the selected filter. Please modify filter options or reset filter at all.
+    if (listLength) {
+      let list = this.filter(props.list);
+      return (
+        <div id="list">
+          <div id="list_counters">
+            <span id="list_filter_total">
+              {constants('total')}: {listLength}
+            </span>
+            <span id="list_filter_filtered">
+              {constants('filtered')}: {list.length}
+            </span>
           </div>
-        }
-      </div>
-    );
+          {list.length ?
+            _.map(list, (item, key) => {
+              return this.renderItem(item, key);
+            })
+            :
+            <p id="list_empty_text">
+              {constants('list_filter_empty')}
+            </p>
+          }
+        </div>
+      )
+    } else {
+      return (
+        <div id="list_empty">
+          <i id="list_empty_edge" />
+          <p id="list_empty_text">
+            <ButtonGreen
+              text={constants('list_empty')}
+              onClick={this.addRealtyOnClick}
+            />
+          </p>
+        </div>
+      );
+    }
   }
 }
 
 ListView.propTypes = {
   list: React.PropTypes.object.isRequired,
   filter: React.PropTypes.object.isRequired,
-  markAsSelected: React.PropTypes.func.isRequired
+  markAsSelected: React.PropTypes.func.isRequired,
+  addRealty: React.PropTypes.func.isRequired
 };
 
 export default ListView;
