@@ -455,11 +455,14 @@
   "backup": {
     "message": "Backup"
   },
+  "backup_upload": {
+    "message": "Upload"
+  },
+  "backup_download": {
+    "message": "Download"
+  },
   "no_backups": {
     "message": "You have no one backup"
-  },
-  "backup_create": {
-    "message": "Create"
   },
   "backup_create_error": {
     "message": "Can't create backup. Server response error. Please try again later."
@@ -472,5 +475,20 @@
   },
   "copied_to_clipboard": {
     "message": "Copied to clipboard"
+  },
+  "backup_download_info": {
+    "message": "Also if you have the ID of third-party backup, you can use it for download the realty objects."
+  },
+  "backup_download_do_not_overwrite": {
+    "message": "Do not overwrite existing realty objects"
+  },
+  "backup_download_overwrite_confirmation": {
+    "message": "An overwrite option is enabled. If remote backup contains a realty objects with the same name as local copy, local version of the realty objects will be overwritten."
+  },
+  "backup_download_error": {
+    "message": "Can't download backup. Server response error. Please try again later."
+  },
+  "backup_download_success": {
+    "message": "Number of successfully downloaded and saved realty objects:"
   }
 }

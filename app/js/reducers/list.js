@@ -6,6 +6,22 @@ import {deepClone} from 'modules/object';
 
 export default function listState(state, action) {
   switch (action.type) {
+    case 'LIST_POPULATE': {
+      state = Object.assign({}, state);
+      _.each(action.data, function(value, key) {
+        if (action.overwrite === false && state[key]) {
+          return;
+        }
+        state[key] = value;
+      });
+      let stateForStore = deepClone(state);
+      _.each(stateForStore, function(item) {
+        item.selected = false;
+        item.edited = false;
+      });
+      storage.set('list', stateForStore);
+      return state;
+    }
     case 'LIST_SAVE': {
       state = Object.assign({}, state, {
         [action.name]: action.data

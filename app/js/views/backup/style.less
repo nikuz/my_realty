@@ -6,7 +6,7 @@
   position: relative;
   display: inline-block;
 }
-#backup-id-field {
+.backup-field {
   width: 500px;
   height: 32px;
   padding: 0 8px;
@@ -57,8 +57,22 @@
   opacity: 1;
 }
 
-#backup-error {
+.backup-error,
+.backup-success {
   padding: 5px 0;
   color: #F00;
   font-size: 1.167rem;
+}
+.backup-success {
+  color: #080;
+}
+#backup-separator {
+  margin: 15px 0;
+}
+#backup-download-note {
+  margin: 0 0 10px;
+  font-size: 1.167rem;
+}
+#backup-overwrite-checkbox {
+  margin: 10px 0;
 }

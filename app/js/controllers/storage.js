@@ -59,14 +59,45 @@ function removeFileById(options) {
 // public methods
 // ----------------
 
-function get() {
-  authorize();
+function get(backup, masterFileName) {
+  return new Promise(function(resolve, reject) {
+    var result = {};
+    authorize(backup)
+      .then(
+        function(response) {
+          _.extend(result, {
+            authorizationToken: response.authorizationToken,
+            authorizationTokenDate: response.authorizationTokenDate || Date.now(),
+            fileName: backup.fileName || response.authorizationToken,
+            apiUrl: response.apiUrl
+          });
+
+          var baseUrl = response.apiUrl.replace(/api(\d+?)/, 'f$1');
+          return ajax.get({
+            url: `${baseUrl}/file/${config.STORAGE_BUCKET_NAME}/${masterFileName}`,
+            headers: {
+              'Authorization': response.authorizationToken
+            },
+            responseDataType: 'json'
+          });
+        },
+        reject
+      ).then(
+        function(response) {
+          result.masterFileName = masterFileName;
+          resolve({
+            backup: result,
+            list: response
+          });
+        },
+        reject
+      );
+  });
 }
 
 function post(backup, list) {
-  var result = {};
-
   return new Promise(function(resolve, reject) {
+    var result = {};
     authorize(backup)
       .then(
         function(response) {
@@ -117,6 +148,7 @@ function post(backup, list) {
               fileId: response.fileId
             });
             if (backup.fileId) {
+              // remove previous copy of the backup
               removeFileById({
                 fileName: backup.fileName,
                 fileId: backup.fileId,

@@ -1,5 +1,13 @@
 'use strict';
 
+function populate(data, overwrite) {
+  return {
+    type: 'LIST_POPULATE',
+    data,
+    overwrite
+  };
+}
+
 function save(name, data, previousName) {
   return {
     type: 'LIST_SAVE',
@@ -66,6 +74,7 @@ function removeFromCompare(realtyId) {
 }
 
 export {
+  populate,
   save,
   markAsSelected,
   deselectAll,

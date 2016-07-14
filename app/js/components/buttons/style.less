@@ -9,6 +9,9 @@
   color: #FFF;
   font-size: 1.25rem;
   cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-user-select: none;
 }
 .button.stretched {
   display: block;
@@ -50,10 +53,17 @@
 .button.red:active {
   background-color: #be2e25;
 }
+.button.disabled,
+.button.disabled:hover,
+.button.disabled:active {
+  cursor: default;
+  background-color: #CCC;
+}
 .button .icon {
   margin-right: 8px;
   color: #FFF;
   font-size: 1.5rem;
+  vertical-align: middle;
 }
 .hidden_text {
   visibility: hidden;
@@ -63,4 +73,7 @@
   left: 50%;
   top: 50%;
   margin: -15px 0 0 -15px;
+}
+.button_text_wrap {
+  position: relative;
 }

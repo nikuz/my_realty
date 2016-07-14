@@ -9,25 +9,33 @@ import './style.less';
 class Button extends React.Component {
   render() {
     var props = this.props,
-      style = 'button ' + (props.type || 'blue'),
+      style = 'button ',
       textStyle = props.loading ? 'hidden_text' : null;
+
+    if (props.disabled) {
+      style += 'disabled';
+    } else {
+      style += props.type || 'blue';
+    }
 
     if (props.stretched) {
       style += ' stretched';
     }
 
     return (
-      <span className={style} onClick={props.onClick}>
+      <span className={style} onClick={props.disabled ? null : props.onClick}>
         {props.icon ? <Icon name={props.icon} className="icon" /> : null}
-        <span className={textStyle}>{props.text}</span>
-        {props.loading ?
-          <Loading
-            size="big"
-            color="#FFF"
-            className="button_loading"
-          />
-          : null
-        }
+        <span className="button_text_wrap">
+          <span className={textStyle}>{props.text}</span>
+          {props.loading ?
+            <Loading
+              size="big"
+              color="#FFF"
+              className="button_loading"
+            />
+            : null
+          }
+        </span>
       </span>
     );
   }
@@ -39,7 +47,8 @@ Button.propTypes = {
   onClick: React.PropTypes.func.isRequired,
   icon: React.PropTypes.string,
   text: React.PropTypes.string.isRequired,
-  loading: React.PropTypes.bool
+  loading: React.PropTypes.bool,
+  disabled: React.PropTypes.bool,
 };
 
 class ButtonGreen extends React.Component {

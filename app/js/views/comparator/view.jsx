@@ -115,6 +115,11 @@ class ComparatorView extends React.Component {
 
     return value;
   }
+  componentWillReceiveProps(nextProps) {
+    if (!_.find(nextProps.list, {in_compare: true}) && nextProps.state.name === 'comparator') {
+      this.close();
+    }
+  }
   firstRowRender() {
     return (
       <thead>
