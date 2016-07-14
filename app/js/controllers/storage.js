@@ -1,28 +1,55 @@
 'use strict';
 
+import * as _ from 'underscore';
 import * as config from 'config';
 import * as ajax from 'modules/ajax';
 import {sha1} from 'modules/object';
 
-function authorize() {
-  return ajax.get({
-    url: config.STORAGE_AUTH_URL,
-    headers: {
-      'Authorization': 'Basic ' + btoa(config.STORAGE_ACCOUNT_ID + ':' + config.STORAGE_APP_KEY)
-    },
-    responseDataType: 'json'
-  });
+const tokenLivePeriod = 82800000; // 23 hours
+
+function authorize(options) {
+  options = options || {};
+  if (options.authorizationToken && Date.now() - Number(options.authorizationTokenDate) < tokenLivePeriod) {
+    return Promise.resolve(options);
+  } else {
+    return ajax.get({
+      url: config.STORAGE_AUTH_URL,
+      headers: {
+        'Authorization': 'Basic ' + btoa(config.STORAGE_ACCOUNT_ID + ':' + config.STORAGE_APP_KEY)
+      },
+      responseDataType: 'json'
+    });
+  }
 }
 
 function getUploadUrl(options) {
   options = options || {};
-  return ajax.get({
-    url: options.apiUrl + config.STORAGE_GET_UPLOAD_URL,
+  if (options.uploadUrl && Date.now() - Number(options.uploadUrlDate) < tokenLivePeriod) {
+    return Promise.resolve(options);
+  } else {
+    return ajax.get({
+      url: options.apiUrl + config.STORAGE_GET_UPLOAD_URL,
+      headers: {
+        'Authorization': options.authorizationToken
+      },
+      body: {
+        bucketId: config.STORAGE_BUCKET_ID
+      },
+      responseDataType: 'json'
+    });
+  }
+}
+
+function removeFileById(options) {
+  options = options || {};
+  ajax.get({
+    url: options.apiUrl + config.STORAGE_DELETE_FILE_URL,
     headers: {
-      'Authorization': options.authToken
+      'Authorization': options.authorizationToken
     },
     body: {
-      bucketId: config.STORAGE_BUCKET_ID
+      fileName: options.fileName,
+      fileId: options.fileId
     },
     responseDataType: 'json'
   });
@@ -37,27 +64,36 @@ function get() {
 }
 
 function post(backup, list) {
-  var fileId = backup.id,
-    uploadData;
+  var result = {};
 
   return new Promise(function(resolve, reject) {
-    authorize()
+    authorize(backup)
       .then(
         function(response) {
-          if (!fileId) {
-            fileId = response.authorizationToken;
-          }
+          _.extend(result, {
+            authorizationToken: response.authorizationToken,
+            authorizationTokenDate: response.authorizationTokenDate || Date.now(),
+            fileName: backup.fileName || response.authorizationToken,
+            apiUrl: response.apiUrl
+          });
           return response;
         },
         reject
-      ).then(function(authorisationData) {
+      ).then(function() {
         return getUploadUrl({
-          apiUrl: authorisationData.apiUrl,
-          authToken: authorisationData.authorizationToken
+          uploadUrl: backup.uploadUrl,
+          uploadUrlDate: backup.uploadUrlDate,
+          apiUrl: result.apiUrl,
+          authorizationToken: result.authorizationToken,
+          uploadAuthorizationToken: backup.uploadAuthorizationToken
         });
       }).then(
-        function(result) {
-          uploadData = result;
+        function(response) {
+          _.extend(result, {
+            uploadUrl: response.uploadUrl,
+            uploadUrlDate: response.uploadUrlDate || Date.now(),
+            uploadAuthorizationToken: response.uploadAuthorizationToken || response.authorizationToken
+          });
           return sha1(list);
         },
         reject
@@ -65,23 +101,34 @@ function post(backup, list) {
       .then(function(hashedList) {
         var dataString = JSON.stringify(list);
         ajax.post({
-          url: uploadData.uploadUrl,
+          url: result.uploadUrl,
           headers: {
-            'Authorization': uploadData.authorizationToken,
+            'Authorization': result.uploadAuthorizationToken,
             'Content-Type': 'application/json',
-            'X-Bz-File-Name': fileId,
+            'X-Bz-File-Name': result.fileName,
             'X-Bz-Content-Sha1': hashedList
           },
           body: dataString,
           responseDataType: 'json'
-        }).then(function(response) {
-          resolve({
-            id: fileId,
-            date: response.uploadTimestamp
-          });
-        }, function(error) {
-          reject(error);
-        });
+        }).then(
+          function(response) {
+            _.extend(result, {
+              uploadTimestamp: response.uploadTimestamp,
+              fileId: response.fileId
+            });
+            if (backup.fileId) {
+              removeFileById({
+                fileName: backup.fileName,
+                fileId: backup.fileId,
+                authorizationToken: result.authorizationToken,
+                apiUrl: result.apiUrl
+              });
+            }
+            resolve(result);
+
+          },
+          reject
+        );
       });
   });
 }

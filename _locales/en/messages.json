@@ -462,7 +462,7 @@
     "message": "Create"
   },
   "backup_create_error": {
-    "message": "Can't create backup. Server response error"
+    "message": "Can't create backup. Server response error. Please try again later."
   },
   "backup_last_update": {
     "message": "Last update:"

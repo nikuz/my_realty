@@ -87,13 +87,13 @@ class BackupView extends React.Component {
           close={this.close}
         >
           <div id="backup-wrap">
-            {backup.id ?
+            {backup.fileId ?
               <div id="backup-cont">
                 <h3>Last backup:</h3>
                 <span id="backup-field-wrap">
                   <input
                     type="text"
-                    defaultValue={backup.id}
+                    defaultValue={backup.fileId}
                     readOnly
                     id="backup-id-field"
                     ref="field"
@@ -125,13 +125,19 @@ class BackupView extends React.Component {
                   <span>{constants('copy_to_clipboard')}</span>
                 </ReactTooltip>
                 <p id="backup-date">
-                  {constants('backup_last_update')} {this.getFormattedDate(backup.date)}
+                  {constants('backup_last_update')} {this.getFormattedDate(backup.uploadTimestamp)}
                 </p>
               </div>
               :
               <div>
                 <p>{constants('no_backups')}</p>
               </div>
+            }
+            {backup.error ?
+              <div id="backup-error">
+                {backup.error}
+              </div>
+              : null
             }
             <ButtonGreen
               text={constants('backup_create')}
