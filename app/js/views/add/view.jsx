@@ -172,7 +172,7 @@ class OverlayView extends React.Component {
         <h5>{constants.get(dataItem.name)} {required}</h5>
         {values}
         {dataItem.error ?
-          <FieldError text={dataItem.error_text} />
+          <FieldError text={constants.get(dataItem.error_text)} />
           : null
         }
       </div>
@@ -327,7 +327,7 @@ class AddView extends React.Component {
       editedItemName;
 
     _.each(this.props.list, function(item, key) {
-      if (item.edited) {
+      if (item.edited && this.props.state.name === 'edit_realty_ovl') {
         editedItemName = key;
       }
     });
@@ -339,9 +339,9 @@ class AddView extends React.Component {
         newState.scrollTo = field.offsetTop;
         this.setState(newState);
       } else {
-        this.close();
         state = this.clearData(state);
         this.props.save(name, state, editedItemName);
+        this.close();
       }
     } else {
       let field = document.querySelector('#' + this.errorFields[0]);
