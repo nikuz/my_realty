@@ -232,6 +232,7 @@ class BackupView extends React.Component {
 }
 
 BackupView.propTypes = {
+  state: React.PropTypes.object.isRequired,
   list: React.PropTypes.object.isRequired,
   backup: React.PropTypes.object.isRequired,
   create: React.PropTypes.func.isRequired,

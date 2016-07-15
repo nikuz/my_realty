@@ -189,7 +189,7 @@ class ListView extends React.Component {
             </p>
           }
         </div>
-      )
+      );
     } else {
       return (
         <div id="list_empty">

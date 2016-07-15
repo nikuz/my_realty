@@ -227,7 +227,7 @@ class ComparatorView extends React.Component {
                 <td className="c-table-value" key={key}>
                   {value}
                 </td>
-              )
+              );
             } else {
               return null;
             }
@@ -266,6 +266,7 @@ class ComparatorView extends React.Component {
 }
 
 ComparatorView.propTypes = {
+  state: React.PropTypes.object.isRequired,
   list: React.PropTypes.object.isRequired,
   close: React.PropTypes.func.isRequired,
   removeFromCompare: React.PropTypes.func.isRequired
