@@ -71,7 +71,7 @@ class PhotoGalleryFullScreen extends React.Component {
     });
   }
   componentDidUpdate() {
-    if (this.state.loaded) {
+    if (this.state.loaded || !this.state.selectedPhoto) {
       return;
     }
     this.image = new Image();

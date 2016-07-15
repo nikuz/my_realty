@@ -83,7 +83,7 @@ class OverlayView extends React.Component {
       case 'segments':
         values = (
           <SegmentedControl
-            items={constants.fill(dataItem.values)}
+            items={dataItem.values}
             onSelect={this.change}
           />
         );
@@ -112,7 +112,7 @@ class OverlayView extends React.Component {
       case 'selector':
         values = (
           <Selector
-            items={constants.fill(dataItem.values)}
+            items={dataItem.values}
             size={dataItem.size}
             onSelect={this.change}
           />

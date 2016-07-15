@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
+import * as constants from '../../modules/constants';
 
 import './style.less';
 
@@ -56,7 +57,9 @@ class Selector extends React.Component {
       <select onChange={this.change} defaultValue={state.defaultValue} className={style}>
         {_.map(state.items, (item, key) => {
           return (
-            <option key={key} value={key}>{item.name}</option>
+            <option key={key} value={key}>
+              {constants.get(item.name)}
+            </option>
           );
         })}
       </select>

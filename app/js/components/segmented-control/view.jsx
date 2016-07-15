@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
+import * as constants from '../../modules/constants';
 
 import './style.less';
 
@@ -44,7 +45,7 @@ class SegmentedControl extends React.Component {
               data-item={key}
               onClick={this.change}
             >
-              {item.name}
+              {constants.get(item.name)}
             </li>
           );
         })}
