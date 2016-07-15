@@ -22,7 +22,9 @@
     "https://*.backblaze.com/"
   ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "background.js"
+    ],
     "persistent": false
   }
 }

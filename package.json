@@ -9,8 +9,7 @@
   },
   "author": "Nikolay Kuznetcov",
   "license": "ISC",
-  "devDependencies": {},
-  "dependencies": {
+  "devDependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.10.4",
     "babel-eslint": "^6.1.0",
@@ -28,9 +27,14 @@
     "gulp-util": "^3.0.7",
     "gulp-zip": "^3.2.0",
     "html-webpack-plugin": "^2.22.0",
-    "jszip": "^3.0.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "jszip": "^3.0.0",
     "linkifyjs": "^2.0.4",
     "react": "^15.2.0",
     "react-addons-css-transition-group": "^15.2.0",
@@ -40,9 +44,6 @@
     "react-tooltip": "^3.0.8",
     "redux": "^3.5.2",
     "scriptjs": "^2.5.8",
-    "style-loader": "^0.13.1",
-    "underscore": "^1.8.3",
-    "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
+    "underscore": "^1.8.3"
   }
 }
