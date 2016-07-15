@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from 'modules/constants';
+import constants from '../../modules/constants';
+import Confirmation from '../../components/confirmation/view';
 import ReactTooltip from 'react-tooltip';
-import Confirmation from 'components/confirmation/view';
 import Icon from 'react-fa';
 
 import './style.less';

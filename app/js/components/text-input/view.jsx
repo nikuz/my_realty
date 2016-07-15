@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import * as _ from 'underscore';
-import constants from 'modules/constants';
+import constants from '../../modules/constants';
 
 import './style.less';
 

@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from 'modules/constants';
-import * as priceModule from 'modules/price';
-import {ButtonGreen} from 'components/buttons/view';
+import constants from '../../modules/constants';
+import * as priceModule from '../../modules/price';
+import {ButtonGreen} from '../../components/buttons/view';
 import Icon from 'react-fa';
 
 import './style.less';

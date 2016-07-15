@@ -2,15 +2,15 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from 'modules/constants';
-import Overlay from 'components/overlay/view';
+import constants from '../../modules/constants';
+import Overlay from '../../components/overlay/view';
 import {
   ButtonGreen,
   ButtonBlue
-} from 'components/buttons/view';
+} from '../../components/buttons/view';
+import CheckBox from '../../components/checkbox/view';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ReactTooltip from 'react-tooltip';
-import CheckBox from 'components/checkbox/view';
 import Icon from 'react-fa';
 
 import './style.less';

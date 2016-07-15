@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as ListActions from 'actions/list';
+import * as ListActions from '../../actions/list';
 import MapView from './view';
 
 const mapStateToProps = function(state) {

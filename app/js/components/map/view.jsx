@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import Icon from 'react-fa';
 import * as config from '../../config';
+import Icon from 'react-fa';
 import $script from 'scriptjs';
 
 import './style.less';

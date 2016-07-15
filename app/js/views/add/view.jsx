@@ -2,19 +2,19 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from 'modules/constants';
-import {deepClone} from 'modules/object';
-import realtyModel from 'models/realty';
-import Overlay from 'components/overlay/view';
-import SegmentedControl from 'components/segmented-control/view';
-import TextInput from 'components/text-input/view';
-import Selector from 'components/selector/view';
-import CheckBox from 'components/checkbox/view';
-import Textarea from 'components/textarea/view';
-import FieldError from 'components/field-error/view';
-import ExtendableList from 'components/extendable-list/view';
-import Address from 'components/address/view';
-import {ButtonBlue} from 'components/buttons/view';
+import constants from '../../modules/constants';
+import {deepClone} from '../../modules/object';
+import realtyModel from '../../models/realty';
+import Overlay from '../../components/overlay/view';
+import SegmentedControl from '../../components/segmented-control/view';
+import TextInput from '../../components/text-input/view';
+import Selector from '../../components/selector/view';
+import CheckBox from '../../components/checkbox/view';
+import Textarea from '../../components/textarea/view';
+import FieldError from '../../components/field-error/view';
+import ExtendableList from '../../components/extendable-list/view';
+import Address from '../../components/address/view';
+import {ButtonBlue} from '../../components/buttons/view';
 
 import './style.less';
 

@@ -1,7 +1,7 @@
 'use strict';
 
 import * as React from 'react';
-import constants from 'modules/constants';
+import constants from '../../modules/constants';
 import Icon from 'react-fa';
 
 import './style.less';

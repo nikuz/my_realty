@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as StateActions from 'actions/state';
-import * as ListActions from 'actions/list';
+import * as StateActions from '../../actions/state';
+import * as ListActions from '../../actions/list';
 import AddButtonView from './view';
 
 const mapStateToProps = function(state) {

@@ -1,9 +1,9 @@
 'use strict';
 
 import * as _ from 'underscore';
-import constants from 'modules/constants';
-import * as storage from 'modules/storage';
-import {deepClone} from 'modules/object';
+import constants from '../modules/constants';
+import * as storage from '../modules/storage';
+import {deepClone} from '../modules/object';
 
 const DEFAULT = {
   sort: {

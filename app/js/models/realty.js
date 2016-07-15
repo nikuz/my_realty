@@ -1,6 +1,6 @@
 'use strict';
 
-import constants from 'modules/constants';
+import constants from '../modules/constants';
 
 export default {
   initial: {

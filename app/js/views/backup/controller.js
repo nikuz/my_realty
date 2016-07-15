@@ -3,12 +3,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as _ from 'underscore';
-import constants from 'modules/constants';
-import * as StateActions from 'actions/state';
-import * as ListActions from 'actions/list';
-import * as BackupActions from 'actions/backup';
-import * as StorageController from 'controllers/storage';
-import {deepClone} from 'modules/object';
+import constants from '../../modules/constants';
+import * as StateActions from '../../actions/state';
+import * as ListActions from '../../actions/list';
+import * as BackupActions from '../../actions/backup';
+import * as StorageController from '../../controllers/storage';
+import {deepClone} from '../../modules/object';
 import BackupView from './view';
 
 const mapStateToProps = function(state) {

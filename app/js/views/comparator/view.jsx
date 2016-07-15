@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from 'modules/constants';
-import Overlay from 'components/overlay/view';
-import {getValueByPath} from 'modules/object';
-import * as priceModule from 'modules/price';
+import constants from '../../modules/constants';
+import Overlay from '../../components/overlay/view';
+import {getValueByPath} from '../../modules/object';
+import * as priceModule from '../../modules/price';
 import Icon from 'react-fa';
 
 import './style.less';

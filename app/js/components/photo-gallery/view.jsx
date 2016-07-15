@@ -3,8 +3,8 @@
 import * as React from 'react';
 import * as _ from 'underscore';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import constants from 'modules/constants';
-import Loading from 'components/loading/view';
+import constants from '../../modules/constants';
+import Loading from '../../components/loading/view';
 import Icon from 'react-fa';
 
 import './style.less';

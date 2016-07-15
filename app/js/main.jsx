@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as _ from 'underscore';
-import animate from 'modules/animate';
 import { Provider } from 'react-redux';
+import * as _ from 'underscore';
+import animate from './modules/animate';
 import AppStore from './store';
 import Manager from './views/manager/controller';
 import Filter from './views/filter/controller';
@@ -17,7 +17,7 @@ import Comparator from './views/comparator/controller';
 import BackupButton from './views/backup-button/controller';
 import Backup from './views/backup/controller';
 
-import 'styles/basic';
+import '../styles/basic';
 
 class App extends React.Component {
   constructor(props) {

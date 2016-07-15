@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import * as priceModule from 'modules/price';
-import Map from 'components/map/view';
+import * as priceModule from '../../modules/price';
+import Map from '../../components/map/view';
 
 import './style.less';
 

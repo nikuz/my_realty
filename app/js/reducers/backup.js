@@ -1,8 +1,8 @@
 'use strict';
 
 import * as _ from 'underscore';
-import * as storage from 'modules/storage';
-import {deepClone} from 'modules/object';
+import * as storage from '../modules/storage';
+import {deepClone} from '../modules/object';
 
 const DEFAULT = {
   do_not_overwrite: true

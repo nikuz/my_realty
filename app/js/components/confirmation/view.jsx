@@ -1,13 +1,13 @@
 'use strict';
 
 import * as React from 'react';
-import constants from 'modules/constants';
-import Overlay from 'components/overlay/view';
+import constants from '../../modules/constants';
+import Overlay from '../../components/overlay/view';
 import {
   ButtonBlue,
   ButtonGray,
   ButtonRed
-} from 'components/buttons/view';
+} from '../../components/buttons/view';
 
 import './style.less';
 

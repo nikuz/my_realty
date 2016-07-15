@@ -1,13 +1,13 @@
 'use strict';
 
 import * as React from 'react';
-import constants from 'modules/constants';
 import * as _ from 'underscore';
-import PhotoGallery from 'components/photo-gallery/view';
-import Map from 'components/map/view';
+import constants from '../../modules/constants';
+import PhotoGallery from '../../components/photo-gallery/view';
+import Map from '../../components/map/view';
+import * as priceModule from '../../modules/price';
 import Icon from 'react-fa';
 import Linkify from 'linkify';
-import * as priceModule from 'modules/price';
 
 import './style.less';
 

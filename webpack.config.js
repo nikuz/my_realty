@@ -48,17 +48,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx', '.less'],
     modulesDirectories: ['node_modules'],
     alias: {
-      config: path.join(__dirname, 'app/js/config'),
-      linkify: path.join(__dirname, 'node_modules/linkifyjs/lib/linkify-string'),
-      components: path.join(__dirname, 'app/js/components'),
-      controllers: path.join(__dirname, 'app/js/controllers'),
-      views: path.join(__dirname, 'app/js/views'),
-      actions: path.join(__dirname, 'app/js/actions'),
-      reducers: path.join(__dirname, 'app/js/reducers'),
-      modules: path.join(__dirname, 'app/js/modules'),
-      models: path.join(__dirname, 'app/js/models'),
-      utils: path.join(__dirname, 'app/js/utils'),
-      styles: path.join(__dirname, 'app/styles')
+      linkify: path.join(__dirname, 'node_modules/linkifyjs/lib/linkify-string')
     }
   },
   plugins: [

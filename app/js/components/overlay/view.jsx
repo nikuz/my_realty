@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import animate from 'modules/animate';
+import animate from '../../modules/animate';
 import Icon from 'react-fa';
 
 import './style.less';

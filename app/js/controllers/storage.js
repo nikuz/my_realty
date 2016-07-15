@@ -1,9 +1,9 @@
 'use strict';
 
 import * as _ from 'underscore';
-import * as config from 'config';
-import * as ajax from 'modules/ajax';
-import {sha1} from 'modules/string';
+import * as config from '../config';
+import * as ajax from '../modules/ajax';
+import {sha1} from '../modules/string';
 import JSZip from 'jszip';
 
 const tokenLivePeriod = 82800000; // 23 hours
