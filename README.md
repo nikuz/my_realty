@@ -2,10 +2,10 @@
 
 Extension for to collect the descriptions of your own real estate, or to collect the selling/rent ads.
 
-[App in store!](https://chrome.google.com/webstore/detail/upwatcher-upwork-job-watc/cpmlhfgkdmkceojlpjdnddhjimnlockd)
+[App in store!](https://chrome.google.com/webstore/detail/my-realty/engjidpfjkimnhnjeahnejmmbpdlaaih)
 
 
-![alt text](store_resources/list.png "List of jobs")
-![alt text](store_resources/preview.png "Job preview")
-![alt text](store_resources/settings.png "Settings")
-![alt text](store_resources/notification.png "Notification")
+![alt text](store_resources/1.png "Realty object view")
+![alt text](store_resources/3.png "Map")
+![alt text](store_resources/2.png "Comparator")
+![alt text](store_resources/4.png "Backup")

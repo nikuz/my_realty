@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
+import * as constants from '../../modules/constants';
 import Icon from 'react-fa';
 
 import './style.less';
@@ -25,7 +26,7 @@ class FilterView extends React.Component {
         <li key={key}>
           <a className={className} onClick={controller.bind(null, key)}>
             {icon}
-            {item.name}
+            {constants.get(item.name)}
           </a>
         </li>
       );

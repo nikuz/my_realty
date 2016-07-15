@@ -1,49 +1,48 @@
 'use strict';
 
 import * as _ from 'underscore';
-import * as constants from '../modules/constants';
 import * as storage from '../modules/storage';
 import {deepClone} from '../modules/object';
 
 const DEFAULT = {
   sort: {
     price: {
-      name: constants.get('price'),
+      name: 'price',
       id: 'price',
       icon: 'usd'
     },
     area: {
-      name: constants.get('area'),
+      name: 'area',
       id: 'area',
       icon: 'expand'
     }
   },
   filter: {
     favorites: {
-      name: constants.get('favorites'),
+      name: 'favorites',
       id: 'favorites',
       icon: 'star'
     },
     apartments: {
-      name: constants.get('apartments'),
+      name: 'apartments',
       id: 'apartments',
       icon: '/images/apartment_orange.svg'
     },
     house: {
-      name: constants.get('houses'),
+      name: 'houses',
       id: 'houses',
       icon: '/images/house_orange.svg'
     }
   },
   view: {
     list: {
-      name: constants.get('list'),
+      name: 'list',
       id: 'list',
       icon: 'th-list',
       active: true
     },
     map: {
-      name: constants.get('map'),
+      name: 'map',
       id: 'map',
       icon: 'map'
     }

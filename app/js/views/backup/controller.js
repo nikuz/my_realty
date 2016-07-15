@@ -26,7 +26,8 @@ const mapDispatchToProps = function(dispatch) {
       list = deepClone(list);
       _.each(list, function(item) {
         item.selected = false;
-        item.edited = false;
+        item.selected = false;
+        item.in_compare = false;
       });
       backupRequest = StorageController.post(backup, list);
       backupRequest.then(

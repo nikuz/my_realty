@@ -1,7 +1,7 @@
 'use strict';
 
 function get(name) {
-  if (name) {
+  if (name && typeof name === 'string') {
     return chrome.i18n.getMessage(name);
   } else {
     return '';
