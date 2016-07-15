@@ -23,7 +23,7 @@ const mapDispatchToProps = function(dispatch) {
     editRealty: function(id) {
       dispatch(ListActions.edit(id));
       setTimeout(function() {
-        dispatch(StateActions.change('add_realty_ovl'));
+        dispatch(StateActions.change('edit_realty_ovl'));
       }, 10);
     },
     addToFavorites: function(id) {

@@ -42,8 +42,8 @@ class OverlayView extends React.Component {
   }
   componentWillMount() {
     var editedItem;
-    _.each(this.props.list, function(item) {
-      if (item.edited) {
+    _.each(this.props.list, (item) => {
+      if (item.edited && this.props.appState === 'edit_realty_ovl') {
         editedItem = deepClone(item);
       }
     });
@@ -220,7 +220,8 @@ OverlayView.propTypes = {
   list: React.PropTypes.object.isRequired,
   submit: React.PropTypes.func.isRequired,
   close: React.PropTypes.func.isRequired,
-  scrollTo: React.PropTypes.number
+  scrollTo: React.PropTypes.number,
+  appState: React.PropTypes.string.isRequired
 };
 
 class AddView extends React.Component {
@@ -368,10 +369,11 @@ class AddView extends React.Component {
     var props = this.props,
       state = this.state;
 
-    if (props.state.name === 'add_realty_ovl') {
+    if (props.state.name === 'add_realty_ovl' || props.state.name === 'edit_realty_ovl') {
       return (
         <OverlayView
           list={props.list}
+          appState={props.state.name}
           opened={state.opened}
           submit={this.submit}
           close={this.close}
