@@ -2017,7 +2017,7 @@ export default {
         name: '',
         type: 'extendable_list',
         placeholder: 'add_photo_placeholder',
-        limit: 40,
+        limit: 50,
         values: []
       }
     }

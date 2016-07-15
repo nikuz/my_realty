@@ -4,7 +4,7 @@ function get(name) {
   if (name && typeof name === 'string') {
     return chrome.i18n.getMessage(name);
   } else {
-    return '';
+    return name;
   }
 }
 
