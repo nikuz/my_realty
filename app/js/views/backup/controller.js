@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as _ from 'underscore';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 import * as StateActions from '../../actions/state';
 import * as ListActions from '../../actions/list';
 import * as BackupActions from '../../actions/backup';
@@ -37,7 +37,7 @@ const mapDispatchToProps = function(dispatch) {
         },
         function() {
           dispatch(
-            BackupActions.error(constants('backup_create_error'))
+            BackupActions.error(constants.get('backup_create_error'))
           );
         }
       );
@@ -64,7 +64,7 @@ const mapDispatchToProps = function(dispatch) {
         },
         function() {
           dispatch(
-            BackupActions.downloadError(constants('backup_download_error'))
+            BackupActions.downloadError(constants.get('backup_download_error'))
           );
         }
       );

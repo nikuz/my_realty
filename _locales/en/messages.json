@@ -496,5 +496,11 @@
   },
   "list_empty": {
     "message": "Add realty objects"
+  },
+  "total": {
+    "message": "Total"
+  },
+  "filtered": {
+    "message": "Filtered"
   }
 }

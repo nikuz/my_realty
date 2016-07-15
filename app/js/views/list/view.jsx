@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 import * as priceModule from '../../modules/price';
 import {ButtonGreen} from '../../components/buttons/view';
 import Icon from 'react-fa';
@@ -173,10 +173,10 @@ class ListView extends React.Component {
         <div id="list">
           <div id="list_counters">
             <span id="list_filter_total">
-              {constants('total')}: {listLength}
+              {constants.get('total')}: {listLength}
             </span>
             <span id="list_filter_filtered">
-              {constants('filtered')}: {list.length}
+              {constants.get('filtered')}: {list.length}
             </span>
           </div>
           {list.length ?
@@ -185,7 +185,7 @@ class ListView extends React.Component {
             })
             :
             <p id="list_empty_text">
-              {constants('list_filter_empty')}
+              {constants.get('list_filter_empty')}
             </p>
           }
         </div>
@@ -196,7 +196,7 @@ class ListView extends React.Component {
           <i id="list_empty_edge" />
           <p id="list_empty_text">
             <ButtonGreen
-              text={constants('list_empty')}
+              text={constants.get('list_empty')}
               onClick={this.addRealtyOnClick}
             />
           </p>

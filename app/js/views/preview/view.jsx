@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 import PhotoGallery from '../../components/photo-gallery/view';
 import Map from '../../components/map/view';
 import * as priceModule from '../../modules/price';
@@ -53,7 +53,7 @@ class Preview extends React.Component {
       case 'selector':
         _.each(dataItem.values, function(item) {
           if (item.selected) {
-            value = item.name;
+            value = constants.get(item.name);
             switch (item.id) {
               case 'yes':
                 valueStyle += ' piv_yes';
@@ -122,7 +122,7 @@ class Preview extends React.Component {
       return (
         <div className="preview_item" key={dataKey}>
           {dataItem.name !== '' ?
-            <span className="preview_item_title">{dataItem.name}: </span>
+            <span className="preview_item_title">{constants.get(dataItem.name)}: </span>
             : null
           }
           <span className={valueStyle}>{value}</span>
@@ -195,7 +195,7 @@ class Preview extends React.Component {
           } else {
             return (
               <div key={key}>
-                <h2>{item.name}</h2>
+                <h2>{constants.get(item.name)}</h2>
                 {_.map(item.data, (dataItem, dataKey) => {
                   return this.renderItem(dataItem, dataKey);
                 })}
@@ -214,7 +214,7 @@ class PreviewEmpty extends React.Component {
       <div id="preview_empty">
         <div id="pe_edge" />
         <div id="pe_content">
-          {constants('select_item_for_preview')}
+          {constants.get('select_item_for_preview')}
         </div>
       </div>
     );

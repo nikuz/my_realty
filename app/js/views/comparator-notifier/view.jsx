@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 import {ButtonGreen} from '../../components/buttons/view';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Icon from 'react-fa';
@@ -83,7 +83,7 @@ class ComparatorNotifierView extends React.Component {
             <div id="comparator-notifier-cont">
               <div id="comparator-notifier-button">
                 <ButtonGreen
-                  text={constants('compare')}
+                  text={constants.get('compare')}
                   onClick={this.compareOnClick}
                 />
               </div>
@@ -91,7 +91,7 @@ class ComparatorNotifierView extends React.Component {
                 {addedItem.initial.data.name.values.value}
               </h3>
               <p id="comparator-notifier-text">
-                {constants('compare_total')} {state.counter}
+                {constants.get('compare_total')} {state.counter}
               </p>
               <a href="#" id="comparator-notifier-close" onClick={this.close}>
                 <Icon name="times" id="comparator-notifier-close-icon" />

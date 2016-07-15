@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import * as _ from 'underscore';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 
 import './style.less';
 
@@ -28,7 +28,7 @@ class TextInput extends React.Component {
         if (isNaN(value)) {
           value = '';
           newState.warningTooltipShown = true;
-          newState.warningTooltipText = constants('only_digits_allowed');
+          newState.warningTooltipText = constants.get('only_digits_allowed');
         }
         break;
     }

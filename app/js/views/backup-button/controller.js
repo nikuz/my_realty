@@ -5,10 +5,8 @@ import { connect } from 'react-redux';
 import * as StateActions from '../../actions/state';
 import BackupButtonView from './view';
 
-const mapStateToProps = function(state) {
-  return {
-    list: state.list
-  };
+const mapStateToProps = function() {
+  return {};
 };
 
 const mapDispatchToProps = function(dispatch) {

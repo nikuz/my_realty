@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as _ from 'underscore';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 import Loading from '../../components/loading/view';
 import Icon from 'react-fa';
 
@@ -194,7 +194,7 @@ class PhotoGalleryTape extends React.Component {
     } else {
       return (
         <div id="photo-tape-empty">
-          {constants('photo_gallery_empty')}
+          {constants.get('photo_gallery_empty')}
         </div>
       );
     }

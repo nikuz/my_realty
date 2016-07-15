@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 import Confirmation from '../../components/confirmation/view';
 import ReactTooltip from 'react-tooltip';
 import Icon from 'react-fa';
@@ -42,7 +42,7 @@ class AddButton extends React.Component {
           <Icon name="plus" className="manager-button-icon" />
         </a>
         <ReactTooltip id="add-button" place="left" type="dark" effect="solid">
-          <span>{constants('add_overlay_title')}</span>
+          <span>{constants.get('add_overlay_title')}</span>
         </ReactTooltip>
       </div>
     );
@@ -90,12 +90,12 @@ class RemoveButton extends React.Component {
           <Icon name="trash" className="manager-button-icon" />
         </a>
         <ReactTooltip id="remove-button" place="left" type="dark" effect="solid">
-          <span>{constants('remove_button_tooltip')}</span>
+          <span>{constants.get('remove_button_tooltip')}</span>
         </ReactTooltip>
         {this.state.confirmationOpened ?
           <Confirmation
-            title={constants('remove_button_tooltip')}
-            message={constants('remove_prompt') + `"${this.props.previewId}"?`}
+            title={constants.get('remove_button_tooltip')}
+            message={constants.get('remove_prompt') + `"${this.props.previewId}"?`}
             confirm={this.confirm}
             warning
           />
@@ -134,7 +134,7 @@ class EditButton extends React.Component {
           <Icon name="pencil" className="manager-button-icon" />
         </a>
         <ReactTooltip id="edit-button" place="left" type="dark" effect="solid">
-          <span>{constants('edit_overlay_title')}</span>
+          <span>{constants.get('edit_overlay_title')}</span>
         </ReactTooltip>
       </div>
     );
@@ -179,9 +179,9 @@ class FavoritesButton extends React.Component {
         </a>
         <ReactTooltip id="favorites-button" place="left" type="dark" effect="solid">
           {this.props.alreadyFavorites ?
-            <span>{constants('favorites_remove_button_tooltip')}</span>
+            <span>{constants.get('favorites_remove_button_tooltip')}</span>
             :
-            <span>{constants('favorites_button_tooltip')}</span>
+            <span>{constants.get('favorites_button_tooltip')}</span>
           }
         </ReactTooltip>
       </div>
@@ -229,9 +229,9 @@ class CompareButton extends React.Component {
         </a>
         <ReactTooltip id="compare-button" place="left" type="dark" effect="solid">
           {this.props.alreadyInCompare ?
-            <span>{constants('compare_remove_button_tooltip')}</span>
+            <span>{constants.get('compare_remove_button_tooltip')}</span>
             :
-            <span>{constants('compare_button_tooltip')}</span>
+            <span>{constants.get('compare_button_tooltip')}</span>
           }
         </ReactTooltip>
       </div>

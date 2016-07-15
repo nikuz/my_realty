@@ -1,16 +1,14 @@
 'use strict';
 
-import constants from '../modules/constants';
-
 export default {
   initial: {
     type: 'common',
     data: {
       name: {
         type: 'text',
-        name: constants('add_name'),
+        name: 'add_name',
         required: true,
-        error_text: constants('add_name_error'),
+        error_text: 'add_name_error',
         values: {
           value: ''
         }
@@ -20,33 +18,33 @@ export default {
         layout: 'line',
         data: {
           realty_type: {
-            name: constants('add_realty_type'),
+            name: 'add_realty_type',
             required: true,
-            error_text: constants('add_realty_type_error'),
+            error_text: 'add_realty_type_error',
             type: 'segments',
             values: {
               1: {
-                name: constants('add_realty_type_apartment'),
+                name: 'add_realty_type_apartment',
                 id: 'apartment'
               },
               2: {
-                name: constants('add_realty_type_house'),
+                name: 'add_realty_type_house',
                 id: 'house'
               }
             }
           },
           transaction_type: {
-            name: constants('add_transaction_type'),
+            name: 'add_transaction_type',
             required: true,
-            error_text: constants('add_transaction_type_error'),
+            error_text: 'add_transaction_type_error',
             type: 'segments',
             values: {
               1: {
-                name: constants('add_transaction_type_rent'),
+                name: 'add_transaction_type_rent',
                 id: 'rent'
               },
               2: {
-                name: constants('add_transaction_type_buy'),
+                name: 'add_transaction_type_buy',
                 id: 'buy'
               }
             }
@@ -56,9 +54,9 @@ export default {
             layout: 'line',
             data: {
               price_amount: {
-                name: constants('add_price'),
+                name: 'add_price',
                 required: true,
-                error_text: constants('add_price_error'),
+                error_text: 'add_price_error',
                 type: 'number',
                 size: 'small',
                 values: {
@@ -66,9 +64,9 @@ export default {
                 }
               },
               price_currency: {
-                name: constants('add_currency'),
+                name: 'add_currency',
                 required: true,
-                error_text: constants('add_currency_error'),
+                error_text: 'add_currency_error',
                 type: 'selector',
                 size: 'small',
                 values: {
@@ -568,7 +566,7 @@ export default {
             layout: 'line',
             data: {
               amount: {
-                name: constants('add_price_pledge'),
+                name: 'add_price_pledge',
                 type: 'number',
                 size: 'small',
                 values: {
@@ -576,7 +574,7 @@ export default {
                 }
               },
               realtor: {
-                name: constants('add_price_realtor'),
+                name: 'add_price_realtor',
                 type: 'number',
                 size: 'small',
                 values: {
@@ -589,27 +587,27 @@ export default {
             type: 'section',
             data: {
               type: {
-                name: constants('add_sale_type'),
+                name: 'add_sale_type',
                 type: 'segments',
                 values: {
                   1: {
-                    name: constants('add_sale_type_sale')
+                    name: 'add_sale_type_sale'
                   },
                   2: {
-                    name: constants('add_sale_type_interchange')
+                    name: 'add_sale_type_interchange'
                   }
                 }
               },
               mortgage: {
-                name: constants('add_mortgage'),
+                name: 'add_mortgage',
                 type: 'segments',
                 values: {
                   1: {
-                    name: constants('yes'),
+                    name: 'yes',
                     id: 'yes'
                   },
                   2: {
-                    name: constants('no'),
+                    name: 'no',
                     id: 'no'
                   }
                 }
@@ -619,9 +617,9 @@ export default {
         }
       },
       address: {
-        name: constants('add_address'),
+        name: 'add_address',
         required: true,
-        error_text: constants('add_address_error'),
+        error_text: 'add_address_error',
         type: 'address',
         values: {
           value: '',
@@ -631,14 +629,14 @@ export default {
     }
   },
   apartment: {
-    name: constants('add_apartment_info'),
+    name: 'add_apartment_info',
     type: 'apartment',
     data: {
       rooms: {
         type: 'section',
         data: [
           {
-            name: constants('add_rooms'),
+            name: 'add_rooms',
             type: 'segments',
             values: {
               1: {
@@ -670,7 +668,7 @@ export default {
                 name: 9
               },
               10: {
-                name: constants('add_rooms_more')
+                name: 'add_rooms_more'
               }
             }
           }
@@ -681,7 +679,7 @@ export default {
         layout: 'line',
         data: {
           current: {
-            name: constants('add_floor'),
+            name: 'add_floor',
             type: 'number',
             size: 'small',
             values: {
@@ -689,7 +687,7 @@ export default {
             }
           },
           total: {
-            name: constants('add_floor_total'),
+            name: 'add_floor_total',
             type: 'number',
             size: 'small',
             values: {
@@ -703,8 +701,8 @@ export default {
         layout: 'line',
         data: {
           all: {
-            name: constants('add_area'),
-            placeholder: constants('sqm'),
+            name: 'add_area',
+            placeholder: 'sqm',
             type: 'number',
             size: 'small',
             values: {
@@ -712,8 +710,8 @@ export default {
             }
           },
           living_area: {
-            name: constants('add_living_area'),
-            placeholder: constants('sqm'),
+            name: 'add_living_area',
+            placeholder: 'sqm',
             type: 'number',
             size: 'small',
             values: {
@@ -721,8 +719,8 @@ export default {
             }
           },
           kitchen_area: {
-            name: constants('add_kitchen_area'),
-            placeholder: constants('sqm'),
+            name: 'add_kitchen_area',
+            placeholder: 'sqm',
             type: 'number',
             size: 'small',
             values: {
@@ -732,8 +730,8 @@ export default {
         }
       },
       rooms_area: {
-        name: constants('add_rooms_area'),
-        placeholder: constants('sqm'),
+        name: 'add_rooms_area',
+        placeholder: 'sqm',
         type: 'text',
         values: {
           value: ''
@@ -744,8 +742,8 @@ export default {
         layout: 'line',
         data: {
           loggia: {
-            name: constants('add_loggia'),
-            placeholder: constants('sqm'),
+            name: 'add_loggia',
+            placeholder: 'sqm',
             size: 'small',
             type: 'text',
             values: {
@@ -753,8 +751,8 @@ export default {
             }
           },
           balcony: {
-            name: constants('add_balcony'),
-            placeholder: constants('sqm'),
+            name: 'add_balcony',
+            placeholder: 'sqm',
             size: 'small',
             type: 'text',
             values: {
@@ -768,8 +766,8 @@ export default {
         layout: 'line',
         data: {
           separate: {
-            name: constants('add_separate_toilets'),
-            placeholder: constants('count'),
+            name: 'add_separate_toilets',
+            placeholder: 'count',
             size: 'small',
             type: 'number',
             values: {
@@ -777,8 +775,8 @@ export default {
             }
           },
           combined: {
-            name: constants('add_combined_bathroom'),
-            placeholder: constants('count'),
+            name: 'add_combined_bathroom',
+            placeholder: 'count',
             size: 'small',
             type: 'number',
             values: {
@@ -788,24 +786,24 @@ export default {
         }
       },
       windows: {
-        name: constants('add_windows'),
+        name: 'add_windows',
         type: 'segments',
         values: {
           1: {
-            name: constants('add_windows_courtyard_street')
+            name: 'add_windows_courtyard_street'
           },
           2: {
-            name: constants('add_windows_courtyard')
+            name: 'add_windows_courtyard'
           },
           3: {
-            name: constants('add_windows_street')
+            name: 'add_windows_street'
           }
         }
       }
     }
   },
   building_info: {
-    name: constants('add_house_info'),
+    name: 'add_house_info',
     type: 'apartment',
     data: {
       ceiling_year: {
@@ -813,7 +811,7 @@ export default {
         layout: 'line',
         data: {
           year: {
-            name: constants('add_construction_year'),
+            name: 'add_construction_year',
             type: 'selector',
             size: 'small',
             values: {
@@ -1037,7 +1035,7 @@ export default {
             }
           },
           ceiling_height: {
-            name: constants('add_ceiling_height'),
+            name: 'add_ceiling_height',
             type: 'number',
             size: 'small',
             values: {
@@ -1047,40 +1045,40 @@ export default {
         }
       },
       building_type: {
-        name: constants('add_building_type'),
+        name: 'add_building_type',
         type: 'selector',
         values: {
           1: {
-            name: constants('add_building_type_brick'),
+            name: 'add_building_type_brick',
             selected: true
           },
           2: {
-            name: constants('add_building_type_monolithic')
+            name: 'add_building_type_monolithic'
           },
           3: {
-            name: constants('add_building_type_panel')
+            name: 'add_building_type_panel'
           },
           4: {
-            name: constants('add_building_type_modular')
+            name: 'add_building_type_modular'
           },
           5: {
-            name: constants('add_building_type_wood')
+            name: 'add_building_type_wood'
           },
           6: {
-            name: constants('add_building_type_monolith_brick')
+            name: 'add_building_type_monolith_brick'
           }
         }
       },
       garbage_chute: {
-        name: constants('add_garbage_chute'),
+        name: 'add_garbage_chute',
         type: 'segments',
         values: {
           yes: {
-            name: constants('yes'),
+            name: 'yes',
             id: 'yes'
           },
           no: {
-            name: constants('no'),
+            name: 'no',
             id: 'no'
           }
         }
@@ -1090,7 +1088,7 @@ export default {
         layout: 'line',
         data: {
           passenger: {
-            name: constants('add_passenger_elevators'),
+            name: 'add_passenger_elevators',
             type: 'number',
             placeholder: 'count',
             size: 'small',
@@ -1099,9 +1097,9 @@ export default {
             }
           },
           service: {
-            name: constants('add_service_lifts'),
+            name: 'add_service_lifts',
             type: 'number',
-            placeholder: constants('count'),
+            placeholder: 'count',
             size: 'small',
             values: {
               value: ''
@@ -1112,18 +1110,18 @@ export default {
     }
   },
   house: {
-    name: constants('add_house_info'),
+    name: 'add_house_info',
     type: 'house',
     data: {
       cottage_name: {
-        name: constants('add_name_cottage'),
+        name: 'add_name_cottage',
         type: 'text',
         values: {
           value: ''
         }
       },
       building_type: {
-        name: constants('add_building_type'),
+        name: 'add_building_type',
         type: 'selector',
         values: {
           0: {
@@ -1131,22 +1129,22 @@ export default {
             selected: true
           },
           1: {
-            name: constants('add_building_type_brick')
+            name: 'add_building_type_brick'
           },
           2: {
-            name: constants('add_building_type_monolithic')
+            name: 'add_building_type_monolithic'
           },
           3: {
-            name: constants('add_building_type_panel')
+            name: 'add_building_type_panel'
           },
           4: {
-            name: constants('add_building_type_modular')
+            name: 'add_building_type_modular'
           },
           5: {
-            name: constants('add_building_type_wood')
+            name: 'add_building_type_wood'
           },
           6: {
-            name: constants('add_building_type_monolith_brick')
+            name: 'add_building_type_monolith_brick'
           }
         }
       },
@@ -1155,7 +1153,7 @@ export default {
         layout: 'line',
         data: {
           year: {
-            name: constants('add_construction_year'),
+            name: 'add_construction_year',
             type: 'selector',
             size: 'small',
             values: {
@@ -1379,7 +1377,7 @@ export default {
             }
           },
           ceiling_height: {
-            name: constants('add_ceiling_height'),
+            name: 'add_ceiling_height',
             type: 'number',
             size: 'small',
             values: {
@@ -1389,7 +1387,7 @@ export default {
         }
       },
       rooms: {
-        name: constants('add_rooms'),
+        name: 'add_rooms',
         type: 'segments',
         values: {
           1: {
@@ -1421,7 +1419,7 @@ export default {
             name: 9
           },
           10: {
-            name: constants('add_rooms_more')
+            name: 'add_rooms_more'
           }
         }
       },
@@ -1430,8 +1428,8 @@ export default {
         layout: 'line',
         data: {
           all: {
-            name: constants('add_area'),
-            placeholder: constants('sqm'),
+            name: 'add_area',
+            placeholder: 'sqm',
             type: 'number',
             size: 'small',
             values: {
@@ -1439,8 +1437,8 @@ export default {
             }
           },
           living: {
-            name: constants('add_living_area'),
-            placeholder: constants('sqm'),
+            name: 'add_living_area',
+            placeholder: 'sqm',
             type: 'number',
             size: 'small',
             values: {
@@ -1448,8 +1446,8 @@ export default {
             }
           },
           kitchen: {
-            name: constants('add_kitchen_area'),
-            placeholder: constants('sqm'),
+            name: 'add_kitchen_area',
+            placeholder: 'sqm',
             type: 'number',
             size: 'small',
             values: {
@@ -1459,8 +1457,8 @@ export default {
         }
       },
       rooms_area: {
-        name: constants('add_rooms_area'),
-        placeholder: constants('sqm'),
+        name: 'add_rooms_area',
+        placeholder: 'sqm',
         type: 'text',
         values: {
           value: ''
@@ -1471,8 +1469,8 @@ export default {
         layout: 'line',
         data: {
           separate: {
-            name: constants('add_separate_toilets'),
-            placeholder: constants('count'),
+            name: 'add_separate_toilets',
+            placeholder: 'count',
             size: 'small',
             type: 'number',
             values: {
@@ -1480,8 +1478,8 @@ export default {
             }
           },
           combined: {
-            name: constants('add_combined_bathroom'),
-            placeholder: constants('count'),
+            name: 'add_combined_bathroom',
+            placeholder: 'count',
             size: 'small',
             type: 'number',
             values: {
@@ -1491,7 +1489,7 @@ export default {
         }
       },
       heating: {
-        name: constants('add_heating'),
+        name: 'add_heating',
         type: 'selector',
         values: {
           0: {
@@ -1499,19 +1497,19 @@ export default {
             selected: true
           },
           1: {
-            name: constants('add_heating_central_gas')
+            name: 'add_heating_central_gas'
           },
           2: {
-            name: constants('add_heating_central_coal')
+            name: 'add_heating_central_coal'
           },
           3: {
-            name: constants('add_heating_bake')
+            name: 'add_heating_bake'
           },
           4: {
-            name: constants('add_heating_fireplace')
+            name: 'add_heating_fireplace'
           },
           5: {
-            name: constants('add_heating_without')
+            name: 'add_heating_without'
           }
         }
       },
@@ -1520,43 +1518,43 @@ export default {
         layout: 'line',
         data: {
           lavatory: {
-            name: constants('add_lavatory'),
+            name: 'add_lavatory',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           warming: {
-            name: constants('add_warming'),
+            name: 'add_warming',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           electricity: {
-            name: constants('add_electricity'),
+            name: 'add_electricity',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
@@ -1568,43 +1566,43 @@ export default {
         layout: 'line',
         data: {
           sewerage: {
-            name: constants('add_sewerage'),
+            name: 'add_sewerage',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           water_supply: {
-            name: constants('add_water_supply'),
+            name: 'add_water_supply',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           gas: {
-            name: constants('add_gas'),
+            name: 'add_gas',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
@@ -1616,43 +1614,43 @@ export default {
         layout: 'line',
         data: {
           security: {
-            name: constants('add_security'),
+            name: 'add_security',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           bathhouse: {
-            name: constants('add_bathhouse'),
+            name: 'add_bathhouse',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           garage: {
-            name: constants('add_garage'),
+            name: 'add_garage',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
@@ -1664,29 +1662,29 @@ export default {
         layout: 'line',
         data: {
           pool: {
-            name: constants('add_pool'),
+            name: 'add_pool',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           outbuildings: {
-            name: constants('add_outbuildings'),
+            name: 'add_outbuildings',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
@@ -1696,7 +1694,7 @@ export default {
     }
   },
   homestead_info: {
-    name: constants('add_homestead'),
+    name: 'add_homestead',
     type: 'house',
     data: {
       area: {
@@ -1704,7 +1702,7 @@ export default {
         layout: 'line',
         data: {
           amount: {
-            name: constants('area'),
+            name: 'area',
             type: 'number',
             size: 'small',
             values: {
@@ -1712,32 +1710,32 @@ export default {
             }
           },
           units: {
-            name: constants('add_units'),
+            name: 'add_units',
             type: 'selector',
             size: 'small',
             values: {
               0: {
-                name: constants('add_units_m'),
+                name: 'add_units_m',
                 selected: true
               },
               2: {
-                name: constants('add_units_km')
+                name: 'add_units_km'
               },
               3: {
-                name: constants('add_units_ha')
+                name: 'add_units_ha'
               },
               4: {
-                name: constants('add_units_a')
+                name: 'add_units_a'
               },
               5: {
-                name: constants('add_units_acre')
+                name: 'add_units_acre'
               }
             }
           }
         }
       },
       status: {
-        name: constants('add_status'),
+        name: 'add_status',
         type: 'text',
         values: {
           value: ''
@@ -1746,7 +1744,7 @@ export default {
     }
   },
   furniture: {
-    name: constants('add_furniture'),
+    name: 'add_furniture',
     type: 'common',
     data: {
       furniture: {
@@ -1754,63 +1752,63 @@ export default {
         layout: 'line',
         data: {
           kitchen: {
-            name: constants('add_furniture_kitchen'),
+            name: 'add_furniture_kitchen',
             id: 'furniture_kitchen',
             type: 'checkbox',
             icon: 'images/table.svg',
             values: {}
           },
           residential: {
-            name: constants('add_furniture_residential'),
+            name: 'add_furniture_residential',
             id: 'furniture_residential',
             type: 'checkbox',
             icon: 'images/armchair.svg',
             values: {}
           },
           fridge: {
-            name: constants('add_fridge'),
+            name: 'add_fridge',
             id: 'fridge',
             type: 'checkbox',
             icon: 'images/fridge.svg',
             values: {}
           },
           tv: {
-            name: constants('add_tv'),
+            name: 'add_tv',
             id: 'tv',
             type: 'checkbox',
             icon: 'images/television.svg',
             values: {}
           },
           washer: {
-            name: constants('add_washer'),
+            name: 'add_washer',
             id: 'washer',
             type: 'checkbox',
             icon: 'images/washing-machine.svg',
             values: {}
           },
           phone: {
-            name: constants('add_phone'),
+            name: 'add_phone',
             id: 'phone',
             type: 'checkbox',
             icon: 'images/phone.svg',
             values: {}
           },
           internet: {
-            name: constants('add_internet'),
+            name: 'add_internet',
             id: 'internet',
             type: 'checkbox',
             icon: 'images/wifi.svg',
             values: {}
           },
           dishwasher: {
-            name: constants('add_dishwasher'),
+            name: 'add_dishwasher',
             id: 'dishwasher',
             type: 'checkbox',
             icon: 'images/dishwasher.svg',
             values: {}
           },
           conditioner: {
-            name: constants('add_conditioner'),
+            name: 'add_conditioner',
             id: 'conditioner',
             type: 'checkbox',
             icon: 'images/fan.svg',
@@ -1821,7 +1819,7 @@ export default {
     }
   },
   transport: {
-    name: constants('add_transport_accessibility'),
+    name: 'add_transport_accessibility',
     type: 'common',
     data: {
       metro: {
@@ -1829,16 +1827,16 @@ export default {
         layout: 'line',
         data: {
           station: {
-            name: constants('add_metro'),
+            name: 'add_metro',
             type: 'text',
             values: {
               value: ''
             }
           },
           distance: {
-            name: constants('add_metro_distance'),
+            name: 'add_metro_distance',
             type: 'text',
-            placeholder: constants('km'),
+            placeholder: 'km',
             size: 'small',
             values: {
               value: ''
@@ -1850,9 +1848,9 @@ export default {
         type: 'section',
         data: {
           distance: {
-            name: constants('add_city_center_distance'),
+            name: 'add_city_center_distance',
             type: 'text',
-            placeholder: constants('km'),
+            placeholder: 'km',
             values: {
               value: ''
             }
@@ -1864,43 +1862,43 @@ export default {
         layout: 'line',
         data: {
           buses: {
-            name: constants('add_buses'),
+            name: 'add_buses',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           trains: {
-            name: constants('add_trains'),
+            name: 'add_trains',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           highway: {
-            name: constants('add_highway'),
+            name: 'add_highway',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
@@ -1910,7 +1908,7 @@ export default {
     }
   },
   social: {
-    name: constants('add_social_objects'),
+    name: 'add_social_objects',
     type: 'common',
     data: {
       education_childs: {
@@ -1918,43 +1916,43 @@ export default {
         layout: 'line',
         data: {
           kindergartens: {
-            name: constants('add_kindergartens'),
+            name: 'add_kindergartens',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           schools: {
-            name: constants('add_schools'),
+            name: 'add_schools',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           clinics: {
-            name: constants('add_clinics'),
+            name: 'add_clinics',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
@@ -1966,43 +1964,43 @@ export default {
         layout: 'line',
         data: {
           shops: {
-            name: constants('add_shops'),
+            name: 'add_shops',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           shopping_centers: {
-            name: constants('add_shopping_centers'),
+            name: 'add_shopping_centers',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
           },
           sport: {
-            name: constants('add_sport'),
+            name: 'add_sport',
             type: 'segments',
             values: {
               1: {
-                name: constants('yes'),
+                name: 'yes',
                 id: 'yes'
               },
               2: {
-                name: constants('no'),
+                name: 'no',
                 id: 'no'
               }
             }
@@ -2012,20 +2010,20 @@ export default {
     }
   },
   photos: {
-    name: constants('add_photo'),
+    name: 'add_photo',
     type: 'common',
     data: {
       list: {
         name: '',
         type: 'extendable_list',
-        placeholder: constants('add_photo_placeholder'),
-        limit: 20,
+        placeholder: 'add_photo_placeholder',
+        limit: 40,
         values: []
       }
     }
   },
   additional: {
-    name: constants('add_additional'),
+    name: 'add_additional',
     type: 'common',
     data: {
       text: {
@@ -2038,35 +2036,35 @@ export default {
     }
   },
   contacts: {
-    name: constants('add_contacts'),
+    name: 'add_contacts',
     type: 'common',
     data: {
       contact_name: {
-        name: constants('add_contacts_name'),
+        name: 'add_contacts_name',
         type: 'text',
         values: {
           value: ''
         }
       },
       phone: {
-        name: constants('add_phone'),
+        name: 'add_phone',
         type: 'text',
         values: {
           value: ''
         }
       },
       url: {
-        name: constants('add_contacts_url'),
+        name: 'add_contacts_url',
         type: 'text',
-        placeholder: constants('add_photo_placeholder'),
+        placeholder: 'add_photo_placeholder',
         values: {
           value: ''
         }
       },
       list: {
-        name: constants('add_contacts_more'),
+        name: 'add_contacts_more',
         type: 'extendable_list',
-        placeholder: constants('add_contacts_placeholder'),
+        placeholder: 'add_contacts_placeholder',
         limit: 10,
         values: []
       }

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 import Overlay from '../../components/overlay/view';
 import {
   ButtonGreen,
@@ -70,7 +70,7 @@ class BackupView extends React.Component {
       sure = true;
 
     if (!props.backup.do_not_overwrite) {
-      sure = confirm(constants('backup_download_overwrite_confirmation'));
+      sure = confirm(constants.get('backup_download_overwrite_confirmation'));
     }
     if (sure) {
       this.setState({
@@ -122,7 +122,7 @@ class BackupView extends React.Component {
       let backup = state.backup;
       return (
         <Overlay
-          title={constants('backup')}
+          title={constants.get('backup')}
           opened={this.state.opened}
           close={this.close}
         >
@@ -148,7 +148,7 @@ class BackupView extends React.Component {
                   >
                   {state.copy_to_clipboard_tooltip_showed ?
                     <span id="backup-field-tooltip">
-                      {constants('copied_to_clipboard')}
+                      {constants.get('copied_to_clipboard')}
                     </span>
                     : null
                   }
@@ -162,15 +162,15 @@ class BackupView extends React.Component {
                   data-for="copy-icon-tooltip"
                 />
                 <ReactTooltip id="copy-icon-tooltip" place="top" type="dark" effect="solid">
-                  <span>{constants('copy_to_clipboard')}</span>
+                  <span>{constants.get('copy_to_clipboard')}</span>
                 </ReactTooltip>
                 <p id="backup-date">
-                  {constants('backup_last_update')} {this.getFormattedDate(backup.uploadTimestamp)}
+                  {constants.get('backup_last_update')} {this.getFormattedDate(backup.uploadTimestamp)}
                 </p>
               </div>
               :
               <div>
-                <p>{constants('no_backups')}</p>
+                <p>{constants.get('no_backups')}</p>
               </div>
             }
             {backup.error ?
@@ -180,14 +180,14 @@ class BackupView extends React.Component {
               : null
             }
             <ButtonGreen
-              text={constants('backup_upload')}
+              text={constants.get('backup_upload')}
               onClick={this.createOnClick}
               loading={this.state.loading}
               icon="cloud-upload"
               disabled={!_.size(this.props.list)}
             />
             <hr id="backup-separator" />
-            <p id="backup-download-note">{constants('backup_download_info')}</p>
+            <p id="backup-download-note">{constants.get('backup_download_info')}</p>
             <input
               type="text"
               defaultValue={state.masterFileName}
@@ -197,7 +197,7 @@ class BackupView extends React.Component {
             <div id="backup-overwrite-checkbox">
               <CheckBox
                 name="do_not_overwrite"
-                label={constants('backup_download_do_not_overwrite')}
+                label={constants.get('backup_download_do_not_overwrite')}
                 data={{}}
                 checked={backup.do_not_overwrite || false}
                 onChange={this.doNotOverwriteOnChange}
@@ -211,12 +211,12 @@ class BackupView extends React.Component {
             }
             {backup.success_download ?
               <p className="backup-success">
-                {constants('backup_download_success')} {backup.success_download}
+                {constants.get('backup_download_success')} {backup.success_download}
               </p>
               : null
             }
             <ButtonBlue
-              text={constants('backup_download')}
+              text={constants.get('backup_download')}
               onClick={this.downloadOnClick}
               loading={this.state.loading_download}
               disabled={!state.masterFileName}

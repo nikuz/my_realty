@@ -1,7 +1,7 @@
 'use strict';
 
 import * as React from 'react';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 import Overlay from '../../components/overlay/view';
 import {
   ButtonBlue,
@@ -51,12 +51,12 @@ class Confirmation extends React.Component {
           <p id="confirmation-text">{props.message}</p>
           <span id="confirmation-button">
             <MainButton
-              text={constants('ok')}
+              text={constants.get('ok')}
               onClick={this.confirm}
             />
           </span>
           <ButtonGray
-            text={constants('cancel')}
+            text={constants.get('cancel')}
             onClick={this.close}
           />
         </div>

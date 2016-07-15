@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 import Overlay from '../../components/overlay/view';
 import {getValueByPath} from '../../modules/object';
 import * as priceModule from '../../modules/price';
@@ -71,7 +71,7 @@ class ComparatorView extends React.Component {
         if (dataItem.type === 'section') {
           return checker(dataItem, dataPath);
         } else {
-          rows[dataPath.join('.')] = dataItem.name;
+          rows[dataPath.join('.')] = constants.get(dataItem.name);
         }
       });
     };
@@ -131,7 +131,7 @@ class ComparatorView extends React.Component {
               data-value="all"
               onClick={this.paramsTypeSwitch}
             >
-              {constants('params_all')}
+              {constants.get('params_all')}
             </a><br />
             <a
               href="#"
@@ -139,7 +139,7 @@ class ComparatorView extends React.Component {
               data-value="different"
               onClick={this.paramsTypeSwitch}
             >
-              {constants('params_different')}
+              {constants.get('params_different')}
             </a>
           </td>
           {_.map(this.props.list, (item, key) => {
@@ -243,7 +243,7 @@ class ComparatorView extends React.Component {
       let rows = this.getRows(this.props.list);
       return (
         <Overlay
-          title={constants('comparator')}
+          title={constants.get('comparator')}
           type="top"
           width="80%"
           opened={state.opened}

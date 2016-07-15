@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as _ from 'underscore';
-import constants from '../../modules/constants';
+import * as constants from '../../modules/constants';
 import {deepClone} from '../../modules/object';
 import realtyModel from '../../models/realty';
 import Overlay from '../../components/overlay/view';
@@ -83,7 +83,7 @@ class OverlayView extends React.Component {
       case 'segments':
         values = (
           <SegmentedControl
-            items={dataItem.values}
+            items={constants.fill(dataItem.values)}
             onSelect={this.change}
           />
         );
@@ -92,7 +92,7 @@ class OverlayView extends React.Component {
         values = (
           <TextInput
             data={dataItem.values}
-            placeholder={dataItem.placeholder}
+            placeholder={constants.get(dataItem.placeholder)}
             type="number"
             size={dataItem.size}
             onChange={this.change}
@@ -103,7 +103,7 @@ class OverlayView extends React.Component {
         values = (
           <TextInput
             data={dataItem.values}
-            placeholder={dataItem.placeholder}
+            placeholder={constants.get(dataItem.placeholder)}
             size={dataItem.size}
             onChange={this.change}
           />
@@ -112,7 +112,7 @@ class OverlayView extends React.Component {
       case 'selector':
         values = (
           <Selector
-            items={dataItem.values}
+            items={constants.fill(dataItem.values)}
             size={dataItem.size}
             onSelect={this.change}
           />
@@ -123,7 +123,7 @@ class OverlayView extends React.Component {
           <span key={dataKey} className="checkbox_item">
             <CheckBox
               name={dataItem.id}
-              label={dataItem.name}
+              label={constants.get(dataItem.name)}
               data={dataItem.values}
               checked={dataItem.values.selected}
               icon={dataItem.icon}
@@ -146,7 +146,7 @@ class OverlayView extends React.Component {
           <ExtendableList
             data={dataItem.values}
             limit={dataItem.limit}
-            placeholder={dataItem.placeholder}
+            placeholder={constants.get(dataItem.placeholder)}
             onChange={this.change}
           />
         );
@@ -169,7 +169,7 @@ class OverlayView extends React.Component {
 
     return (
       <div className="aro_item" key={dataKey} id={'aro_item_' + dataKey}>
-        <h5>{dataItem.name} {required}</h5>
+        <h5>{constants.get(dataItem.name)} {required}</h5>
         {values}
         {dataItem.error ?
           <FieldError text={dataItem.error_text} />
@@ -184,7 +184,7 @@ class OverlayView extends React.Component {
 
     return (
       <Overlay
-        title={constants('add_overlay_title')}
+        title={constants.get('add_overlay_title')}
         opened={props.opened}
         close={props.close}
         scrollTo={props.scrollTo}
@@ -196,7 +196,7 @@ class OverlayView extends React.Component {
             } else {
               return (
                 <div key={key}>
-                  <h2>{item.name}</h2>
+                  <h2>{constants.get(item.name)}</h2>
                   {_.map(item.data, (dataItem, dataKey) => {
                     return this.renderItem(dataItem, dataKey);
                   })}
@@ -206,7 +206,7 @@ class OverlayView extends React.Component {
           })}
           <div>
             <ButtonBlue
-              text={constants('save')}
+              text={constants.get('save')}
               onClick={this.submit}
             />
           </div>
