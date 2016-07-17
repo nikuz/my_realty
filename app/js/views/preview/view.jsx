@@ -76,7 +76,7 @@ class Preview extends React.Component {
           return (
             <span key={dataKey} className="checkbox_item">
               {icon}
-              {dataItem.name}
+              {constants.get(dataItem.name)}
             </span>
           );
         } else {
