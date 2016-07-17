@@ -326,7 +326,7 @@ class AddView extends React.Component {
     var newState = {},
       editedItemName;
 
-    _.each(this.props.list, function(item, key) {
+    _.each(this.props.list, (item, key) => {
       if (item.edited && this.props.state.name === 'edit_realty_ovl') {
         editedItemName = key;
       }
