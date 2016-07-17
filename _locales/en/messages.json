@@ -502,5 +502,8 @@
   },
   "filtered": {
     "message": "Filtered"
+  },
+  "add_url_error": {
+    "message": "Url of the original ad is required field"
   }
 }

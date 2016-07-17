@@ -2057,6 +2057,8 @@ export default {
         name: 'add_contacts_url',
         type: 'text',
         placeholder: 'add_photo_placeholder',
+        required: true,
+        error_text: 'add_url_error',
         values: {
           value: ''
         }
