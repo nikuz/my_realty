@@ -6,6 +6,7 @@ import * as constants from '../../modules/constants';
 import PhotoGallery from '../../components/photo-gallery/view';
 import Map from '../../components/map/view';
 import * as priceModule from '../../modules/price';
+import animate from '../../modules/animate';
 import Icon from 'react-fa';
 import Linkify from 'linkify';
 
@@ -14,6 +15,10 @@ import './style.less';
 class Preview extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      viewId: null,
+      contentEl: null
+    };
     this.excludedFields = [
       'name',
       'photos',
@@ -21,6 +26,65 @@ class Preview extends React.Component {
       'transaction_type',
       'address'
     ];
+    this.changeViewPosition = this.changeViewPosition.bind(this);
+  }
+  changeViewPosition() {
+    var state = this.state,
+      border = 48,
+      contentEl = state.contentEl,
+      contScroll = contentEl.scrollTop,
+      viewWrapEl = this.refs.wrap,
+      viewPosition = parseInt(window.getComputedStyle(viewWrapEl).top);
+
+    if (contScroll < border) {
+      let topPosition;
+
+      if (contScroll > 0 && viewPosition > 0) {
+        topPosition = border - contScroll;
+      }
+      if (topPosition < 1) {
+        topPosition = 1;
+      } else if (topPosition > border) {
+        topPosition = border;
+      }
+      viewWrapEl.style.top = `${topPosition}px`;
+    } else {
+      if (viewPosition !== 1) {
+        viewWrapEl.style.top = '1px';
+      }
+    }
+    if (contScroll === 0) {
+      viewWrapEl.style.top = `${border}px`;
+    }
+  }
+  componentWillMount() {
+    var contentEl = document.getElementById('wrap');
+    this.setState({
+      contentEl: contentEl,
+      viewId: this.props.id
+    });
+  }
+  componentDidMount() {
+    this.changeViewPosition();
+    this.state.contentEl.addEventListener('scroll', this.changeViewPosition);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.state.viewId !== nextProps.id) {
+      animate({
+        initial: this.refs.view.scrollTop,
+        duration: 200,
+        target: 0,
+        draw: progress => {
+          this.refs.view.scrollTop = progress;
+        }
+      });
+      this.setState({
+        viewId: nextProps.id
+      });
+    }
+  }
+  componentWillUnmount() {
+    this.state.contentEl.removeEventListener('scroll', this.changeViewPosition);
   }
   renderItem(dataItem, dataKey) {
     if (_.contains(this.excludedFields, dataKey)) {
@@ -175,34 +239,36 @@ class Preview extends React.Component {
     };
 
     return (
-      <div id="preview">
-        <price>
-          <amount dangerouslySetInnerHTML={{__html: price}} />
-          <currency> {currency}</currency>
-        </price>
-        <h1>{props.initial.data.name.values.value}</h1>
-        <address>{props.initial.data.address.values.value}</address>
-        <Map
-          containerId="preview-map"
-          points={[mapPoint]}
-        />
-        <PhotoGallery photos={props.photos.data.list.values} />
-        <i id={realtyIcon} />
-        <i id={transactionIcon} />
-        {_.map(props, (item, key) => {
-          if (_.contains(this.excludedFields, key) || (item.type !== 'common' && realty_type !== item.type)) {
-            return null;
-          } else {
-            return (
-              <div key={key}>
-                <h2>{constants.get(item.name)}</h2>
-                {_.map(item.data, (dataItem, dataKey) => {
-                  return this.renderItem(dataItem, dataKey);
-                })}
-              </div>
-            );
-          }
-        })}
+      <div id="preview_wrap" ref="wrap">
+        <div id="preview" ref="view">
+          <price>
+            <amount dangerouslySetInnerHTML={{__html: price}} />
+            <currency> {currency}</currency>
+          </price>
+          <h1>{props.initial.data.name.values.value}</h1>
+          <address>{props.initial.data.address.values.value}</address>
+          <Map
+            containerId="preview-map"
+            points={[mapPoint]}
+          />
+          <PhotoGallery photos={props.photos.data.list.values} />
+          <i id={realtyIcon} />
+          <i id={transactionIcon} />
+          {_.map(props, (item, key) => {
+            if (_.contains(this.excludedFields, key) || (item.type !== 'common' && realty_type !== item.type)) {
+              return null;
+            } else {
+              return (
+                <div key={key}>
+                  <h2>{constants.get(item.name)}</h2>
+                  {_.map(item.data, (dataItem, dataKey) => {
+                    return this.renderItem(dataItem, dataKey);
+                  })}
+                </div>
+              );
+            }
+          })}
+        </div>
       </div>
     );
   }

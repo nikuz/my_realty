@@ -4,7 +4,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import * as _ from 'underscore';
-import animate from './modules/animate';
 import AppStore from './store';
 import Manager from './views/manager/controller';
 import Filter from './views/filter/controller';
@@ -25,40 +24,16 @@ class App extends React.Component {
     this.state = {
       view: 'list'
     };
-    this.selectedRealtyObject = null;
   }
   componentDidMount() {
     AppStore.subscribe(() => {
       var store = AppStore.getState(),
         filter = store.filter,
-        list = store.list,
         viewType = _.find(filter.view, {active: true});
 
       if (viewType.id !== this.state.view) {
         this.setState({
           view: viewType.id
-        });
-      }
-      
-      var selectedRealtyObject,
-        selectedRealtyObjectId = null;
-
-      _.each(list, function(item, key) {
-        if (item.selected) {
-          selectedRealtyObject = item;
-          selectedRealtyObjectId = key;
-        }
-      });
-      if (viewType.id === 'list' && selectedRealtyObjectId !== this.selectedRealtyObject) {
-        this.selectedRealtyObject = selectedRealtyObjectId;
-        let contentEl = document.getElementById('wrap');
-        animate({
-          initial: contentEl.scrollTop,
-          duration: 200,
-          target: 0,
-          draw: progress => {
-            contentEl.scrollTop = progress;
-          }
         });
       }
     });

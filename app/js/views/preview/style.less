@@ -1,9 +1,16 @@
-#preview {
-  position: relative;
+#preview_wrap {
+  position: fixed;
+  top: 48px;
+  left: 41.3%;
+  right: 9.5%;
+  bottom: 0;
   overflow: hidden;
+}
+#preview {
+  margin-right: -20px;
+  height: 100%;
+  overflow: auto;
   padding: 10px 20px 20px;
-  left: -1px;
-  border-left: 1px solid #e6e6e6;
 }
 #preview price {
   float: right;
@@ -105,6 +112,12 @@
   background-image: url(/images/apartment.svg);
 }
 
+@media all and (max-width: 1200px) {
+  #preview_wrap {
+    left: 40%;
+    right: 20px;
+  }
+}
 @media all and (max-width: 800px) {
   #m_sort,
   #m_filter {
