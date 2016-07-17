@@ -274,6 +274,10 @@ class Preview extends React.Component {
   }
 }
 
+Preview.propTypes = {
+  id: React.PropTypes.string.isRequired
+};
+
 class PreviewEmpty extends React.Component {
   render() {
     return (

@@ -387,6 +387,7 @@ class AddView extends React.Component {
 }
 
 AddView.propTypes = {
+  state: React.PropTypes.object.isRequired,
   list: React.PropTypes.object.isRequired,
   save: React.PropTypes.func.isRequired,
   close: React.PropTypes.func.isRequired
