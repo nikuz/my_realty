@@ -241,33 +241,35 @@ class Preview extends React.Component {
     return (
       <div id="preview_wrap" ref="wrap">
         <div id="preview" ref="view">
-          <price>
-            <amount dangerouslySetInnerHTML={{__html: price}} />
-            <currency> {currency}</currency>
-          </price>
-          <h1>{props.initial.data.name.values.value}</h1>
-          <address>{props.initial.data.address.values.value}</address>
-          <Map
-            containerId="preview-map"
-            points={[mapPoint]}
-          />
-          <PhotoGallery photos={props.photos.data.list.values} />
-          <i id={realtyIcon} />
-          <i id={transactionIcon} />
-          {_.map(props, (item, key) => {
-            if (_.contains(this.excludedFields, key) || (item.type !== 'common' && realty_type !== item.type)) {
-              return null;
-            } else {
-              return (
-                <div key={key}>
-                  <h2>{constants.get(item.name)}</h2>
-                  {_.map(item.data, (dataItem, dataKey) => {
-                    return this.renderItem(dataItem, dataKey);
-                  })}
-                </div>
-              );
-            }
-          })}
+          <div id="preview_cont">
+            <price>
+              <amount dangerouslySetInnerHTML={{__html: price}} />
+              <currency> {currency}</currency>
+            </price>
+            <h1>{props.initial.data.name.values.value}</h1>
+            <address>{props.initial.data.address.values.value}</address>
+            <Map
+              containerId="preview-map"
+              points={[mapPoint]}
+            />
+            <PhotoGallery photos={props.photos.data.list.values} />
+            <i id={realtyIcon} />
+            <i id={transactionIcon} />
+            {_.map(props, (item, key) => {
+              if (_.contains(this.excludedFields, key) || (item.type !== 'common' && realty_type !== item.type)) {
+                return null;
+              } else {
+                return (
+                  <div key={key}>
+                    <h2>{constants.get(item.name)}</h2>
+                    {_.map(item.data, (dataItem, dataKey) => {
+                      return this.renderItem(dataItem, dataKey);
+                    })}
+                  </div>
+                );
+              }
+            })}
+          </div>
         </div>
       </div>
     );
