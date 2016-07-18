@@ -26,9 +26,21 @@ class Preview extends React.Component {
       'transaction_type',
       'address'
     ];
-    this.changeViewPosition = this.changeViewPosition.bind(this);
+    this.changeViewTopPosition = this.changeViewTopPosition.bind(this);
+    this.setViewPosition = this.setViewPosition.bind(this);
   }
-  changeViewPosition() {
+  setViewPosition() {
+    var bodyEl = document.getElementById('list_view_wrapper'),
+      bodyWidth = bodyEl.clientWidth,
+      bodyPosition = bodyEl.getBoundingClientRect(),
+      viewWrapEl = this.refs.wrap;
+
+    _.extend(viewWrapEl.style, {
+      left: bodyPosition.left + bodyWidth / 100 * 40 + 'px',
+      right: bodyPosition.right - bodyWidth + 20 + 'px'
+    });
+  }
+  changeViewTopPosition() {
     var state = this.state,
       border = 48,
       contentEl = state.contentEl,
@@ -65,8 +77,10 @@ class Preview extends React.Component {
     });
   }
   componentDidMount() {
-    this.changeViewPosition();
-    this.state.contentEl.addEventListener('scroll', this.changeViewPosition);
+    this.changeViewTopPosition();
+    this.setViewPosition();
+    this.state.contentEl.addEventListener('scroll', this.changeViewTopPosition);
+    window.addEventListener('resize', this.setViewPosition);
   }
   componentWillReceiveProps(nextProps) {
     if (this.state.viewId !== nextProps.id) {
@@ -84,7 +98,8 @@ class Preview extends React.Component {
     }
   }
   componentWillUnmount() {
-    this.state.contentEl.removeEventListener('scroll', this.changeViewPosition);
+    this.state.contentEl.removeEventListener('scroll', this.changeViewTopPosition);
+    window.removeEventListener('resize', this.setViewPosition);
   }
   renderItem(dataItem, dataKey) {
     if (_.contains(this.excludedFields, dataKey)) {
