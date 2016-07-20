@@ -11,6 +11,10 @@ import './style.less';
 class Map extends React.Component {
   constructor(props) {
     super(props);
+    this.defaulPosition = {
+      lat: 49.76,
+      lng: 15.01
+    };
     this.map = null;
     this.infowindow = null;
     this.infowindowOpened = false;
@@ -35,7 +39,7 @@ class Map extends React.Component {
       let bounds = new google.maps.LatLngBounds();
       _.each(points, (point) => {
         var marker = new google.maps.Marker({
-          position: point.position,
+          position: point.position || this.defaulPosition,
           map: this.map,
           title: point.title,
           selected: point.selected
@@ -65,9 +69,10 @@ class Map extends React.Component {
     } else {
       let point = points[0];
       if (point) {
-        this.map.setCenter(point.position);
+        let position = point.position || this.defaulPosition;
+        this.map.setCenter(position);
         let marker = new google.maps.Marker({
-          position: point.position,
+          position: position,
           map: this.map
         });
         this.markers.push(marker);
@@ -89,17 +94,14 @@ class Map extends React.Component {
     }
     $script.ready('google', () => {
       var position;
-      if (points[0]) {
+      if (points[0] && points[0].position) {
         position = points[0].position;
       } else {
-        position = {
-          lat: 49.76,
-          lng: 15.01
-        };
+        position = this.defaulPosition;
       }
       this.map = new google.maps.Map(this.refs.map_container, {
         center: position,
-        zoom: points[0] ? 12 : 5,
+        zoom: points[0] && points[0].position ? 12 : 5,
         zoomControl: true,
         mapTypeControl: props.mapTypeControl || false,
         streetViewControl: props.streetViewControl || false,

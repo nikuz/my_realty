@@ -3,20 +3,19 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as StateActions from '../../actions/state';
-import PreviewView from './view';
+import PhotoGalleryView from './view';
 
 const mapStateToProps = function(state) {
   return {
+    state: state.state,
     list: state.list
   };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    photoOpen: function(photoId) {
-      dispatch(
-        StateActions.change('photo_gallery', {photoId})
-      );
+    close: function() {
+      dispatch(StateActions.change('initial'));
     }
   };
 };
@@ -24,4 +23,4 @@ const mapDispatchToProps = function(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PreviewView);
+)(PhotoGalleryView);

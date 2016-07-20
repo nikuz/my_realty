@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as _ from 'underscore';
 import * as constants from '../../modules/constants';
-import PhotoGallery from '../../components/photo-gallery/view';
+import PhotoGalleryTape from '../../components/photo-gallery/view';
 import Map from '../../components/map/view';
 import * as priceModule from '../../modules/price';
 import animate from '../../modules/animate';
@@ -267,7 +267,10 @@ class Preview extends React.Component {
               containerId="preview-map"
               points={[mapPoint]}
             />
-            <PhotoGallery photos={props.photos.data.list.values} />
+            <PhotoGalleryTape
+              photos={props.photos.data.list.values}
+              photoItemOnClick={this.props.photoOpen}
+            />
             <i id={realtyIcon} />
             <i id={transactionIcon} />
             {_.map(props, (item, key) => {
@@ -292,7 +295,8 @@ class Preview extends React.Component {
 }
 
 Preview.propTypes = {
-  id: React.PropTypes.string.isRequired
+  id: React.PropTypes.string.isRequired,
+  photoOpen: React.PropTypes.func.isRequired
 };
 
 class PreviewEmpty extends React.Component {
@@ -317,19 +321,19 @@ class PreviewView extends React.Component {
     if (props.list[location]) {
       data = props.list[location];
     } else {
-      _.each(props.list, function(item) {
-        if (item.selected) {
-          data = item;
-        }
-      });
+      data = _.find(props.list, {selected: true});
     }
 
     if (data) {
-      return <Preview {...data} />;
+      return <Preview {...data} photoOpen={this.props.photoOpen} />;
     } else {
       return <PreviewEmpty />;
     }
   }
 }
+
+PreviewView.propTypes = {
+  photoOpen: React.PropTypes.func.isRequired
+};
 
 export default PreviewView;

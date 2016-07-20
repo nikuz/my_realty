@@ -1,9 +1,10 @@
 'use strict';
 
-function change(state) {
+function change(state, variables) {
   return {
     type: 'APP_STATE_CHANGE',
-    state
+    state,
+    variables
   };
 }
 

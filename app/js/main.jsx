@@ -15,6 +15,7 @@ import ComparatorNotifier from './views/comparator-notifier/controller';
 import Comparator from './views/comparator/controller';
 import BackupButton from './views/backup-button/controller';
 import Backup from './views/backup/controller';
+import PhotoGallery from './views/photo-gallery/controller';
 
 import '../styles/basic';
 
@@ -58,6 +59,7 @@ class App extends React.Component {
         <ComparatorNotifier />
         <Comparator />
         <Backup />
+        <PhotoGallery />
       </div>
     );
   }

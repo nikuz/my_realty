@@ -289,7 +289,7 @@ class AddView extends React.Component {
               }
               case 'address': {
                 let value = dataItem.values.value;
-                if (value.trim() === '' || _.isEmpty(dataItem.values.map)) {
+                if (value.trim() === '') {
                   itemError = true;
                 }
                 break;

@@ -4,6 +4,7 @@ import * as React from 'react';
 import * as _ from 'underscore';
 import * as config from '../../config';
 import $script from 'scriptjs';
+import Icon from 'react-fa';
 
 import './style.less';
 
@@ -104,7 +105,7 @@ class Address extends React.Component {
         draggable: true,
         map: this.map
       });
-      this.marker.addListener('mouseout', this.pointPositionChangedByUser);
+      this.marker.addListener('mouseup', this.pointPositionChangedByUser);
       if (navigator.geolocation && !state.presetCoordinates) {
         navigator.geolocation.getCurrentPosition((position) => {
           if (!this.map || !this.marker) {
@@ -151,7 +152,10 @@ class Address extends React.Component {
           onChange={this.addressOnChange}
           className="text-input"
         />
-        <div id="map_container" ref="map_container" />
+        <div id="map_container" ref="map_container">
+          <i className="map-container-edge" />
+          <Icon name="map-marker" className="map-container-marker" />
+        </div>
       </div>
     );
   }
